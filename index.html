@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css?family=Alata|Anton|Assistant|BenchNine|Orbitron|Pathway+Gothic+One|Teko&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Generative Art</title>
+  <style>
+    body {
+      padding: 0;
+      margin: 0;
+    }
+  </style>
+  <script src="libraries/p5.js"></script>
+  <script src="libraries/p5.dom.js"></script>
+  <script src="FlowField.js"></script>
+</head>
+
+<body>
+
+  <!-- <div id="topnav"> -->
+  <div id="start"></div>
+
+  <a href="javascript:void(0);">
+    <div id="nav-icon1" onclick="MyToggle()">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </a>
+
+  <div class="mySideMenu" id="mySide">
+    <nav id="MyNav" class="MyNav">
+      <h2 style="color:#BF9673">Sidebar</h2>
+      <ul>
+        <li><a id="active">Home</a></li>
+        <li><a href="p5.html">JavaScript</a></li>
+        <li><a href="Sound.html">Sound Visualization</a></li>
+        <li><a href="Managment/RainFall-Steer-v18-ForSub/index.html">Information Visualization</a></li>
+        <li><a href="Logo.html">Logo Redesign</a></li>
+      </ul>
+    </nav>
+  </div>
+
+  <div class="page" style="height:100vh;">
+    <div id="Welcome">
+      <h1>Hello, I am <span id="colorChange">Mohammad Amin Mohammadi</span>.</h1>
+      <h1>I am a enthusiastic student in Design Computing.</h1>
+      <a href="#AboutPage" style="text-decoration: none;">
+        <div id="mainButtn">
+          <h2 style="font-size:18px;">More About Me</h2>
+          <i class="arrowLeft"></i></p>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <div id="topnav" style="position: sticky; top:0;">
+    <h2 id="PageTag"></h2>
+  </div>
+
+  <div class="page" id="AboutPage">
+
+    <div class="About">
+      <section class="About-head">
+        <img src="Assets/Icons/Aim.png" alt="Content-Image" style="height:150px;">
+        <p>My aim is to be a valubale and suppotive team member on the voage of development in Web Design (UX/UI).</p>
+      </section>
+      <section class="About-head">
+        <img src="Assets/Icons/abilities.png" alt="Content-Image" style="height:150px;">
+        <p>Since I was intruduced to programming I have been resilient towards challenges by combining my creative side with the passion I have for programming and web development.</p>
+      </section>
+      <section class="About-head">
+        <img src="Assets/Icons/UXUI.png" alt="Content-Image" style="height:150px;">
+        <p>Through out my university studies using user experience methods has shown me it can significantly improve the usibility of any product.</p>
+      </section>
+    </div>
+
+    <div class="Info-slide-container" id="contentMenu">
+      <span id="Info-slider-image-1" style="background-color:black;"></span>
+      <span id="Info-slider-image-2" style="background-color:black;"></span>
+      <span id="Info-slider-image-3" style="background-color:black;"></span>
+      <span id="Info-slider-image-4" style="background-color:black;"></span>
+      <span id="Info-slider-image-5" style="background-color:black;"></span>
+      <span id="Info-slider-image-6" style="background-color:black;"></span>
+
+
+      <div class="image-container-Info">
+        <div class="slider-image-Info">
+          <img src="Assets/Logo/P5.png" alt="Content-Image">
+          <p>P5.js library is a tool for me to develop dynamic web pages. Using this library the pages become alive with a great level of interaction and real-time visuals.</p>
+        </div>
+        <div class="slider-image-Info">
+          <img src="Assets/Logo/Processing.png" alt="Content-Image">
+          <p>Processing provides a powerful field of tools to generate novel and creative asset packages for pages combining mathematics and physics.</p>
+        </div>
+        <div class="slider-image-Info">
+          <img src="Assets/Logo/D3.png" alt="Content-Image">
+          <p>D3 is another library of JavaScript which is powerful for information visualization. This library able me to generate interactive graphs and tables for better User Interaction.</p>
+        </div>
+        <div class="slider-image-Info">
+          <img src="Assets/Logo/CSS.png" alt="Content-Image">
+          <p>I have been learning new futures from CSS every day since the very first day I have started developing dynamic and responsive pages to improve UI. </p>
+        </div>
+        <div class="slider-image-Info">
+          <img src="Assets/Logo/HTML-2.png" alt="Content-Image">
+          <p>HTML is the key to enter a word in which imagination and information have combined.</p>
+        </div>
+        <div class="slider-image-Info">
+          <img src="Assets/Logo/JS.png" alt="Content-Image">
+          <p>JavaScript and jQuery are tools connecting me to the DOM library of HTML JavaScript. These provide a connection between the front and back end of any page.</p>
+        </div>
+      </div>
+
+      <div class="button-container">
+        <a href="#Info-slider-image-1" class="Info-slider-button" id="Info-slider-1" onclick="feuse(this.id,this.className)">
+        </a>
+        <a href="#Info-slider-image-2" class="Info-slider-button" id="Info-slider-2" onclick="feuse(this.id,this.className)">
+        </a>
+        <a href="#Info-slider-image-3" class="Info-slider-button" id="Info-slider-3" onclick="feuse(this.id,this.className)">
+        </a>
+        <a href="#Info-slider-image-4" class="Info-slider-button" id="Info-slider-4" onclick="feuse(this.id,this.className)">
+        </a>
+        <a href="#Info-slider-image-5" class="Info-slider-button" id="Info-slider-5" onclick="feuse(this.id,this.className)">
+        </a>
+        <a href="#Info-slider-image-6" class="Info-slider-button" id="Info-slider-6" onclick="feuse(this.id,this.className)">
+        </a>
+      </div>
+    </div>
+
+    <a href="#slider-image-1" style="text-decoration: none;">
+      <div id="mainButtn" style="margin-top: 25px;">
+        <h2 style="font-size:18px;">My Projects</h2>
+        <i class="arrowLeft"></i></p>
+      </div>
+    </a>
+  </div>
+
+
+  <div class="slide-container" id="contentMenu">
+    <span id="slider-image-1"></span>
+    <span id="slider-image-2"></span>
+    <span id="slider-image-3"></span>
+    <span id="slider-image-4"></span>
+
+    <div class="image-container">
+      <div id="size-container">
+        <a href="p5.html"><img src="Assets/InfoCard/P5.png" alt="Content-Image" class="slider-image"></a>
+      </div>
+      <div id="size-container">
+        <a href="Sound.html"><img src="Assets/InfoCard/Sound.png" alt="Content-Image" class="slider-image"></a>
+      </div>
+      <div id="size-container">
+        <a href="#"><img src="Assets/InfoCard/P5-3.png" alt="Content-Image" class="slider-image"></a>
+      </div>
+      <div id="size-container">
+        <a href="#"><img src="Assets/InfoCard/P5-4.png" alt="Content-Image" class="slider-image"></a>
+      </div>
+    </div>
+
+    <div class="button-container" id="button-container">
+      <a href="#slider-image-1" class="slider-button" id="slider-1" onclick="feuse(this.id,this.className)">
+      </a>
+      <a href="#slider-image-2" class="slider-button" id="slider-2" onclick="feuse(this.id,this.className)">
+      </a>
+      <a href="#slider-image-3" class="slider-button" id="slider-3" onclick="feuse(this.id,this.className)">
+      </a>
+      <a href="#slider-image-4" class="slider-button" id="slider-4" onclick="feuse(this.id,this.className)">
+      </a>
+    </div>
+
+  </div>
+
+
+  <a href="#start">
+    <div class="top" id="topB"><i class="arrowUp"></i></div>
+  </a>
+
+  <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+  <script src="js/Scripts.js">
+
+  </script>
+
+</body>
+
+</html>

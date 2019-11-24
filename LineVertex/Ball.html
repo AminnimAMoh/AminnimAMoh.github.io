@@ -1,0 +1,161 @@
+<html lang="">
+
+<head>
+  <title>Generative Art</title>
+  <meta charset="utf-8">
+  <script src="libraries/p5.js"></script>
+  <script src="libraries/p5.dom.js"></script>
+  <script src="sketch.js"></script>
+
+  <style>
+    body {
+      padding: 0;
+      margin: 0;
+    }
+
+    <style>body {
+      padding: 0;
+      margin: 0;
+    }
+
+    .button {
+      background-color: #4CAF50;
+      margin-top: 10px;
+      border: none;
+      border-radius: 12px;
+      color: white;
+      padding: 5px 5px;
+      text-align: center;
+      font-size: 12px;
+      cursor: pointer;
+    }
+
+    .ToolSide {
+      float: left;
+      margin-left: 5px;
+      padding-left: 10px;
+      padding-right: 5px;
+      padding-bottom: 10px;
+      background-color: black;
+      opacity: 0.6;
+      width: 50;
+      height: 100%;
+      color: white;
+      font-size: 12px
+    }
+
+    .slider {
+      -webkit-appearance: none;
+      width: 100%;
+      height: 10px;
+      background: #d3d3d3;
+      border-radius: 20px;
+      outline: none;
+      opacity: 0.7;
+      -webkit-transition: .2s;
+      transition: opacity .2s;
+    }
+
+    .slider:hover {
+      opacity: 1;
+    }
+
+    .slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      border-radius: 20px;
+      width: 10px;
+      height: 10px;
+      background: rgb(255, 0, 255);
+      cursor: pointer;
+    }
+
+    .slider::-moz-range-thumb {
+      width: 25px;
+      height: 25px;
+      background: #4CAF50;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="ToolSide">
+    <p>Speed Value: <span id="demo"></span></p>
+    <input type="range" min="0.0003" max="0.03" value="0.0003" step="0.00001" class="slider" id="SpeedS">
+
+    <p>Red Value: <span id="demoR"></span></p>
+    <input type="range" min="0" max="255" value="230" class="slider" id="rS">
+
+    <p>Green Value: <span id="demoG"></span></p>
+    <input type="range" min="0" max="255" value="22" class="slider" id="gS">
+
+    <p>Blue Value: <span id="demoB"></span></p>
+    <input type="range" min="0" max="255" value="95" class="slider" id="bS">
+
+    <p>Stroke Size: <span id="demoS"></span></p>
+    <input type="range" min="1" max="5" value="1" step="0.1" class="slider" id="sS">
+
+    <p>Width: <span id="demoW"></span></p>
+    <input type="range" min="1" max="100" value="1" step="1" class="slider" id="wS">
+
+    <P></P>
+    <button class="button" value="true" id="br" onclick="myFunction()">Reset</button>
+  </div>
+
+  <script>
+    function myFunction() {
+      var b = document.getElementById("br").value;
+      if (b === "true") {
+        document.getElementById("br").value = "false";
+      } else {
+        document.getElementById("br").value = "true";
+      }
+    }
+
+    var speedS = document.getElementById("SpeedS");
+    var outSp = document.getElementById("demo");
+    outSp.innerHTML = speedS.value;
+
+    speedS.oninput = function() {
+      outSp.innerHTML = this.value;
+    }
+    var redS = document.getElementById("rS");
+    var outR = document.getElementById("demoR");
+    outR.innerHTML = redS.value;
+
+    redS.oninput = function() {
+      outR.innerHTML = this.value;
+    }
+    var redG = document.getElementById("gS");
+    var outG = document.getElementById("demoG");
+    outG.innerHTML = redG.value;
+
+    redG.oninput = function() {
+      outG.innerHTML = this.value;
+    }
+    var redB = document.getElementById("bS");
+    var outB = document.getElementById("demoB");
+    outB.innerHTML = redB.value;
+
+    redB.oninput = function() {
+      outB.innerHTML = this.value;
+    }
+    var s = document.getElementById("sS");
+    var outS = document.getElementById("demoS");
+    s.innerHTML = outS.value;
+
+    s.oninput = function() {
+      outS.innerHTML = this.value;
+    }
+    var w = document.getElementById("wS");
+    var outW = document.getElementById("demoW");
+    w.innerHTML = outW.value;
+
+    w.oninput = function() {
+      outW.innerHTML = this.value;
+    }
+  </script>
+</body>
+
+</html>

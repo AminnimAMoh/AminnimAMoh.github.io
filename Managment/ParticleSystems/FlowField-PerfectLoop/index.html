@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="../../../css/style.css">
+  <link href="https://fonts.googleapis.com/css?family=Alata|Anton|Assistant|BenchNine|Orbitron|Pathway+Gothic+One|Teko&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flow Field Perfect Noise Loop</title>
+  <style>
+    body {
+      padding: 0;
+      margin: 0;
+      background-color: black;
+    }
+  </style>
+  <script src="libraries/p5.js"></script>
+  <script src="libraries/p5.dom.js"></script>
+  <script src="sketch.js"></script>
+</head>
+
+<body>
+  <div id="topnav">
+    <h2 id="PageTag">Flow Field Perfect Noise Loop</h2>
+  </div>
+
+  <a href="javascript:void(0);">
+
+    <div id="nav-icon1" onclick="MyToggle()">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </a>
+
+  <div class="mySideMenu" id="mySide">
+    <nav id="MyNav" class="MyNav">
+      <h2 style="color:#BF9673">Sidebar</h2>
+      <ul>
+        <li><a href="../../../index.html">Home</a></li>
+        <li><a href="../../../p5.html">JavaScript</a></li>
+        <li><a href="../../../Sound.html">Sound Visualization</a></li>
+        <li><a href="../../../Managment/RainFall-Steer-v18-ForSub/index.html">Information Visualization</a></li>
+        <li><a href="../../../Logo.html">Logo Redesign</a></li>
+      </ul>
+    </nav>
+  </div>
+
+  <div id="ToolBox">
+    <h3>Tools</h3>
+    <h5>Field Shifts Speed</h5>
+    <h5>Noise Value</h5>
+    <h5>Stroke Thickness</h5>
+    <h5>Canvas Opacity</h5>
+    <br>
+
+    <input type="range" min="0.000001" max="0.001" value="0.000001" step="0.00001" class="slider" id="zInc">
+    <input type="range" min="0.0001" max="0.1" value="0.02" step="0.0001" class="slider" id="xyInc">
+    <input type="range" min="10" max="255" value="10" step="1" class="slider" id="ParticlesD">
+    <input type="range" min="0.1" max="255" value="0.1" step="1" class="slider" id="CanD">
+    <br>
+
+    <div onclick="shapeShoft(this.id)" id="eleOne">Save Screen</div>
+    <div onclick="shapeShoft(this.id)" id="eleTwo" style="display: none">Dance Loop Mode</div>
+
+    <input id="resive" style="display:none">
+  </div>
+  </div>
+  <a href="../../../p5.html">
+    <div id="BackB">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </a>
+
+  <h3>Click on canvas to move the Ball</h3>
+
+  <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+  <script src="../../../js/Scripts.js"></script>
+</body>
+
+</html>

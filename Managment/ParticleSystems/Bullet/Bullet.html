@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="../../../css/style.css">
+  <link href="https://fonts.googleapis.com/css?family=Alata|Anton|Assistant|BenchNine|Orbitron|Pathway+Gothic+One|Teko&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Steer Attribute Grid</title>
+  <style>
+    body {
+      padding: 0;
+      margin: 0;
+      background-color: black;
+    }
+  </style>
+  <script src="libraries/p5.js"></script>
+  <script src="libraries/p5.dom.js"></script>
+  <script src="sketch.js"></script>
+</head>
+
+<body>
+  <div id="topnav">
+    <h2 id="PageTag">Steer Attribute Grid</h2>
+  </div>
+
+  <a href="javascript:void(0);">
+
+    <div id="nav-icon1" onclick="MyToggle()">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </a>
+
+  <div class="mySideMenu" id="mySide">
+    <nav id="MyNav" class="MyNav">
+      <h2 style="color:#BF9673">Sidebar</h2>
+      <ul>
+        <li><a href="../../../index.html">Home</a></li>
+        <li><a href="../../../p5.html">JavaScript</a></li>
+        <li><a href="../../../Sound.html">Sound Visualization</a></li>
+        <li><a href="../../../Managment/RainFall-Steer-v18-ForSub/index.html">Information Visualization</a></li>
+        <li><a href="../../../Logo.html">Logo Redesign</a></li>
+      </ul>
+    </nav>
+  </div>
+
+  <div id="ToolBox">
+    <h3>Tools</h3>
+    <h5>Radius</h5>
+    <h5>Speed</h5>
+    <br>
+
+    <input type="range" min="100" max="500" value="100" step="1" class="slider" id="maxDisSlide">
+    <input type="range" min="1" max="20" value="1" step="1" class="slider" id="maxSpeedSlide">
+    <br>
+
+    <div onclick="shapeShoft(this.id)" id="eleOne">Circle</div>
+    <div onclick="shapeShoft(this.id)" id="eleTwo">Rectangle</div>
+    <input id="resive" style="display:none">
+  </div>
+  </div>
+  <a href="../../../p5.html">
+    <div id="BackB">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </a>
+
+  <h3>Click on canvas to move the Ball</h3>
+
+  <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+  <script src="../../../js/Scripts.js"></script>
+</body>
+
+</html>
