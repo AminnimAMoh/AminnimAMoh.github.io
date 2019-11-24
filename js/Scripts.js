@@ -1,12 +1,12 @@
-beforecreate: function(node, targetNode, type, to) {
-  jQuery.ajax({
-    url: 'http://example.com/catalog/create/' + targetNode.id + '?name=' + encode(to.inp[0].value),
-    success: function(result) {
-      if (result.isOk == false) alert(result.message);
-    },
-    async: false
-  });
-}
+// beforecreate: function(node, targetNode, type, to) {
+//   jQuery.ajax({
+//     url: 'http://example.com/catalog/create/' + targetNode.id + '?name=' + encode(to.inp[0].value),
+//     success: function(result) {
+//       if (result.isOk == false) alert(result.message);
+//     },
+//     async: false
+//   });
+// }
 
 function MyToggle() {
   var eOne = document.getElementById("mySide");
@@ -37,11 +37,11 @@ function aboutFunction() {
 //     e.classList.add("open")
 //   }
 // }
-$(document).ready(function() {
-  $("#About-P5,#BackB").hover(function() {
-    $(this).toggleClass("open");
-  });
-});
+// $(document).ready(function() {
+//   $("#About-P5,#BackB").hover(function() {
+//     $(this).toggleClass("open");
+//   });
+// });
 
 function shapeShoft(ele) {
   var c = document.getElementById("eleOne");
@@ -131,14 +131,14 @@ function offsetAnchor() {
   }
 }
 
-// Captures click events of all <a> elements with href starting with #
-$(document).on('click', 'a[href^="#Info"]', function(event) {
-  // Click events are captured before hashchanges. Timeout
-  // causes offsetAnchor to be called after the page jump.
-  window.setTimeout(function() {
-    offsetAnchor();
-  }, 0);
-});
-
-// Set the offset when entering page with hash present in the url
-window.setTimeout(offsetAnchor, 0);
+// // Captures click events of all <a> elements with href starting with #
+// $(document).on('click', 'a[href^="#Info"]', function(event) {
+//   // Click events are captured before hashchanges. Timeout
+//   // causes offsetAnchor to be called after the page jump.
+//   window.setTimeout(function() {
+//     offsetAnchor();
+//   }, 0);
+// });
+//
+// // Set the offset when entering page with hash present in the url
+// window.setTimeout(offsetAnchor, 0);

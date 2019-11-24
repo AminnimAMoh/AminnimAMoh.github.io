@@ -101,13 +101,9 @@ function setup() {
 }
 
 function setCanSize() {
-  $(document).ready(function() {
-    var w = $("#canTest").width();
-    var h = $("#canTest").height();
-    Can = createCanvas(w, h);
-    Can.id('myCan');
-    Can.parent("canTest");
-  });
+  Can = createCanvas(w, h);
+  Can.id('myCan');
+  Can.parent("canTest");
 }
 
 function draw() {
