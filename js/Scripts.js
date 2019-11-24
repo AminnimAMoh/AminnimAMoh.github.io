@@ -1,3 +1,13 @@
+beforecreate: function(node, targetNode, type, to) {
+  jQuery.ajax({
+    url: 'http://example.com/catalog/create/' + targetNode.id + '?name=' + encode(to.inp[0].value),
+    success: function(result) {
+      if (result.isOk == false) alert(result.message);
+    },
+    async: false
+  });
+}
+
 function MyToggle() {
   var eOne = document.getElementById("mySide");
   var eTwo = document.getElementById("nav-icon1");
@@ -19,6 +29,14 @@ function aboutFunction() {
   }
 }
 
+// function hoverToggle(e){
+//   var e=document.getElementById(e);
+//   if (e.classList.contains("open")){
+//     e.classList.remove("open");
+//   }else{
+//     e.classList.add("open")
+//   }
+// }
 $(document).ready(function() {
   $("#About-P5,#BackB").hover(function() {
     $(this).toggleClass("open");
