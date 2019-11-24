@@ -101,6 +101,8 @@ function setup() {
 }
 
 function setCanSize() {
+  var e = document.getElementById('canTest');
+  console, log(e);
   Can = createCanvas(w, h);
   Can.id('myCan');
   Can.parent("canTest");
