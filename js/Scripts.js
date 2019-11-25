@@ -70,12 +70,15 @@ function imgSelect(e) {
   }
 }
 
-function showInfo(e) {
-  var eOne = document.getElementById(e.id);
-  if (eOne.classList.contains('open')) {
-    eOne.classList.remove("open");
+function showInfo(container, button) {
+  var eOneC = document.getElementById(container.id);
+  var eOneB = document.getElementById(button);
+  if (eOneC.classList.contains('open')) {
+    eOneC.classList.remove("open");
+    eOneB.classList.remove("open");
   } else {
-    eOne.classList.add('open');
+    eOneC.classList.add('open');
+    eOneB.classList.add('open');
   }
 }
 
@@ -117,7 +120,7 @@ function feuse(e, c) {
 // The function actually applying the offset
 function offsetAnchor() {
   if (location.hash.length !== 0) {
-    window.scrollTo(window.scrollX, window.scrollY - 455);
+    window.scrollTo(window.scrollX, window.scrollY - 440);
   }
 }
 

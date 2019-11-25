@@ -15,7 +15,7 @@ var sPlay = false;
 var tAlphaR = 255;
 var tAlphaL = 255;
 
-var soundName = ["Please drag and drop a audio file"];
+var soundName = ["Please drag and drop an audio file"];
 var t = 0;
 var fram = 0;
 var errorCount = 0;

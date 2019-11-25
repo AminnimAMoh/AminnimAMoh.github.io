@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+   <!-- Meta tags -->
+   <meta charset="utf-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <meta name="designer" content="Rob Dongas">
+   <!-- Required imported CSS files -->
+   <link rel="stylesheet" href="css/reset.css" />
+   <!-- Main CSS file -->
+   <link rel="stylesheet" href="css/styles.css" />
+
+   <!-- Title -->
+   <title>Interaction Design Studio</title>
+</head>
+
+
+
+<body class="container home" id="top">
+
+   <!-- Make your modifications below -->
+   <header>
+      <div class="header-container">
+         <h1>Your Name</h1>
+      </div>
+      <nav>
+         <input type="checkbox" id="toggle" checked>
+         <label for="toggle" class="nav-toggle">
+            <div class="nav-icon"></div>
+         </label>
+         <ul>
+            <li class="active">
+               <a href="about.html">About</a>
+            </li>
+            <li>
+               <a href="task1.html">Task 1</a>
+            </li>
+            <li>
+               <a href="task2.html">Task 2</a>
+            </li>
+            <li>
+               <a href="task3.html">Task 3</a>
+            </li>
+         </ul>
+      </nav>
+   </header>
+
+   <main>
+      <article>
+         <section class="hero-container">
+            <!-- Update the image and text below -->
+            <img src="https://source.unsplash.com/720x720/?ux" />
+            <div class="hero-text">
+               <h4>Welcome to my Portfolio</h4>
+               <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia minima, libero quisquam tempore
+                  necessitatibus sunt, excepturi quos beatae dicta alias quibusdam ad accusamus? Animi non minima
+                  provident iste beatae maiores.</p>
+            </div>
+         </section>
+
+         <!-- Add your team members -->
+         <section class="team-container">
+            <span class="separator"></span>
+            <h1 id="title">Meet the Team</h1>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut, id! Non nisi asperiores at reiciendis
+               officia, harum in quisquam magni. Autem id eveniet, nostrum provident ut molestias tenetur beatae
+               distinctio.</p>
+            <div class="team-member">
+               <img src="https://placehold.it/300" />
+               <h4>Your Name</h4>
+               <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quam dolores fuga fugiat ab magnam soluta
+                  nesciunt iusto beatae, reiciendis sed? Labore corporis sit similique consequatur voluptas quis culpa
+                  laboriosam est?</p>
+               <span>e: <a href="mailto:name@email.com">name@email.com</a></span>
+               <span>m: 0400 123 456</span>
+               <span>w: <a href="www.portfolio.com">www.portfolio.com</a></span>
+            </div>
+            <div class="team-member">
+               <img src="https://placehold.it/300" />
+               <h4>Team Member 2</h4>
+               <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quam dolores fuga fugiat ab magnam soluta
+                  nesciunt iusto beatae, reiciendis sed? Labore corporis sit similique consequatur voluptas quis culpa
+                  laboriosam est?</p>
+               <span>e: <a href="mailto:name@email.com">name@email.com</a></span>
+               <span>m: 0400 123 456</span>
+               <span>w: <a href="www.portfolio.com">www.portfolio.com</a></span>
+            </div>
+            <div class="team-member">
+               <img src="https://placehold.it/300" />
+               <h4>Team Member 3</h4>
+               <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quam dolores fuga fugiat ab magnam soluta
+                  nesciunt iusto beatae, reiciendis sed? Labore corporis sit similique consequatur voluptas quis culpa
+                  laboriosam est?</p>
+               <span>e: <a href="mailto:name@email.com">name@email.com</a></span>
+               <span>m: 0400 123 456</span>
+               <span>w: <a href="www.portfolio.com">www.portfolio.com</a></span>
+            </div>
+         </section>
+
+      </article>
+   </main>
+
+   <!-- DO NOT modify the following code -->
+   <footer>
+      <a href="#top">
+         <svg class="icon-arrow-up">
+            <use xlink:href="#arrow"></use>
+         </svg>Back to top</a>
+      <div class="logo-container"><img src="img/USydLogo.svg" /></div>
+      <svg style="display: none;">
+         <defs>
+            <symbol id="arrow" viewBox="0 0 35 15">
+               <title>Arrow</title>
+               <path d="M27.172 5L25 2.828 27.828 0 34.9 7.071l-7.07 7.071L25 11.314 27.314 9H0V5h27.172z " />
+            </symbol>
+         </defs>
+      </svg>
+   </footer>
+
+
+
+   <!-- Required imported js -->
+   <script src="js/scrollmenu.js"></script>
+   <script type="text/javascript">
+      new ScrollMenu('.content-container a[href*="#"], footer a[href*="#"]', {
+         duration: 500,
+         activeOffset: 100,
+      })
+   </script>
+
+
+</body>
+
+</html>

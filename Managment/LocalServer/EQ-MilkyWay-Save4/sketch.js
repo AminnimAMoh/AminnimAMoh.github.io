@@ -10,7 +10,7 @@ var xAcc = [];
 var yAcc = [];
 var sMap = [];
 var rand = [];
-var soundName = ["Please drag and drop a audio file"];
+var soundName = ["Please drag and drop an audio file"];
 
 var strokeSize = 1;
 var Acc = 0;

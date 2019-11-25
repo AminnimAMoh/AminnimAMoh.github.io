@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- Meta tags -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="designer" content="Rob Dongas">
+  <!-- Required imported CSS files -->
+  <link rel="stylesheet" href="css/reset.css" />
+  <!-- Main CSS file -->
+  <link rel="stylesheet" href="css/styles.css" />
+
+  <!-- Title -->
+  <title>Interaction Design Studio</title>
+</head>
+
+
+<body class="container" id="top">
+
+  <div id="myTopNav">
+    <div id="myIcone" onclick="myIconeTuggle(this.id)">
+      <span id="lineOne"></span>
+      <span id="lineTwo"></span>
+      <span id="lineThree"></span>
+    </div>
+    <h3 style="margin-top:5px;">HEALTHJAM</h3>
+  </div>
+
+  <ul id="menuList">
+    <h2 style="color: white">Menu</h2>
+    <div id="interialList" onclick="myIconeTuggle(this.id)">
+      <li style="color: white">Tasks</li>
+      <ol id="intList" style="margin-left:25px;">
+        <a href="task1.html">
+          <li>Task 1</li>
+        </a>
+        <a href="task2.html">
+          <li>Task 2</li>
+        </a>
+        <a href="task3.html">
+          <li>Task 3</li>
+        </a>
+      </ol>
+    </div>
+    <div id='interialList-2' onclick="myIconeTuggle(this.id)" href='#'>
+      <li style="color: white">Sections</li>
+      <ol id='intList-2' style="margin-left:25px;">
+        <a href="#myResearch">
+          <li>Research</li>
+        </a>
+        <a href="#Consepts">
+          <li>Concepts</li>
+        </a>
+        <a href="#FinalConsepts">
+          <li>Final Design Concept</li>
+        </a>
+        <a href="#UserJourney">
+          <li>User Journey Map</li>
+        </a>
+        <a href="#Iteration">
+          <li>Iteration</li>
+        </a>
+      </ol>
+    </div>
+    <a href="task3-appendix.html">
+      <li>Appendix</li>
+    </a>
+    <li>About</li>
+  </ul>
+  <div id="myCover">
+    <img src="img/Shots.jpg">
+  </div>
+
+  <!-- Make your modifications below -->
+
+
+  <!-- Make your navigation modifications below -->
+  <!-- Replicate the heading structure for a 'table of contents' nav -->
+
+  <main>
+    <article>
+
+      <!-- Make your content modifications below -->
+      <!-- Section for the top banner heading -->
+      <section class="title-container">
+        <h1 id="title">Introduction</h1>
+        <p>Completed by Your Name | 12 August 2019</p>
+        <span class="separator" id="myResearch"></span>
+      </section>
+
+      <!-- Body section with additional heading elements -->
+      <section class="content-container">
+        <h3>Research</h3>
+        <div class="myResearch">
+          <div class="myResearch-item"><img src="img/test1.png" alt="Content-Image"></div>
+          <div class="myResearch-item">1</div>
+          <div class="myResearch-item">1</div>
+          <div class="myResearch-item">1</div>
+          <div class="myResearch-item">1</div>
+          <div class="myResearch-item">1</div>
+        </div>
+        <span class="separator" id="Consepts"></span>
+
+        <h3>Concepts</h3>
+        <div class="myResearch">
+          <div class="myResearch-item">1</div>
+          <div class="myResearch-item">1</div>
+          <div class="myResearch-item">1</div>
+        </div>
+        <span class="separator" id="FinalConsepts"></span>
+
+        <h3>Final Concept</h3>
+        <div class="myContentImage">
+          <div class="image-myContentImage">
+            <img src="img/BarFinal/1.JPG" alt="Content-Image" style="width:100%">
+          </div>
+          <div class="info-myContentImage">
+            <p>hello</p>
+          </div>
+          <div class="image-myContentImage">
+            <img src='img/BarFinal/2.jpg' alt="Content-Image" style="width:100%">
+          </div>
+          <div class="info-myContentImage">
+            <p>hello</p>
+          </div>
+          <div class="" <div class="image-myContentImage">
+            <img src='img/BarFinal/3.jpg' alt="Content-Image" style="width:100%">
+          </div>
+          <div class="info-myContentImage">
+            <p>hello</p>
+          </div>
+        </div>
+        <span class="separator" id="UserJourney"></span>
+
+        <h3>User Journey Map</h3>
+        <div class="myCover">
+          <img src="img\Example-min.png" alt="user journey map" style="width:100%;">
+        </div>
+        <span class="separator" id="Iteration"></span>
+
+        <h3>Iteration</h3>
+        <div class="myResearch">
+          <div class="myResearch-item">1</div>
+          <div class="myResearch-item">1</div>
+          <div class="myResearch-item">1</div>
+          <div class="myResearch-item">1</div>
+          <div class="myResearch-item">1</div>
+          <div class="myResearch-item">1</div>
+        </div>
+        <span class="separator"></span>
+      </section>
+
+    </article>
+  </main>
+
+  <!-- DO NOT modify the following code -->
+  <footer>
+    <a href="#top">
+      <svg class="icon-arrow-up">
+        <use xlink:href="#arrow"></use>
+      </svg>Back to top</a>
+    <div class="logo-container"><img src="img/USydLogo.svg" /></div>
+    <svg style="display: none;">
+      <defs>
+        <symbol id="arrow" viewBox="0 0 35 15">
+          <title>Arrow</title>
+          <path d="M27.172 5L25 2.828 27.828 0 34.9 7.071l-7.07 7.071L25 11.314 27.314 9H0V5h27.172z " />
+        </symbol>
+      </defs>
+    </svg>
+  </footer>
+
+
+  <!-- Required imported js -->
+  <script src="js/scrollmenu.js"></script>
+  <script type="text/javascript">
+    new ScrollMenu('.aside-container a[href*="#"]', {
+      duration: 500,
+      activeOffset: 100,
+    })
+    new ScrollMenu('footer a[href*="#"], .content-container a[href*="#"]', {
+      duration: 500,
+    })
+  </script>
+
+</body>
+
+</html>

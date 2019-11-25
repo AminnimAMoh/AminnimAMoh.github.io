@@ -1,7 +1,7 @@
 var t = [];
 var levelVects = [];
 var specVects = [];
-var soundName = ["Please drag and drop a audio file"];
+var soundName = ["Please drag and drop an audio file"];
 
 var sound;
 var testTrack = false;

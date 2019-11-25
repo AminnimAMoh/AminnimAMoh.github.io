@@ -14,17 +14,28 @@ font-family: 'Orbitron', sans-serif;
 font-family: 'BenchNine', sans-serif; */
 h1 {
   font-size: 2.1em;
-  color: #343C40;
+  color: #2A2819;
   font-family: 'Alata', sans-serif;
 }
 
 h2 {
-  color: #343C40;
+  color: #2A2819;
   font-family: 'Assistant', sans-serif;
 }
 
 h3 {
+  color: #B98671;
   font-family: 'Assistant', sans-serif;
+}
+
+h4 {
+  color: #513F29;
+  font-family: 'Assistant', sans-serif;
+}
+
+h5 {
+  letter-spacing: 1.5px;
+  font-family: 'Orbitron', sans-serif;
 }
 
 p {
@@ -131,7 +142,7 @@ a {
   position: relative;
   right: -40%;
   bottom: 23px;
-  border: solid black;
+  border: solid #2A2819;
   border-width: 0 3px 3px 0;
   display: inline-block;
   padding: 3px;
@@ -168,8 +179,8 @@ a {
 
 #mainButtn:hover {
   cursor: pointer;
-  background-color: rgba(23, 80, 115, .3);
-  transition: box-shadow 1s background-color 1s;
+  background-color: rgba(81, 63, 41, .5);
+  transition: box-shadow .5s background-color .5s;
 }
 
 .About {
@@ -236,14 +247,18 @@ a {
 }
 
 .content-tag {
+  box-sizing: border-box;
   position: relative;
   top: -50%;
   left: -100%;
   margin-top: -20px;
-  height: 100%;
+  height: 50px;
+  padding-top: 10px;
   text-decoration: none;
   color: black;
-  background-color: rgba(255, 255, 255, .5);
+  background-color: rgba(156, 72, 48);
+  color: #B98671;
+  text-shadow: 2px 2px 6px rgba(42, 40, 25, .5);
   transition: transform .5s;
 }
 
@@ -255,6 +270,12 @@ a {
 
 .About-head.open .content-tag {
   transform: translate(100%, 0);
+}
+
+.About-head.open img {
+  -webkit-filter: blur(8px);
+  filter: blur(8px);
+  transition: filter .5s
 }
 
 #facing {
@@ -370,12 +391,12 @@ a {
   z-index: 3;
   overflow: hidden;
   /* background-color: rgba(55, 136, 158, .3); */
-  background-color: #343C40;
+  background-color: #2A2819;
   position: fixed;
   width: 100%;
   height: 55px;
   color: white;
-  box-shadow: 2px 2px 10px 10px rgba(50, 33, 64, .3);
+  box-shadow: 2px 2px 10px 10px rgba(42, 40, 25, .3);
 }
 
 #PageTag {
@@ -386,7 +407,7 @@ a {
   left: 0;
   right: 0;
   text-align: center;
-  color: #D4D4D4;
+  color: #BF9673;
 }
 
 .mySideMenu {
@@ -397,7 +418,7 @@ a {
   z-index: 4;
   width: 300px;
   height: 100vh;
-  background-color: rgba(52, 60, 64, 0.7);
+  background-color: rgba(42, 40, 25, 0.7);
   transition: transform 0.5s ease-in-out;
 }
 
@@ -434,11 +455,11 @@ a {
   text-decoration: none;
   font-weight: 400;
   font-size: 18px;
-  color: #FFFFFF;
+  color: white;
 }
 
 .mySideMenu a:hover {
-  background-color: rgba(92, 84, 74, .5);
+  background-color: rgba(156, 72, 48, .5);
 }
 
 #MyNav {
@@ -446,7 +467,7 @@ a {
 }
 
 #MyNav #active {
-  background-color: #5C544A;
+  background-color: #9C4830;
 }
 
 .Home-Botton {
@@ -592,7 +613,7 @@ a {
   height: 2px;
   width: 100%;
   z-index: 100;
-  background: #B4BEC2;
+  background: #BF9673;
   border-radius: 9px;
   opacity: 1;
   left: 0;
@@ -667,7 +688,8 @@ a {
   padding-top: 70px;
   padding-left: 25px;
   padding-right: 25px;
-  background-color: rgba(255, 255, 255, 0.5);
+  /* background-color: rgba(42, 40, 25); */
+  background-color: #513F29;
   border-style: inset;
   border-width: 0.3px;
   border-top: none;
@@ -679,6 +701,7 @@ a {
 }
 
 #ToolBox h3 {
+  font-family: 'Orbitron', sans-serif;
   position: absolute;
   top: 55px;
   margin: 0 auto;
@@ -688,8 +711,9 @@ a {
   border-bottom-right-radius: 12px;
   width: 20%;
   height: 25px;
-  background-color: rgb(0, 0, 0, 0.5);
-  color: #37879E;
+  background-color: rgb(156, 72, 48, 0.5);
+  box-shadow: 2px 2px 6px rgba(42, 40, 25, .5);
+  color: white;
 }
 
 #ToolBox h5 {
@@ -728,7 +752,7 @@ a {
 
 #CodeContainer {
   float: left;
-  background-color: rgba(0, 0, 0, .5);
+  background-color: rgba(42, 40, 25, .8);
   width: 0;
   overflow: hidden;
   transition: width 1s;
@@ -749,6 +773,19 @@ pre {
   overflow: auto;
 }
 
+pre::-webkit-scrollbar {
+  background-color: #513F29;
+  width: 5px;
+}
+
+pre::-webkit-scrollbar-thumb {
+  background-color: #9C4830;
+}
+
+pre::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 72, 48);
+}
+
 #codeButton {
   position: absolute;
   top: 50%;
@@ -756,18 +793,59 @@ pre {
   width: 50px;
   height: 50px;
   border-radius: 100px;
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: rgba(156, 72, 48, 0.2);
   border-style: inset;
   border-width: 1px;
+  animation-name: jumper;
   transition: background-color 0.5s;
   transition: left .5s;
 }
 
+#codeButton.open {
+  left: 90%;
+}
+
+#codeButton.open:hover {
+  transform: translate(-15px, 0);
+}
+
 #codeButton:hover {
-  left: 5px;
-  background-color: rgba(255, 255, 255, 1);
-  transition: background-color 0.5s;
-  transition: left .5s;
+  transform: translate(35px, 0);
+  background-color: rgba(156, 72, 48, 1);
+}
+
+#codeButton span {
+  display: block;
+  position: absolute;
+  width: 30px;
+  height: 6px;
+  border-radius: 3px;
+  background-color: #BF9673;
+  transition: left 0.2s;
+}
+
+#codeButton span:nth-child(1) {
+  width: 28px;
+  top: 62%;
+  left: 25%;
+  transform: rotate(-45deg);
+}
+
+#codeButton span:nth-child(2) {
+  width: 28px;
+  top: 30%;
+  left: 25%;
+  transform: rotate(45deg);
+}
+
+#codeButton.open span:nth-child(1) {
+  left: 8px;
+  transform: rotate(-135deg);
+}
+
+#codeButton.open span:nth-child(2) {
+  left: 8px;
+  transform: rotate(135deg);
 }
 
 #infoButton {
@@ -834,8 +912,9 @@ pre {
   appearance: none;
   margin-top: 15px;
   height: 5px;
-  background: rgb(20, 40, 40, 0.6);
+  background: rgb(42, 40, 25, 0.6);
   border-radius: 5px;
+  box-shadow: 2px 2px 6px rgba(42, 40, 25, .5);
 }
 
 .slider::-webkit-slider-thumb {
@@ -844,8 +923,9 @@ pre {
   width: 15px;
   height: 15px;
   border-radius: 50%;
-  background: #37879E;
+  background: #9C4830;
   cursor: pointer;
+  box-shadow: 2px 2px 6px rgba(42, 40, 25, .5);
 }
 
 .slider::-moz-range-thumb {
@@ -863,7 +943,8 @@ pre {
   width: 60px;
   height: 60px;
   border-radius: 100px;
-  background-color: #37879E;
+  background-color: #9C4830;
+  box-shadow: 2px 2px 6px rgba(42, 40, 25, .5);
 }
 
 #BackB span {
@@ -871,7 +952,7 @@ pre {
   position: absolute;
   width: 40px;
   height: 6px;
-  background-color: black;
+  background-color: #BF9673;
 }
 
 #BackB span:nth-child(1) {
@@ -888,13 +969,6 @@ pre {
   left: 25%;
   transform: rotate(-45deg);
   transition: left 0.2s;
-}
-
-#BackB span:nth-child(3) {
-  width: 50px;
-  background-color: #37879E;
-  top: 45%;
-  left: 2px;
 }
 
 #BackB.open span:nth-child(1), #BackB.open span:nth-child(2) {
@@ -918,9 +992,9 @@ pre {
 }
 
 #PhotoGride img:hover {
-  -webkit-filter: grayscale(100%);
-  filter: grayscale(100%);
-  transition: filter .3s;
+  -webkit-filter: blur(2px);
+  filter: blur(2px);
+  transition: filter .2s;
 }
 
 #PhotoGride h3 {
@@ -928,7 +1002,7 @@ pre {
   margin-right: 65px;
   font-size: 36px;
   margin-bottom: 25px;
-  color: white;
+  color: #513F29;
   text-shadow: 5px 5px 15px rgba(0, 0, 0, .5);
 }
 

@@ -102,11 +102,10 @@ function Particle() {
 
     beginShape();
     var al = float(ParticlesD.value);
-    // stroke(r, g, b, al);
+
     stroke(255, 255, 255, al);
     strokeWeight(0.3);
-    /*line(this.pos.x,this.pos.y,this.prevPos.x,this.prevPos.y);
-     */
+
     curveVertex(this.pos.x, this.pos.y);
     curveVertex(this.prevPos.x, this.prevPos.y);
     endShape(CLOSE);

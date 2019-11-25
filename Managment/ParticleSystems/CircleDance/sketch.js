@@ -25,7 +25,6 @@ function setup() {
   Can = createCanvas(600, 600);
   Can.id("pCan");
   centerCan();
-  // colorMode(HSB, 100);
 
 
   for (var i = 0; i < partNumb; i++) {
@@ -108,8 +107,8 @@ function Ball() {
     var Bmap = map(this.pos.x, width, 0, b, 255);
     for (var i = 0; i < partNumb; i++) {
       push();
-      // stroke(Rmap, Gmap, Bmap, Salpha);
-      stroke(255);
+      stroke(Rmap, Gmap, Bmap, Salpha);
+      // stroke(255);
       rotate(TWO_PI * i / partNumb);
       strokeWeight(float(pd.value));
       line(this.pos.x, this.pos.y, this.Lpos.x, this.Lpos.y);
