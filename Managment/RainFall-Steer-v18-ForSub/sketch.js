@@ -62,12 +62,13 @@ function preload() {
   population = loadStrings("data/PThreeYears.csv")
 }
 
-function windowResized() {
-  setCanSize();
-}
 
 
 function setup() {
+
+  Can = createCanvas(1280, 720);
+  Can.id('myCan');
+  Can.parent("canTest");
 
   textFont(font)
 
@@ -87,7 +88,7 @@ function setup() {
       yearSelect.option(data[1])
     }
   }
-  setCanSize();
+
   mouseSet = createVector();
 
   /*----------------------SteerGrid----------------------*/
@@ -100,15 +101,6 @@ function setup() {
   }
 }
 
-function setCanSize() {
-  $(document).ready(function() {
-    var w = $("#canTest").width();
-    var h = $("#canTest").height();
-    Can = createCanvas(w, h);
-    Can.id('myCan');
-    Can.parent("canTest");
-  });
-}
 
 function draw() {
   image(img, 0, 0, width, height);
