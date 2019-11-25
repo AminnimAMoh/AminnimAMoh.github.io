@@ -101,11 +101,13 @@ function setup() {
 }
 
 function setCanSize() {
-  var e = document.getElementById('canTest');
-  console, log(e);
-  Can = createCanvas(w, h);
-  Can.id('myCan');
-  Can.parent("canTest");
+  $(document).ready(function() {
+    var w = $("#canTest").width();
+    var h = $("#canTest").height();
+    Can = createCanvas(w, h);
+    Can.id('myCan');
+    Can.parent("canTest");
+  });
 }
 
 function draw() {
