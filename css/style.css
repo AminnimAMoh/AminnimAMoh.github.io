@@ -201,6 +201,21 @@ a {
   height: 200px;
 }
 
+.About-head .About-head-Image {
+  position: relative;
+  width: 100%;
+  left: 80%;
+}
+
+.About-head .About-head-Image img {
+  height: 55px;
+}
+
+.About-head {
+  width: 100%;
+  margin: 0;
+}
+
 .About-Color img {
   object-fit: cover;
   height: 100px;
@@ -438,9 +453,10 @@ a {
   padding: 1em;
   color: white;
   text-shadow: 0 0 1px rgba(255, 255, 255, 0.1);
-  font-weight: 300;
-  font-size: 2em;
-  color: white;
+  font-weight: 800;
+  font-size: 2.5em;
+  margin-top: -35px;
+  color: #BF9673;
 }
 
 .mySideMenu a {
@@ -1138,7 +1154,6 @@ pre::-webkit-scrollbar-thumb:hover {
   margin: 25px;
 }
 
-/*------------------------------------DataVis-----------------------------------*/
 /*------------------------------------slideshow-----------------------------------*/
 /*------------------------------------Info-----------------------------------*/
 .Info-slide-container {
@@ -1274,7 +1289,92 @@ pre::-webkit-scrollbar-thumb:hover {
   left: -2400px;
 }
 
-/*------------------------------------slideshow-----------------------------------*/
+/*------------------------------------Intraction Design-----------------------------------*/
+.heading {
+  grid-area: header;
+}
+
+.sideMenu {
+  grid-area: menu;
+  position: sticky;
+  top: 100px;
+  height: 310px;
+  border-top: 2px solid #9C4830;
+  border-bottom: 2px solid #9C4830;
+  background-color: rgba(185, 134, 113, .1);
+  padding: 20px;
+  margin-right: 85px;
+  margin-top: 100px;
+}
+
+.sideMenu a {
+  text-decoration: none;
+  color: #2A2819;
+  font-weight: 600;
+  margin: 5px;
+}
+
+.sideMenu a:hover {
+  text-decoration: underline;
+}
+
+.sideMenu ul, ol {
+  list-style: none;
+}
+
+.mainContent {
+  grid-area: main;
+}
+
+.pageGrid-container {
+  display: grid;
+  grid-template-areas:
+    "header header"
+    "main menu";
+  grid-gap: 25px;
+  padding: 25px;
+}
+
+#myCover {
+  margin: 0 auto;
+  width: 100vh;
+  height: 500px;
+  margin: 0 auto;
+  padding: 0;
+  overflow-y: hidden;
+}
+
+#myCover img {
+  width: 100%;
+}
+
+.centerImage {
+  width: 100%;
+  margin: 0 auto;
+  margin-top: 75px;
+}
+
+.centerImage img {
+  width: 100%;
+}
+
+.myResearch-item {
+  border-bottom: 2px solid black;
+  padding-bottom: 25px;
+}
+
+.myResearch-item h3 {
+  color: #9C4830;
+}
+
+.centerVideo {
+  width: 100%;
+  height: 460PX;
+  ;
+  margin: 0 auto;
+  position: relative;
+}
+
 footer {
   display: none;
 }
@@ -1282,6 +1382,10 @@ footer {
 @media only screen and (max-width: 1450px) {
   # .go-up {
     display: block;
+  }
+
+  .centerVideo {
+    height: 315px;
   }
 
   /* .LargeC-image {
@@ -1391,6 +1495,10 @@ footer {
 
   .About-Color img {
     height: 40px;
+  }
+
+  .About-head .About-head-Image img {
+    height: 25px;
   }
 
   #facing img {
