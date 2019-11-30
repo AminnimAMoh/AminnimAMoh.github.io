@@ -8,8 +8,20 @@ var zinc = 0.0001;
 var zoff = 0;
 var count = 0;
 
+function centerCan() {
+  var x = (windowWidth - width) / 2;
+  var y = (windowHeight - height) / 2;
+  Can.position(x, y);
+}
+
+function windowResized() {
+  Can = createCanvas(windowWidth, windowHeight);
+}
+
 function setup() {
-  createCanvas(windowWidth, windowHeight);
+  Can = createCanvas(windowWidth, windowHeight);
+  Can.id("pCan");
+  centerCan();
   cols = floor(width / scl);
   rows = floor(height / scl);
   p = new Array(cols * rows);
@@ -19,6 +31,7 @@ function setup() {
   }
   background(0);
 }
+
 
 function draw() {
   var canDen = float(CanD.value);

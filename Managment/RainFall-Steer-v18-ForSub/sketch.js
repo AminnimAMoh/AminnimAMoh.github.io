@@ -51,8 +51,14 @@ var readCityPop = true;
 
 var font;
 /*----------------------Canvases----------------------*/
-let CanOne;
-let mapString = "https://api.mapbox.com/styles/v1/mohammadaminm30/cjw1ycdic0rnp1cmvgem7wirf/static/92.3811,24.0349,6.24,0,0/1280x720?access_token=pk.eyJ1IjoibW9oYW1tYWRhbWlubTMwIiwiYSI6ImNqc3ppd2hvMTBvNTM0M3A1czBzbDI5cHYifQ.ZbwGr9yrBtr0vKwySAp1tQ";
+let Can;
+let YearCircleCan;
+let PopCanOne;
+let PopCanTwo;
+let PopCanThree;
+let CanLocation;
+let setCanDone = true;
+let mapString = "https://api.mapbox.com/styles/v1/mohammadaminm30/cjw1ycdic0rnp1cmvgem7wirf/static/90.3811,23.5349,6.24,0,0/640x720?access_token=pk.eyJ1IjoibW9oYW1tYWRhbWlubTMwIiwiYSI6ImNqc3ppd2hvMTBvNTM0M3A1czBzbDI5cHYifQ.ZbwGr9yrBtr0vKwySAp1tQ";
 
 function preload() {
   img = loadImage(mapString);
@@ -66,9 +72,11 @@ function preload() {
 
 function setup() {
 
-  Can = createCanvas(1280, 720);
+  Can = createCanvas(640, 720);
   Can.id('myCan');
   Can.parent("canTest");
+
+  setAllCanvas();
 
   textFont(font)
 
@@ -76,9 +84,8 @@ function setup() {
 
   /*----------------------yearSelect----------------------*/
   yearSelect = createSelect();
-  yearSelect.parent("canTest");
-  yearSelect.id("canSelector")
-  // yearSelect.position("reletive", width / 2 + 80, 12.5);
+  yearSelect.parent("canSelector");
+  yearSelect.id("slectorCSS");
   yearSelect.option("Select Year");
 
   for (var i = 1; i < cities.length - 1; i += 12) {
@@ -101,107 +108,149 @@ function setup() {
   }
 }
 
+function setAllCanvas() {
+  if (setCanDone) {
+    var yearCan = document.getElementById("YearCircle");
+    var x = yearCan.offsetWidth;
+    var y = yearCan.offsetHeight;
+    YearCircleCan = createGraphics(x, y);
+    YearCircleCan.parent("#YearCircle");
+    YearCircleCan.style("display", "block");
+    YearCircleCan.smooth();
+
+    var popCan = document.getElementById("Population1991");
+    var xp = popCan.offsetWidth;
+    var yp = popCan.offsetHeight;
+    PopCanOne = createGraphics(xp, yp);
+    PopCanOne.parent("#Population1991");
+    PopCanOne.background(0);
+    PopCanOne.style("display", "block");
+    PopCanOne.smooth();
+
+    var popCanTwo = document.getElementById("Population2001");
+    var xpp = popCanTwo.offsetWidth;
+    var ypp = popCanTwo.offsetHeight;
+    PopCanTwo = createGraphics(xpp, ypp);
+    PopCanTwo.parent("#Population2001");
+    PopCanTwo.background(0);
+    PopCanTwo.style("display", "block");
+    PopCanTwo.smooth();
+
+    var popCanThree = document.getElementById("Population2011");
+    var xppp = popCanThree.offsetWidth;
+    var yppp = popCanThree.offsetHeight;
+    PopCanThree = createGraphics(xppp, yppp);
+    PopCanThree.parent("#Population2011");
+    PopCanThree.background(0);
+    PopCanThree.style("display", "block");
+    PopCanThree.smooth();
+  }
+  setCanDone = false;
+}
 
 function draw() {
-  image(img, 0, 0, width, height);
+  YearCircleCan.background(233);
+  PopCanOne.background(233);
+  PopCanTwo.background(233);
+  PopCanThree.background(233);
+  image(img, 0, 0, 640, 720);
   translate(width / 2, height / 2);
   switch (dataSelect) {
     case ("Cities"):
       dataSelected = cities;
       graphAllow = true;
-      stroke(100)
-      fill(0, 220)
-      rect(50, -height / 2, width, height)
-      push()
-      translate(350, -160)
-      noFill();
-      stroke(255);
-      strokeWeight(2)
-      ellipse(0, 35, 260);
-      strokeWeight(0.5)
-      text("2000mm", 0, -63)
-      ellipse(0, 35, 190);
-      text("1000mm", 0, -13)
-      ellipse(0, 35, 92);
-      text("0mm", 0, 20.5)
-      ellipse(0, 35, 25);
+
+      YearCircleCan.push()
+      YearCircleCan.translate(YearCircleCan.width / 2, YearCircleCan.height / 2)
+      YearCircleCan.noStroke();
+      YearCircleCan.fill(0);
+      YearCircleCan.text("2000mm", 0, -43)
+      YearCircleCan.text("1000mm", 0, -15)
+      YearCircleCan.text("0mm", 0, 30)
+      YearCircleCan.noFill();
+      YearCircleCan.stroke(0);
+      YearCircleCan.strokeWeight(2)
+      YearCircleCan.ellipse(0, 35, 140);
+      YearCircleCan.strokeWeight(1)
+      YearCircleCan.ellipse(0, 35, 100);
+      YearCircleCan.ellipse(0, 35, 32);
+      YearCircleCan.ellipse(0, 35, 5);
       for (var i = 0; i < mounth.length; i++) {
-        textAlign(CENTER)
-        noStroke();
-        fill(255)
+        YearCircleCan.textAlign(CENTER)
+        YearCircleCan.noStroke();
+        YearCircleCan.fill(0)
         var an = map(i, 0, mounth.length, 0, TWO_PI)
-        var x = 150 * cos(an)
-        var y = 40 + 150 * sin(an)
-        text(mounth[i], x, y)
+        var x = 100 * cos(an)
+        var y = 40 + 100 * sin(an)
+
+        YearCircleCan.text(mounth[i], x, y)
+
       }
-      text("1991 Total: ", 210, 110)
-      text("2001 Total: ", 210, 0)
-      text("2011 Total: ", 210, -110)
-      noStroke();
-      fill(255);
-      textSize(42)
-      text(yarOut, 100, -165)
-      textSize(18)
-      text("Monthly Rainfall: ", -30, -170)
 
-      textSize(24)
-      text("Population Change During Three Decade", 0, 225)
-      pop()
-      push()
-      translate(350, 180)
-      textSize(22)
-      noStroke();
-      fill(255)
-      text("2011", 170, 120)
-      text("2001", -25, 120)
-      text("1991", -225, 120)
-      textSize(12)
-      text("Total Population: 153.9 million", 110, 135)
-      text("Total Population: 134.1 million", -80, 135)
-      text("Total Population: 108.7 million", -280, 135)
-      noFill()
-      stroke(255)
-      ellipse(186, 0, 165)
-      ellipse(-6, 0, 165)
-      ellipse(-200, 0, 165)
+      YearCircleCan.noStroke();
+      YearCircleCan.fill(0);
+      YearCircleCan.textSize(22)
+      YearCircleCan.text(yarOut, 100, -90)
+      YearCircleCan.textSize(18)
+      YearCircleCan.text("Monthly Rainfall: ", 0, -90)
+      YearCircleCan.pop();
 
-      noStroke()
-      textSize(12)
-      fill(0, 100, 255)
-      rect(120, 150, 10, 10)
-      fill(255)
-      text("Slum 2007", 135, 158)
-      fill(0, 200, 255)
-      rect(200, 150, 10, 10)
-      fill(255)
-      text("Slum 2009", 215, 158)
-      textSize(10)
-      text("(92,680,100, 102,370,207) Person", 120, 170)
+      let SlumYearOne;
+      let SlumYearTwo;
+      let SlumPopOne;
+      let SlumPopTwo;
+      let TotalPop;
+      let SlumYear;
 
-      textSize(12)
-      fill(0, 100, 255)
-      rect(-75, 150, 10, 10)
-      fill(255)
-      text("Slum 2000", -60, 158)
-      fill(0, 200, 255)
-      rect(5, 150, 10, 10)
-      fill(255)
-      text("Slum 2005", 20, 158)
-      textSize(10)
-      text("(92,680,100, 102,370,207) Person", -75, 170)
+      for (var j = 0; j < 3; j++) {
 
-      textSize(12)
-      fill(0, 100, 255)
-      rect(-275, 150, 10, 10)
-      fill(255)
-      text("Slum 1990", -260, 158)
-      fill(0, 200, 255)
-      rect(-195, 150, 10, 10)
-      fill(255)
-      text("Slum 1995", -180, 158)
-      textSize(10)
-      text("(92,680,100, 102,370,207) Person", -275, 170)
-      pop()
+        if (j == 0) {
+          CanLocation = PopCanOne;
+          SlumYearOne = "1990";
+          SlumYearTwo = "1995";
+          SlumPopOne = "92,680,100";
+          SlumPopTwo = "102,370,207";
+          TotalPop = "108.7";
+          SlumYear = "1991";
+        } else if (j == 1) {
+          CanLocation = PopCanTwo;
+          SlumYearOne = "2000";
+          SlumYearTwo = "2005";
+          SlumPopOne = "92,680,100";
+          SlumPopTwo = "102,370,207";
+          TotalPop = "108.7";
+          SlumYear = "2001";
+        } else if (j == 2) {
+          CanLocation = PopCanThree;
+          SlumYearOne = "2007";
+          SlumYearTwo = "2009";
+          SlumPopOne = "92,680,100";
+          SlumPopTwo = "102,370,207";
+          TotalPop = "108.7";
+          SlumYear = "2011";
+        }
+
+        CanLocation.push();
+        CanLocation.translate(PopCanOne.width / 2, PopCanOne.height / 2);
+        CanLocation.textSize(16)
+        CanLocation.noStroke();
+        CanLocation.fill(0)
+        CanLocation.text(SlumYear, -20, 20)
+        CanLocation.textSize(12)
+        CanLocation.text("Total Population: " + TotalPop + " million", -80, 40)
+        CanLocation.noFill();
+        CanLocation.stroke(0);
+        CanLocation.ellipse(0, -55, 100);
+
+        CanLocation.textSize(12)
+        CanLocation.fill(0)
+        CanLocation.text("Slum " + SlumYearOne, -75, 69)
+        CanLocation.fill(0)
+        CanLocation.text("Slum " + SlumYearTwo, 25, 69)
+        CanLocation.textSize(12)
+        CanLocation.text("(" + SlumPopOne + " , " + SlumPopTwo + ") Person", -95, 100)
+        CanLocation.pop();
+      }
       break;
   }
 

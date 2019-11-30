@@ -15,6 +15,7 @@ function Steer(x, y) {
   var startPoint;
   var round = 0;
   var mousePos;
+  var slumCount = false;
 
   this.run = function() {
     this.beh();
@@ -96,8 +97,10 @@ function Steer(x, y) {
       /*----------------------MouseSelect----------------------*/
 
       /*----------------------MouseSelect----------------------*/
+      var ele = document.getElementById("graphContainer");
 
-      if (md < 10) {
+      if (md < 20) {
+        ele.classList.add("open");
         readCityAve = false;
         att.splice(0, index)
         att.splice(index + 1, att.length)
@@ -109,102 +112,109 @@ function Steer(x, y) {
         cityAve.splice(0, newIndex)
         cityAve.splice(newIndex + 12, cityAve.length)
 
-        push();
-        translate(350, -125)
-        textAlign(CENTER)
-        beginShape();
+        YearCircleCan.push();
+        YearCircleCan.translate(YearCircleCan.width / 2 + 10, YearCircleCan.height / 2)
+        YearCircleCan.textAlign(CENTER)
+        YearCircleCan.beginShape();
+        var newAva;
         for (var q = 0; q < 12; q++) {
-          var newAva = cityAve[q]
+          newAva = cityAve[q]
           if (newAva) {
-            noStroke()
-            fill(255)
-            textSize(32)
-            text(newAva[1], 0, -170)
             var r = 12.5;
             var angle = map(q, 0, 12, 0, TWO_PI);
             var x = (r + newAva[0]) * cos(angle)
             var y = (r + newAva[0]) * sin(angle)
-            stroke(255)
-            strokeWeight(0.5)
-            fill(255, 0, 0, 100)
-            vertex(x, y)
+            YearCircleCan.stroke(255)
+            YearCircleCan.strokeWeight(0.5)
+            YearCircleCan.fill(255, 0, 0, 3)
+            YearCircleCan.vertex(x, y + 35)
           }
         }
-        endShape(CLOSE)
+        YearCircleCan.endShape(CLOSE)
+        YearCircleCan.noStroke()
+        YearCircleCan.fill(0)
+        YearCircleCan.textSize(18)
+        YearCircleCan.text(newAva[1], 0, -115)
 
-        for (var i = 0; i < threeYearsAva.length; i++) {
-          if (threeYearsAva[i][0] == name) {
-            noStroke();
-            textSize(12)
-            fill(255)
-            var x = 210;
-            if (threeYearsAva[i][1] == 1991) {
-              var y = 110;
-              text(threeYearsAva[i][3], x + 50, 75)
-            } else if (threeYearsAva[i][1] == 2001) {
-              var y = 0;
-              text(threeYearsAva[i][3], x + 50, -35)
-            } else if (threeYearsAva[i][1] == 2011) {
-              var y = -110;
-              text(threeYearsAva[i][3], x + 50, -145)
-            }
-            fill(255, 0, 0, 100)
-            ellipse(x, y, threeYearsAva[i][2])
-          }
-        }
-        pop()
+        // for (var i = 0; i < threeYearsAva.length; i++) {
+        //   if (threeYearsAva[i][0] == name) {
+        //     noStroke();
+        //     textSize(12)
+        //     fill(255)
+        //     var x = 210;
+        //     if (threeYearsAva[i][1] == 1991) {
+        //       var y = 110;
+        //       text(threeYearsAva[i][3], x + 50, 75)
+        //     } else if (threeYearsAva[i][1] == 2001) {
+        //       var y = 0;
+        //       text(threeYearsAva[i][3], x + 50, -35)
+        //     } else if (threeYearsAva[i][1] == 2011) {
+        //       var y = -110;
+        //       text(threeYearsAva[i][3], x + 50, -145)
+        //     }
+        //     fill(255, 0, 0, 100)
+        //     ellipse(x, y, threeYearsAva[i][2])
+        //   }
+        // }
+        YearCircleCan.pop()
 
-        push()
-        translate(350, 180)
         for (var j = 1; j < 4; j++) {
-          beginShape();
+          if (j == 1) {
+            Location = PopCanOne;
+          } else if (j == 2) {
+            Location = PopCanTwo;
+          } else if (j == 3) {
+            Location = PopCanThree;
+          }
+          Location.push();
+          Location.translate(Location.width / 2, Location.height / 2);
           for (var i = 0; i < pPop.length; i++) {
             var popName = pPop[i][0]
             var populationList = pPop[i][j];
             var angle = map(i, 0, pPop.length, 0, TWO_PI);
             var arcAng = map(populationList, 200000, 12043980, 0, TWO_PI - 0.1);
             var x = map(j, 1, 4, -200, 380)
-            var r = map(i, 0, pPop.length, 160, 20)
+            var r = map(i, 0, pPop.length, 100, 20)
             if (popName == name) {
-              noStroke();
-              fill(255)
-              text(nfc(pPop[i][3]), 200, -10)
-              text(nfc(pPop[i][2]), 20, -10)
-              text(nfc(pPop[i][1]), -180, -10)
-              strokeWeight(3)
-              stroke(255, 0, 0)
+              Location.noStroke();
+              Location.fill(0)
+              Location.text(nfc(pPop[i][j]), -10, -60)
+              Location.strokeWeight(3)
+              Location.stroke(255, 0, 0)
+
             } else if (popName == "slum") {
               var arcAng = map(populationList, 90000000, 102370207, 0, TWO_PI - 0.1);
               var x = map(j, 1, 4, -200, 380)
-              var r = map(i, 0, pPop.length, 180, 20)
-              strokeWeight(1)
+              var r = map(i, 0, pPop.length, 110, 20)
               var newIndex = floor(map(j, 1, 3, 4, 6))
-              noStroke()
-              fill(0, 100, 255)
-              text("%" + pPop[i][newIndex], x + r / 3, -r / 2)
-              stroke(0, 100, 255)
+              Location.noStroke()
+              Location.fill(0, 100, 255)
+              Location.text("%" + pPop[i][newIndex], -105, 69)
+              Location.stroke(0, 100, 255)
             } else if (popName == "slum1") {
               var arcAng = map(populationList, 90000000, 102370207, 0, TWO_PI - 0.1);
               var x = map(j, 1, 4, -200, 380)
-              var r = map(i, 0, pPop.length, 190, 20)
-              strokeWeight(1)
+              var r = map(i, 0, pPop.length, 120, 20)
               var newIndex = floor(map(j, 1, 3, 4, 6))
-              noStroke()
-              fill(0, 200, 255)
-              text("%" + pPop[i][newIndex], x + r / 2.5, -r / 2.5)
-              stroke(0, 200, 255)
+              Location.noStroke()
+              Location.fill(0, 200, 255)
+              Location.text("%" + pPop[i][newIndex], -5, 69)
+              Location.noFill();
+              Location.stroke(0, 200, 255)
             } else {
-              strokeWeight(1)
-              stroke(150)
+              Location.strokeWeight(1)
+              Location.stroke(150)
             }
-            noFill();
-            arc(x, 0, r, r, 0, arcAng)
+
+            Location.noFill();
+            Location.arc(0, -55, r, r, 0, arcAng)
           }
+          Location.pop()
         }
-        pop()
       } else {
         readDataAgain = true;
         readCityAve = true;
+        ele.classList.remove("open");
       }
     }
   }

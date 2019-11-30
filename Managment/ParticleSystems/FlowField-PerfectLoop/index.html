@@ -123,12 +123,6 @@
             v.setMag(1);
             p[index] = v;
             xoff += inc;
-            // push();
-            // translate(x * scl, y * scl);
-            // rotate(v.heading());
-            // stroke(255);
-            // line(0, 0, scl, 0);
-            // pop();
           }
           yoff += inc;
           zoff += zinc;
@@ -138,8 +132,6 @@
           particles[i].follow(p);
           particles[i].update();
           particles[i].edges();
-          // particles[i].edges2();
-          // particles[i].edges3();
           particles[i].calColor();
           particles[i].show();
         }
@@ -218,42 +210,6 @@
             this.updatePrev();
           }
         }
-        this.edges2 = function() {
-          if (this.pos.x > width) {
-            this.pos.x = random(width);
-            this.updatePrev();
-          }
-          if (this.pos.x < 0) {
-            this.pos.x = random(width);
-            this.updatePrev();
-          }
-          if (this.pos.y > height) {
-            this.pos.y = random(height);
-            this.updatePrev();
-          }
-          if (this.pos.y < 0) {
-            this.pos.y = random(height);
-            this.updatePrev();
-          }
-        }
-        this.edges3 = function() {
-          if (this.pos.x > width) {
-            this.pos.x = 0;
-            this.updatePrev();
-          }
-          if (this.pos.x < 0) {
-            this.pos.x = width;
-            this.updatePrev();
-          }
-          if (this.pos.y > height) {
-            this.pos.y = 0;
-            this.updatePrev();
-          }
-          if (this.pos.y < 0) {
-            this.pos.y = height;
-            this.updatePrev();
-          }
-        }
         this.follow = function(vectors) {
           var x = floor(this.pos.x / scl);
           var y = floor(this.pos.y / scl);
@@ -267,7 +223,10 @@
   </pre>
   </figure>
 
-  <div id="codeButton" onclick="showInfo(CodeContainer)"></div>
+  <div id="codeButton" onclick="showInfo(CodeContainer,this.id)">
+    <span></span>
+    <span></span>
+  </div>
 
   <script src="../../../js/Scripts.js"></script>
 </body>
