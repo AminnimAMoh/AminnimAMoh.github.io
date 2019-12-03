@@ -1,7 +1,7 @@
 window.addEventListener('mouseup', function(event) {
   var eOne = document.getElementById("mySide");
   var eTwo = document.getElementById("nav-icon1");
-  if (event.target != eOne || event.target == eTwo) {
+  if (event.target != eOne || event.target == eTwo || event.target.parentNode == eTwo) {
     if (eOne.classList.contains('open')) {
       eOne.classList.remove('open');
       eTwo.classList.remove('open');
@@ -14,8 +14,7 @@ window.addEventListener('mouseup', function(event) {
 function menuToggle(e) {
   var eOne = document.getElementById("mySide");
   var eTwo = document.getElementById("nav-icon1");
-  var eThree = document.getElementById("nav-span")
-  if (e.target == eTwo || e.target == eThree) {
+  if (e.target == eTwo || event.target.parentNode == eTwo) {
     if (eOne.classList.contains('open')) {
       eOne.classList.remove('open');
       eTwo.classList.remove('open');
