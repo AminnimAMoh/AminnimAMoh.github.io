@@ -12,10 +12,10 @@ window.addEventListener('mouseup', function(event) {
 });
 
 function menuToggle(e) {
-  console.log(e);
   var eOne = document.getElementById("mySide");
   var eTwo = document.getElementById("nav-icon1");
-  if (e.target == eTwo) {
+  var eThree = document.getElementById("nav-span")
+  if (e.target == eTwo || e.target == eThree) {
     if (eOne.classList.contains('open')) {
       eOne.classList.remove('open');
       eTwo.classList.remove('open');
