@@ -1,21 +1,28 @@
 window.addEventListener('mouseup', function(event) {
   var eOne = document.getElementById("mySide");
   var eTwo = document.getElementById("nav-icon1");
-  if (event.target != eOne) {
-    eOne.classList.remove('open');
-    eTwo.classList.remove('open');
+  if (event.target != eOne || event.target == eTwo) {
+    if (eOne.classList.contains('open')) {
+      eOne.classList.remove('open');
+      eTwo.classList.remove('open');
+    } else {
+      menuToggle(event);
+    }
   }
 });
 
-function MyToggle() {
+function menuToggle(e) {
+  console.log(e);
   var eOne = document.getElementById("mySide");
   var eTwo = document.getElementById("nav-icon1");
-  if (eOne.classList.contains('open')) {
-    eOne.classList.remove('open');
-    eTwo.classList.remove('open');
-  } else {
-    eOne.classList.add('open');
-    eTwo.classList.add('open');
+  if (e.target == eTwo) {
+    if (eOne.classList.contains('open')) {
+      eOne.classList.remove('open');
+      eTwo.classList.remove('open');
+    } else {
+      eOne.classList.add('open');
+      eTwo.classList.add('open');
+    }
   }
 }
 

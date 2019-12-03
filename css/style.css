@@ -204,8 +204,7 @@ a {
 
 .About-head .About-head-Image {
   position: relative;
-  width: 100%;
-  left: 80%;
+  width: 27px;
 }
 
 .About-head .About-head-Image img {
@@ -302,6 +301,11 @@ a {
   -webkit-filter: blur(8px);
   filter: blur(8px);
   transition: filter .5s
+}
+
+.tree-headings {
+  position: relative;
+  margin-top: 50px;
 }
 
 #facing {
@@ -420,16 +424,16 @@ a {
   width: 100%;
   height: 55px;
   color: white;
+  text-align: center;
   box-shadow: 2px 2px 10px 10px rgba(42, 40, 25, .3);
 }
 
 #PageTag {
-  position: absolute;
+  position: relative;
+  max-width: 200px;
   top: 8px;
-  margin-left: auto;
-  margin-right: auto;
-  left: 0;
-  right: 0;
+  /* left: 45%; */
+  margin: 0 auto;
   text-align: center;
   color: #BF9673;
 }
@@ -1438,11 +1442,12 @@ pre::-webkit-scrollbar-thumb:hover {
 }
 
 .centerVideo {
-  width: 100%;
-  height: 460PX;
-  ;
-  margin: 0 auto;
   position: relative;
+  width: 560px;
+  height: 315PX;
+  margin: 0 auto;
+  margin-top: 15px;
+  margin-bottom: 15px;
 }
 
 footer {
@@ -1508,7 +1513,9 @@ footer {
   }
 
   .sideMenu {
+    box-sizing: border-box;
     margin-right: 5px;
+    height: auto;
   }
 }
 
@@ -1530,6 +1537,10 @@ footer {
 
   p {
     font-size: .7em;
+  }
+
+  #nav-icon1 span {
+    width: 50%;
   }
 
   #Welcome {
@@ -1698,7 +1709,7 @@ footer {
 
   .sideMenu {
     width: 100%;
-    height: 65px;
+    height: 85px;
     top: 60px;
     background-color: #2A2819;
     margin: 0px;
@@ -1713,6 +1724,11 @@ footer {
 
   .sideMenu h3 {
     color: #9C4830;
+  }
+
+  .centerVideo {
+    width: 320px;
+    height: 180PX;
   }
 
   .sideMenu h1 {
