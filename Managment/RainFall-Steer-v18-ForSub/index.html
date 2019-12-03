@@ -21,7 +21,7 @@
   <script src="Steer.js"></script>
 </head>
 
-<body style="overflow-x:hidden;">
+<body>
 
   <div id="start"></div>
 
@@ -37,8 +37,6 @@
       <span></span>
     </div>
   </a>
-
-  <h2 id="PageTag">Information Visualization</h2>
 
   <div class="mySideMenu" id="mySide">
     <nav id="MyNav" class="MyNav">
@@ -56,26 +54,26 @@
 
   <br>
 
-  <div id="topick">
-    <h1>Visualising Rainfall Data to Enhance Bangladesh’s Capacity for Risk Reduction in City Planning</h1>
-    <h3>Collaboration Team:</h3>
-    <p>Maya Okada-Zalewski, Mohammad Amin Mohammadi, Heath McGregor</p>
-    <p>The focus of this research is on Bangladesh and the severity of their natural disasters. This involves two main sets of data, natural disaster levels and population which would be displayed
-      according to each
-      district.
-      We collected data of Bangladesh’s monthly rainfall data from 1948-2014. Experimenting with ways to visualise it, we have plotted the data on a map and animated the visualisation according to its data. The images below show the first four
-      iterations to achieve a better understanding of the best way to visualize the main factors.
-    </p>
-  </div>
-
-  <a href="#graph" style="text-decoration: none;">
-    <div id="mainButtn" style="margin-top: 75px;">
-      <h2>interactive Map</h2>
-      <i class="arrowLeft"></i></p>
-    </div>
-  </a>
-
   <div id="cont-container-Logo" style="margin-top: 10%">
+    <div id="topick">
+      <h1>Visualising Rainfall Data to Enhance Bangladesh’s Capacity for Risk Reduction in City Planning</h1>
+      <h3>Collaboration Team:</h3>
+      <p>Maya Okada-Zalewski, Mohammad Amin Mohammadi, Heath McGregor</p>
+      <p>The focus of this research is on Bangladesh and the severity of their natural disasters. This involves two main sets of data, natural disaster levels and population which would be displayed
+        according to each
+        district.
+        We collected data of Bangladesh’s monthly rainfall data from 1948-2014. Experimenting with ways to visualise it, we have plotted the data on a map and animated the visualisation according to its data. The images below show the first four
+        iterations to achieve a better understanding of the best way to visualize the main factors.
+      </p>
+    </div>
+
+    <a href="#graph" style="text-decoration: none;">
+      <div id="mainButtn" style="margin-top: 75px;">
+        <h2>interactive Map</h2>
+        <i class="arrowLeft"></i></p>
+      </div>
+    </a>
+
 
     <div id="PhotoGride" style="margin-top: 25px;">
       <a href="#img-1" class="link-1" onclick="imgSelect(this.className)"><img src="../../Assets/InfoVisu/e-1.0.JPG" alt="Content Image" class="link-1">
@@ -106,7 +104,8 @@
       <p>To brighten up the visualisation, we have changed the colours of the map. Instead of putting the data onto the map, we have added a side panel where the data will be displayed. The data displayed on the sides is the monthly rainfall of the
         selected city alongside the population. We searched for population data of each city in Bangladesh to be able to compare yearly national migration within each city but we were only limited to three years of data. To adapt to this, we have
         placed each years population next to each other with data from each city to be able to give a side-by-side comparison. The population displays each cities population in grey alongside the selected city which is in red .</p>
-      <p>We have made some stylistic adjustments as well as added some more data. We have placed the city name on top of the graph/data to make it clearer on what city the data is on. We have also added the total rainfall of the years we have of the
+      <p>We have made some stylistic adjustments as well as added some more data. We have placed the city name on top of the graph/data to make it clearer on what city the data is on. We have also added the total rainfall of the years we have of
+        the
         population data to try and use it as a point of reference to the increase/decrease of the total slum population within that city. Also the slum population was added as we noticed that it adds another dimension of information in terms of how
         heavy rainfall affects not only the general population but slum rates as well. Since the data was also limited, we used 6 sets of data which lie in between the total population dates.</p>
 
@@ -127,21 +126,17 @@
         We have decided to add the total rainfall relating to the population data which we have to also show any sort relation to the two sets of data.
       </p>
       <p>
-        With our visualisation we aimed to provide information on Bangladesh’s extreme weather and how that influences migration between cities over time. Not only does it affect migration but we also hope to highlight how other than economic issues,
+        With our visualisation we aimed to provide information on Bangladesh’s extreme weather and how that influences migration between cities over time. Not only does it affect migration but we also hope to highlight how other than economic
+        issues,
         natural disasters is a major factor to Bangladesh’s slum population and issues. We also hope that this data can help discover any patterns according to the weather and which areas are less prone to extreme rainfall in hopes to solve slum
         issues
         and reduce the risk of Bangladeshi people going into slums and poverty.
       </p>
       <span style="background-color:#011140"></span>
     </div>
-
-    <div id="myCan">
-
-    </div>
   </div>
 
   <div id="Large" class="LargeC">
-    <!-- <span class="CloseB">&times;</span> -->
     <img class="LargeC-image" id="img-1">
     <p id="lp-1"></P>
   </div>
@@ -152,6 +147,7 @@
     <p style="margin-bottom:25px;">Select a year from the drop-down menu to see the rainfall for each city.</p>
     <div id="canSelector"></div>
     <div id="graphContainer">
+      <div id="myCan"></div>
       <div id="YearCircle"></div>
       <div class="canvas-grid">
         <div class="can" id="Population1991"></div>
@@ -161,12 +157,9 @@
     </div>
   </div>
 
-
-
   <a href="#start">
     <div class="top" id="topB"><i class="arrowUp"></i></div>
   </a>
-  <div id="graph"></div>
 
 
   <script src="../../js/Scripts.js">

@@ -39,6 +39,7 @@ h5 {
 }
 
 p {
+  color: #513F29;
   font-family: 'Alata', sans-serif;
 }
 
@@ -223,9 +224,11 @@ a {
 
 #pCover {
   position: absolute;
-  width: 100vw;
+  width: 100%;
   height: 280px;
   z-index: -100;
+  margin: 0;
+  padding: 0;
   top: -20px;
 }
 
@@ -235,8 +238,8 @@ a {
   grid-template-columns: auto auto;
   align-content: center;
   text-align: center;
-  margin: 0 auto;
-  padding: 10px;
+  margin: 0;
+  padding: 0;
   color: #062B5B;
   width: 100%;
   grid-gap: 5px;
@@ -324,9 +327,7 @@ a {
 #topick {
   position: relative;
   top: 50px;
-  width: 50vw;
-  left: 25%;
-  /* text-align: center; */
+  margin: 0 auto;
   margin-top: 150px;
   color: #2E4559;
 }
@@ -1134,9 +1135,8 @@ pre::-webkit-scrollbar-thumb:hover {
 /*------------------------------------DataVis-----------------------------------*/
 #canTest {
   position: relative;
-  width: 720px;
-  height: 640px;
-  margin: 0 auto;
+  max-width: 720px;
+  /* margin: 0 auto; */
   margin-top: 120px;
   margin-bottom: 25px;
 }
@@ -1178,7 +1178,7 @@ pre::-webkit-scrollbar-thumb:hover {
 
 #myCan {
   position: relative;
-  width: 100%;
+  width: 50%;
   border-radius: 12px;
   margin: 25px;
 }
@@ -1194,28 +1194,29 @@ pre::-webkit-scrollbar-thumb:hover {
 .canvas-grid {
   position: relative;
   display: grid;
-  grid-template-columns: 230px 230px 230px;
-  grid-template-rows: 280px;
-  padding: 10px;
-  margin: 0 auto;
-  top: -55px;
+  width: 100%;
+  grid-template-columns: 230px;
+  grid-template-rows: 280px 280px 280px;
+  margin: 0;
+  padding: 0;
   grid-row-gap: 25px;
+}
+
+#graph {
+  width: 50%;
 }
 
 #graphContainer {
   position: relative;
-  width: 720px;
-  height: 0;
-  opacity: 0;
+  left: 50%;
+  width: 30%;
+  height: 620px;
+  margin: 0;
+  padding: 0;
   background-color: rgba(233, 233, 233);
-  transition: height .5s;
 }
 
-#graphContainer.open {
-  height: 620px;
-  opacity: 1;
-  transition: opacity 2s;
-}
+#graphContainer.open {}
 
 /*------------------------------------slideshow-----------------------------------*/
 /*------------------------------------Info-----------------------------------*/
@@ -1357,11 +1358,15 @@ pre::-webkit-scrollbar-thumb:hover {
   grid-area: header;
 }
 
+.heading img {
+  width: 1080px;
+}
+
 .sideMenu {
   grid-area: menu;
   position: sticky;
   top: 100px;
-  height: 310px;
+  height: 340px;
   border-top: 2px solid #9C4830;
   border-bottom: 2px solid #9C4830;
   background-color: rgba(185, 134, 113, .1);
@@ -1390,6 +1395,8 @@ pre::-webkit-scrollbar-thumb:hover {
 }
 
 .pageGrid-container {
+  box-sizing: border-box;
+  width: 100%;
   display: grid;
   grid-template-areas:
     "header header"
@@ -1400,7 +1407,7 @@ pre::-webkit-scrollbar-thumb:hover {
 
 #myCover {
   margin: 0 auto;
-  width: 100vh;
+  max-width: 920px;
   height: 500px;
   margin: 0 auto;
   padding: 0;
@@ -1660,5 +1667,55 @@ footer {
 
   #Info-slider-image-6:target~.image-container-Info {
     left: -1500px;
+  }
+
+  #canTest {
+    width: 50%;
+    height: 320px;
+  }
+
+  .canvas-grid {
+    grid-template-columns: 230px;
+    grid-template-rows: 230px 230px 230px;
+    top: -350px;
+  }
+
+  .pageGrid-container {
+    grid-template-areas:
+      "header"
+      "menu"
+      "main";
+  }
+
+  .pageGrid-container.header img {
+    width: 750px;
+  }
+
+  .pageGrid-container #topick {
+    margin: 0;
+    padding: 0;
+  }
+
+  .sideMenu {
+    width: 100%;
+    height: 65px;
+    top: 60px;
+    background-color: #2A2819;
+    margin: 0px;
+    padding: 0px;
+    z-index: 3;
+  }
+
+  .sideMenu li {
+    display: inline-block;
+    color: #BF9673;
+  }
+
+  .sideMenu h3 {
+    color: #9C4830;
+  }
+
+  .sideMenu h1 {
+    display: none;
   }
 }

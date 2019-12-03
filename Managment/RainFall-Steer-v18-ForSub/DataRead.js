@@ -9,7 +9,7 @@ function Cities() {
         mounthOut = data[2];
         yarOut = data[1];
 
-        clon = 90.3611;
+        clon = 90.3811;
         clat = 23.5349;
         lon = data[35];
         lat = data[34];

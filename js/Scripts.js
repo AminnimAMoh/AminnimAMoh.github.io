@@ -1,3 +1,12 @@
+window.addEventListener('mouseup', function(event) {
+  var eOne = document.getElementById("mySide");
+  var eTwo = document.getElementById("nav-icon1");
+  if (event.target != eOne) {
+    eOne.classList.remove('open');
+    eTwo.classList.remove('open');
+  }
+});
+
 function MyToggle() {
   var eOne = document.getElementById("mySide");
   var eTwo = document.getElementById("nav-icon1");
@@ -51,7 +60,6 @@ function imgSelect(e) {
   var img = ele[1];
   var modalImg = document.getElementById("img-1");
   var modalP = document.getElementById("lp-1");
-  // var captionText = document.getElementById("caption");
 
   modal.style.display = "block";
   modalImg.src = img.src;
@@ -62,7 +70,6 @@ function imgSelect(e) {
   } else {
     modalP.style.display = "none";
   }
-  // captionText.innerHTML = this.alt;
   window.onclick = function(event) {
     if (event.target == modal) {
       modal.style.display = "none";
@@ -117,12 +124,11 @@ function feuse(e, c) {
       offsetAnchor();
     }, 0);
 }
-// The function actually applying the offset
+
 function offsetAnchor() {
   if (location.hash.length !== 0) {
     window.scrollTo(window.scrollX, window.scrollY - 440);
   }
 }
 
-// Set the offset when entering page with hash present in the url
 window.setTimeout(offsetAnchor, 0);

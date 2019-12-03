@@ -99,7 +99,7 @@ function Steer(x, y) {
       /*----------------------MouseSelect----------------------*/
       var ele = document.getElementById("graphContainer");
 
-      if (md < 20) {
+      if (md < 10) {
         ele.classList.add("open");
         readCityAve = false;
         att.splice(0, index)
@@ -135,27 +135,6 @@ function Steer(x, y) {
         YearCircleCan.fill(0)
         YearCircleCan.textSize(18)
         YearCircleCan.text(newAva[1], 0, -115)
-
-        // for (var i = 0; i < threeYearsAva.length; i++) {
-        //   if (threeYearsAva[i][0] == name) {
-        //     noStroke();
-        //     textSize(12)
-        //     fill(255)
-        //     var x = 210;
-        //     if (threeYearsAva[i][1] == 1991) {
-        //       var y = 110;
-        //       text(threeYearsAva[i][3], x + 50, 75)
-        //     } else if (threeYearsAva[i][1] == 2001) {
-        //       var y = 0;
-        //       text(threeYearsAva[i][3], x + 50, -35)
-        //     } else if (threeYearsAva[i][1] == 2011) {
-        //       var y = -110;
-        //       text(threeYearsAva[i][3], x + 50, -145)
-        //     }
-        //     fill(255, 0, 0, 100)
-        //     ellipse(x, y, threeYearsAva[i][2])
-        //   }
-        // }
         YearCircleCan.pop()
 
         for (var j = 1; j < 4; j++) {

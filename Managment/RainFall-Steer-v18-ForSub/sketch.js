@@ -68,14 +68,15 @@ function preload() {
   population = loadStrings("data/PThreeYears.csv")
 }
 
-
+function windowResized() {
+  mapSize();
+}
 
 function setup() {
 
   Can = createCanvas(640, 720);
   Can.id('myCan');
   Can.parent("canTest");
-
   setAllCanvas();
 
   textFont(font)
@@ -106,6 +107,25 @@ function setup() {
       st.push(new Steer(x, y));
     }
   }
+  dataSelected = cities;
+  mapSize();
+}
+
+
+function mapSize() {
+  var ele = document.getElementById("canTest");
+  var x = ele.offsetWidth;
+  var y = ele.offsetHeight;
+  zoom = map(x, 0, 720, 4, 6.2);
+  if (dataSelect == "Cities") {
+    Cities();
+  }
+  mapString = "https://api.mapbox.com/styles/v1/mohammadaminm30/cjw1ycdic0rnp1cmvgem7wirf/static/90.3563,23.6850," + zoom + ",0,0/" + x + "x" + y + "?access_token=pk.eyJ1IjoibW9oYW1tYWRhbWlubTMwIiwiYSI6ImNqc3ppd2hvMTBvNTM0M3A1czBzbDI5cHYifQ.ZbwGr9yrBtr0vKwySAp1tQ";
+  img = loadImage(mapString);
+  console.log(mapString)
+  Can = createCanvas(x, y);
+  myEvent();
+  setAllCanvas();
 }
 
 function setAllCanvas() {
@@ -153,7 +173,10 @@ function draw() {
   PopCanOne.background(233);
   PopCanTwo.background(233);
   PopCanThree.background(233);
-  image(img, 0, 0, 640, 720);
+  var mapEle = document.getElementById("canTest");
+  var xMap = mapEle.offsetWidth;
+  var yMap = mapEle.offsetHeight;
+  image(img, 0, 0, xMap, yMap);
   translate(width / 2, height / 2);
   switch (dataSelect) {
     case ("Cities"):
