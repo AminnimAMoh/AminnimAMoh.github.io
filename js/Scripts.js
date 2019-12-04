@@ -1,13 +1,17 @@
 window.addEventListener('mouseup', function(event) {
-  var eOne = document.getElementById("mySide");
-  var eTwo = document.getElementById("nav-icon1");
-  if (event.target != eOne || event.target == eTwo || event.target.parentNode == eTwo) {
-    if (eOne.classList.contains('open')) {
-      eOne.classList.remove('open');
-      eTwo.classList.remove('open');
-    } else {
-      menuToggle(event);
+  if (window.width > 600) {
+    var eOne = document.getElementById("mySide");
+    var eTwo = document.getElementById("nav-icon1");
+    if (event.target != eOne || event.target == eTwo || event.target.parentNode == eTwo) {
+      if (eOne.classList.contains('open')) {
+        eOne.classList.remove('open');
+        eTwo.classList.remove('open');
+      } else {
+        menuToggle(event);
+      }
     }
+  } else {
+    menuToggle(event);
   }
 });
 
