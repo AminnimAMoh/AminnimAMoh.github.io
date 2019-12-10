@@ -30,7 +30,7 @@ let infoSketchRun = true;
 let infoScl = 20;
 var infozoff = 0;
 var infoInc = 0.5;
-var infozinc = 0.000005;
+var infozinc = 0.00005;
 
 let LogoCan;
 let logoElement;
@@ -182,39 +182,40 @@ function draw() {
   }
   Con();
 
-  /*----------------------P5Sketch--------------------*/
-  pElement.addEventListener("mouseenter", function() {
-    pSketchRun = true;
-    firstTime = false;
-    count = 0;
-  });
-  pElement.addEventListener("mouseout", function() {
-    pSketchRun = false;
-    firstTime = false;
-    count = 0;
-  });
-  if (pSketchRun) {
-    PCan.background(81, 63, 41);
-    for (var y = 0; y < img.height; y += s) {
-      for (var x = 0; x < img.width; x += s) {
-        c = img.get(x, y);
+  if (off) {
+    /*----------------------P5Sketch--------------------*/
+    pElement.addEventListener("mouseenter", function() {
+      pSketchRun = true;
+      firstTime = false;
+      count = 0;
+    });
+    pElement.addEventListener("mouseout", function() {
+      pSketchRun = false;
+      firstTime = false;
+      count = 0;
+    });
+    if (pSketchRun) {
+      PCan.background(81, 63, 41);
+      for (var y = 0; y < img.height; y += s) {
+        for (var x = 0; x < img.width; x += s) {
+          c = img.get(x, y);
 
-        var nm = map(x, 0, img.width, 0, s * 10)
-        var n = map(noise(frameCount * 0.01, x, y), 0, 1, -nm, nm);
-        PCan.fill(c);
-        PCan.noStroke();
-        PCan.ellipse(x, y + n, s, s)
+          var nm = map(x, 0, img.width, 0, s * 10)
+          var n = map(noise(frameCount * 0.01, x, y), 0, 1, -nm, nm);
+          PCan.fill(c);
+          PCan.noStroke();
+          PCan.ellipse(x, y + n, s, s)
+        }
+      }
+      if (firstTime) {
+        count++;
       }
     }
-    if (firstTime) {
-      count++;
+    if (count > 10) {
+      pSketchRun = false;
+      firstTime = false;
     }
-  }
-  if (count > 10) {
-    pSketchRun = false;
-    firstTime = false;
-  }
-  if (off) {
+
     /*----------------------SoundSketch--------------------*/
     soundElement.addEventListener("mouseenter", function() {
       soundSketchRun = true;
@@ -318,12 +319,6 @@ function draw() {
           var index = x + y * cols;
           v.setMag(1);
           logofollow.push(v);
-          // LogoCan.push();
-          // LogoCan.translate(x * scl, y * scl);
-          // LogoCan.rotate(v.heading());
-          // LogoCan.stroke(255);
-          // LogoCan.line(0, 0, scl, scl);
-          // LogoCan.pop();
           logoxoff += logoinc;
         }
         logoyoff += logoinc;
@@ -341,7 +336,7 @@ function draw() {
         logocount++;
       }
     }
-    if (logocount > 400) {
+    if (logocount > 200) {
       logoSketchRun = false;
       logofirstTime = false;
     }

@@ -1636,6 +1636,10 @@ footer {
     height: auto;
   }
 
+  .page {
+    height: auto;
+  }
+
   .About-content {
     grid-template-columns: auto;
     padding: 5px;
