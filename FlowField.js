@@ -214,136 +214,137 @@ function draw() {
     pSketchRun = false;
     firstTime = false;
   }
+  if (off) {
+    /*----------------------SoundSketch--------------------*/
+    soundElement.addEventListener("mouseenter", function() {
+      soundSketchRun = true;
+      firstTime = false;
+      count = 0;
+    });
+    soundElement.addEventListener("mouseout", function() {
+      soundSketchRun = false;
+      firstTime = false;
+      count = 0;
+    });
+    if (soundSketchRun) {
+      SoundCan.background(42, 40, 25);
+      for (var y = 0; y < rows; y++) {
+        SoundCan.beginShape();
+        for (var x = 0; x < cols + 2; x++) {
 
-  /*----------------------SoundSketch--------------------*/
-  soundElement.addEventListener("mouseenter", function() {
-    soundSketchRun = true;
-    firstTime = false;
-    count = 0;
-  });
-  soundElement.addEventListener("mouseout", function() {
-    soundSketchRun = false;
-    firstTime = false;
-    count = 0;
-  });
-  if (soundSketchRun) {
-    SoundCan.background(42, 40, 25);
-    for (var y = 0; y < rows; y++) {
-      SoundCan.beginShape();
-      for (var x = 0; x < cols + 2; x++) {
+          var dmap = map(x, 0, cols, 0, scl * 10);
+          var n = map(noise(frameCount * 0.01, x * 0.1, y * 0.1), 0, 1, -dmap, dmap);
 
-        var dmap = map(x, 0, cols, 0, scl * 10);
-        var n = map(noise(frameCount * 0.01, x * 0.1, y * 0.1), 0, 1, -dmap, dmap);
-
-        var a = map(n, -dmap, dmap, 0, 255);
-        SoundCan.stroke(156, 72, 48, a);
-        SoundCan.noFill();
-        SoundCan.curveVertex(x * scl, y * scl + n);
-      }
-      SoundCan.endShape();
-    }
-    SoundCan.tint(255, 150);
-    SoundCan.image(img, 20, 0);
-    if (firstTime) {
-      count++;
-    }
-  }
-  if (count > 10) {
-    soundSketchRun = false;
-    firstTime = false;
-  }
-
-  /*----------------------InfoSketch--------------------*/
-  infoElement.addEventListener("mouseenter", function() {
-    infoSketchRun = true;
-    firstTime = false;
-    count = 0;
-  });
-  infoElement.addEventListener("mouseout", function() {
-    infoSketchRun = false;
-    firstTime = false;
-    count = 0;
-  });
-  if (infoSketchRun) {
-    InfoCanInfoCan.background(156, 72, 48);
-
-
-    var infoyoff = 0;
-    for (var x = 0; x < infoImg.width; x += infoScl) {
-      var infoxoff = 0;
-      for (var y = 0; y < infoImg.height; y += infoScl) {
-        var c = infoImg.get(x, y);
-        var n = map(noise(infoxoff, infoyoff, infozoff), 0, 1, 0, infoScl * 2);
-        81, 63, 41
-        if (c[0] > 0 || c[1] > 0 || c[2] > 0) {
-          var r = map(c[0], 0, 255, 0, 81);
-          var g = map(c[1], 0, 255, 0, 63);
-          var b = map(c[2], 0, 255, 0, 41);
-          InfoCanInfoCan.fill(r, g, b);
-          InfoCanInfoCan.noStroke();
-          InfoCanInfoCan.ellipse(x, y, n, n);
-          infoxoff += infoInc;
+          var a = map(n, -dmap, dmap, 0, 255);
+          SoundCan.stroke(156, 72, 48, a);
+          SoundCan.noFill();
+          SoundCan.curveVertex(x * scl, y * scl + n);
         }
-        infoyoff += infoInc;
-        infozoff += infozinc;
+        SoundCan.endShape();
+      }
+      SoundCan.tint(255, 150);
+      SoundCan.image(img, 20, 0);
+      if (firstTime) {
+        count++;
       }
     }
-    if (firstTime) {
-      count++;
+    if (count > 10) {
+      soundSketchRun = false;
+      firstTime = false;
     }
-  }
-  if (count > 10) {
-    infoSketchRun = false;
-    firstTime = false;
-  }
 
-  /*----------------------LogoSketch--------------------*/
-  logoElement.addEventListener("mouseenter", function() {
-    logoSketchRun = true;
-    logofirstTime = false;
-    logocount = 0;
-  });
-  logoElement.addEventListener("mouseout", function() {
-    logoSketchRun = false;
-    logofirstTime = false;
-    logocount = 0;
-  });
-  if (logoSketchRun) {
-    var logoyoff = 0;
-    for (var y = 0; y < logoImg.width; y += scl) {
-      var logoxoff = 0;
-      for (var x = 0; x < logoImg.height; x += scl) {
-        var n = map(noise(logoxoff, logoyoff, logozoff), 0, 1, -TWO_PI, TWO_PI);
-        var v = p5.Vector.fromAngle(n);
-        var index = x + y * cols;
-        v.setMag(1);
-        logofollow.push(v);
-        // LogoCan.push();
-        // LogoCan.translate(x * scl, y * scl);
-        // LogoCan.rotate(v.heading());
-        // LogoCan.stroke(255);
-        // LogoCan.line(0, 0, scl, scl);
-        // LogoCan.pop();
-        logoxoff += logoinc;
+    /*----------------------InfoSketch--------------------*/
+    infoElement.addEventListener("mouseenter", function() {
+      infoSketchRun = true;
+      firstTime = false;
+      count = 0;
+    });
+    infoElement.addEventListener("mouseout", function() {
+      infoSketchRun = false;
+      firstTime = false;
+      count = 0;
+    });
+    if (infoSketchRun) {
+      InfoCanInfoCan.background(156, 72, 48);
+
+
+      var infoyoff = 0;
+      for (var x = 0; x < infoImg.width; x += infoScl) {
+        var infoxoff = 0;
+        for (var y = 0; y < infoImg.height; y += infoScl) {
+          var c = infoImg.get(x, y);
+          var n = map(noise(infoxoff, infoyoff, infozoff), 0, 1, 0, infoScl * 2);
+          81, 63, 41
+          if (c[0] > 0 || c[1] > 0 || c[2] > 0) {
+            var r = map(c[0], 0, 255, 0, 81);
+            var g = map(c[1], 0, 255, 0, 63);
+            var b = map(c[2], 0, 255, 0, 41);
+            InfoCanInfoCan.fill(r, g, b);
+            InfoCanInfoCan.noStroke();
+            InfoCanInfoCan.ellipse(x, y, n, n);
+            infoxoff += infoInc;
+          }
+          infoyoff += infoInc;
+          infozoff += infozinc;
+        }
       }
-      logoyoff += logoinc;
-      logozoff += logozinc;
+      if (firstTime) {
+        count++;
+      }
     }
-    for (b of logop) {
-      b.calForce(logofollow);
-      //p[x][y].drag(follow);
-      b.physic();
-      b.display();
-      b.wall();
-      b.posUpdate();
+    if (count > 10) {
+      infoSketchRun = false;
+      firstTime = false;
     }
-    if (logofirstTime) {
-      logocount++;
+
+    /*----------------------LogoSketch--------------------*/
+    logoElement.addEventListener("mouseenter", function() {
+      logoSketchRun = true;
+      logofirstTime = false;
+      logocount = 0;
+    });
+    logoElement.addEventListener("mouseout", function() {
+      logoSketchRun = false;
+      logofirstTime = false;
+      logocount = 0;
+    });
+    if (logoSketchRun) {
+      var logoyoff = 0;
+      for (var y = 0; y < logoImg.width; y += scl) {
+        var logoxoff = 0;
+        for (var x = 0; x < logoImg.height; x += scl) {
+          var n = map(noise(logoxoff, logoyoff, logozoff), 0, 1, -TWO_PI, TWO_PI);
+          var v = p5.Vector.fromAngle(n);
+          var index = x + y * cols;
+          v.setMag(1);
+          logofollow.push(v);
+          // LogoCan.push();
+          // LogoCan.translate(x * scl, y * scl);
+          // LogoCan.rotate(v.heading());
+          // LogoCan.stroke(255);
+          // LogoCan.line(0, 0, scl, scl);
+          // LogoCan.pop();
+          logoxoff += logoinc;
+        }
+        logoyoff += logoinc;
+        logozoff += logozinc;
+      }
+      for (b of logop) {
+        b.calForce(logofollow);
+        //p[x][y].drag(follow);
+        b.physic();
+        b.display();
+        b.wall();
+        b.posUpdate();
+      }
+      if (logofirstTime) {
+        logocount++;
+      }
     }
-  }
-  if (logocount > 400) {
-    logoSketchRun = false;
-    logofirstTime = false;
+    if (logocount > 400) {
+      logoSketchRun = false;
+      logofirstTime = false;
+    }
   }
 }
 
