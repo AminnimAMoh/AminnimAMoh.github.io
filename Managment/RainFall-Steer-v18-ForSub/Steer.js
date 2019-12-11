@@ -97,10 +97,8 @@ function Steer(x, y) {
       /*----------------------MouseSelect----------------------*/
 
       /*----------------------MouseSelect----------------------*/
-      var ele = document.getElementById("graphContainer");
 
       if (md < 10) {
-        ele.classList.add("open");
         readCityAve = false;
         att.splice(0, index)
         att.splice(index + 1, att.length)
@@ -193,7 +191,6 @@ function Steer(x, y) {
       } else {
         readDataAgain = true;
         readCityAve = true;
-        ele.classList.remove("open");
       }
     }
   }

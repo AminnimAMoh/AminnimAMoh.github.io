@@ -68,13 +68,11 @@ function preload() {
   population = loadStrings("data/PThreeYears.csv")
 }
 
-
-
 function setup() {
 
   Can = createCanvas(640, 720);
   Can.id('myCan');
-  Can.parent("canTest");
+  Can.parent("test");
 
   setAllCanvas();
 
