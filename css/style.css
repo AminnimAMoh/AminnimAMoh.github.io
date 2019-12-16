@@ -1357,6 +1357,36 @@ pre::-webkit-scrollbar-thumb:hover {
   color: white;
 }
 
+#intSketch h1 {
+  position: relative;
+  top: -75%;
+  left: 50%;
+  width: 100px;
+  color: white;
+}
+
+#intSketch-button a {
+  position: relative;
+  top: -170px;
+  left: 50%;
+  width: 150px;
+  padding: 5px;
+  border-style: dashed;
+  border-width: medium;
+  font-size: 2.1em;
+  color: #2A2819;
+  font-family: 'Alata', sans-serif;
+}
+
+#intSketch {
+  position: relative;
+  width: 100%;
+  height: 400px;
+  background-color: black;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
 /*------------------------------------Cards-----------------------------------*/
 .slide-container {
   width: 800px;
@@ -1608,6 +1638,10 @@ footer {
 
   p {
     font-size: .7em;
+  }
+
+  #intSketch-button a {
+    font-size: 1.5em;
   }
 
   #nav-icon1 span {

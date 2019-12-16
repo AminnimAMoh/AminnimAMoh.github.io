@@ -10,7 +10,6 @@ function windowResized() {
   var x = container.offsetWidth;
   var y = container.offsetHeight;
   Can = createCanvas(x, y);
-  Can.id("pCan");
   Can.parent("#pCover");
   reset();
 }
@@ -27,7 +26,6 @@ function setup() {
   var x = container.offsetWidth;
   var y = container.offsetHeight;
   Can = createCanvas(x, y);
-  Can.id("pCan");
   Can.parent("#pCover");
 
   rectMode(CENTER);

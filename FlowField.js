@@ -49,6 +49,19 @@ var logostart = true;
 var logocount = 0;
 let logofirstTime = true;
 
+let IntCan;
+let intElement;
+let intSketchRun = true;
+var intcols, introws;
+var intscl = 20;
+let intCan;
+let intp = [];
+let intm;
+var intcount = 0;
+var readAgain = true;;
+let forceOn = false;
+let intTextFour;
+
 var th = 0.1;
 let off = false;
 
@@ -70,7 +83,16 @@ function windowResized() {
   LogoCan.resizeCanvas(logoElement.offsetWidth, logoElement.offsetHeight);
   cols = LogoCan.width / scl;
   rows = LogoCan.height / scl;
-  LogoCan.background(191, 150, 115)
+  LogoCan.background(191, 150, 115);
+
+  intElement = document.getElementById("intSketch");
+  IntCan.resizeCanvas(intElement.offsetWidth, intElement.offsetHeight);
+  IntCan.background(0);
+  intcols = IntCan.width / intscl;
+  introws = IntCan.height / intscl;
+  intp.splice(0, intp.length);
+  readAgain = true;
+
 
   firstTime = true;
   logofirstTime = true;
@@ -79,6 +101,7 @@ function windowResized() {
   infoSketchRun = true;
   logoSketchRun = true;
   logocount = 0;
+  intcount = 0;
   count = 0;
 
   resizeCanvas(windowWidth - 20, windowHeight - 20);
@@ -170,6 +193,30 @@ function setup() {
     }
   }
 
+  intElement = document.getElementById("intSketch");
+  IntCan = createGraphics(intElement.offsetWidth, intElement.offsetHeight);
+  IntCan.parent("#intSketch");
+  IntCan.style("display", "block")
+  // IntCan.style("z-index", "100");
+  IntCan.background(0)
+  intcols = IntCan.width / intscl;
+  introws = IntCan.height / intscl;
+  var intTextOne = createElement('h1', 'Design');
+  var intTextTwo = createElement('h1', ' Think');
+  var intTextThree = createElement('h1', ' Make');
+  intTextFour = createElement('a', ' Break');
+  intTextTwo.style("margin-left", "45px");
+  intTextThree.style("margin-left", "85px");
+  intTextFour.style("margin-left", "125px");
+  intTextTwo.style("color", "#513F29");
+  intTextOne.style("color", "#513F29");
+  intTextThree.style("color", "#513F29");
+  intTextFour.style("color", "#9C4830");
+  intTextOne.parent("#intSketch");
+  intTextTwo.parent("#intSketch");
+  intTextThree.parent("#intSketch");
+  intTextFour.parent("#intSketch-button");
+  intTextFour.id("break-button");
   strokeWeight(1);
   background(255);
   stroke(1, 17, 64);
@@ -339,6 +386,29 @@ function draw() {
     if (logocount > 200) {
       logoSketchRun = false;
       logofirstTime = false;
+    }
+
+    /*----------------------IntractionSketch--------------------*/
+    intElement.addEventListener("mouseenter", function() {
+      forceOn = true;
+      myMouse = createVector(event.offsetX, event.offsetY);
+    });
+    intElement.addEventListener("mouseout", function() {
+      forceOn = false;
+    });
+
+    if (readAgain) {
+      for (var x = 0; x < intcols; x++) {
+        for (var y = 0; y < introws; y++) {
+          intp.push(new Train(x * intscl, y * intscl));
+        }
+      }
+      readAgain = false;
+    }
+
+    IntCan.background(0);
+    for (b of intp) {
+      b.run();
     }
   }
 }
