@@ -747,7 +747,7 @@ a {
   padding-left: 25px;
   padding-right: 25px;
   /* background-color: rgba(42, 40, 25); */
-  background-color: #513F29;
+  background-color: #8d9396;
   border-style: inset;
   border-width: 0.3px;
   border-top: none;
@@ -796,18 +796,21 @@ a {
   display: inline-grid;
   text-align: center;
   color: black;
-  padding: 10px 10px;
+  /* padding: 10px 10px; */
   margin: 10px;
   width: 25%;
-  height: 15px;
+  height: 25px;
   letter-spacing: 1.5px;
-  font-family: 'Orbitron', sans-serif;
-  background-color: #9C4830;
+  font-family: 'Alata', sans-serif;
+  /* font-family: 'Orbitron', sans-serif; */
+  background-color: #2a3439;
+  box-shadow: 2px 2px 6px rgba(42, 40, 25, .5);
   cursor: pointer;
+  color: #b2b6b8;
 }
 
 #ToolBox div:hover {
-  background-color: rgb(220, 240, 240);
+  background-color: #495256;
 }
 
 #CodeContainer {
@@ -1018,7 +1021,7 @@ pre::-webkit-scrollbar-thumb:hover {
   width: 60px;
   height: 60px;
   border-radius: 100px;
-  background-color: #9C4830;
+  background-color: #2a3439;
   box-shadow: 2px 2px 6px rgba(42, 40, 25, .5);
 }
 
@@ -1028,7 +1031,7 @@ pre::-webkit-scrollbar-thumb:hover {
   width: 40px;
   height: 6px;
   border-radius: 3px;
-  background-color: #BF9673;
+  background-color: #8d9396;
 }
 
 #BackB span:nth-child(1) {

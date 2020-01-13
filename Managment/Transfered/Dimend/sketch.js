@@ -19,6 +19,7 @@ function centerCan() {
 function setup() {
   Can = createCanvas(600, 300);
   Can.id("pCan");
+  colorMode(HSB, 255);
   centerCan();
   var x = 0;
   var y = 0;
@@ -56,12 +57,13 @@ function windowResized() {
 }
 
 function draw() {
-  background(0, float(op.value));
+  background(0, int(op.value));
+  // console.log(op.value);
 
-  rc = int(redC.value);
-  gc = int(greenC.value);
-  bc = int(blueC.value);
-  th = float(thick.value);
+  // rc = int(redC.value);
+  // gc = int(greenC.value);
+  // bc = int(blueC.value);
+  // th = float(thick.value);
   for (var h of p) {
     h.run();
   }
@@ -83,13 +85,13 @@ function Runner(x, y, xi, yi) {
 
   this.display = function() {
     strokeWeight(th);
-    stroke(rc, gc, bc);
+    stroke(map(mouseY, 0, height, 0, 255), 255, 255);
     line(this.x, height / 2, width / 2, this.y);
   }
 
   this.update = function() {
-    this.x += this.incx;
-    this.y += this.incy;
+    this.x += this.incx * map(mouseX, 0, width, -2, 2);
+    this.y += this.incy * map(mouseX, 0, width, -2, 2);
   }
 
   this.con = function() {

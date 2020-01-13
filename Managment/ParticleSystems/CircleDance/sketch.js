@@ -14,6 +14,7 @@ var VelLInc = 0;
 var tail = [];
 
 var r, g, b = 0;
+var offS = false;
 
 function centerCan() {
   var x = (windowWidth - width) / 2;
@@ -24,6 +25,7 @@ function centerCan() {
 function setup() {
   Can = createCanvas(600, 600);
   Can.id("pCan");
+  colorMode(HSB);
   centerCan();
 
 
@@ -38,18 +40,28 @@ function windowResized() {
   centerCan();
 }
 
+function reset() {
+  background(0);
+  offS = false;
+}
+
 function draw() {
+  // background(0, 24)
 
-  noStroke();
-  fill(0, int(CanD.value));
-  rect(0, 0, width, height);
-
-  r = int(redC.value);
-  g = int(greenC.value);
-  b = int(blueC.value);
+  var resetB = document.getElementById("receive");
+  var option = document.getElementById("eleOne");
+  if (resetB.value == "eleOne" && option.classList.contains("open")) {
+    option.classList.remove("open");
+    reset();
+  }
+  r = int(map(mouseX, 0, width, 0, 255));
+  g = int(255);
+  b = int(255);
   translate(width / 2, height / 2);
   for (var b of p) {
-    b.run();
+    if (!offS) {
+      b.run();
+    }
   }
 }
 
@@ -110,7 +122,7 @@ function Ball() {
       stroke(Rmap, Gmap, Bmap, Salpha);
       // stroke(255);
       rotate(TWO_PI * i / partNumb);
-      strokeWeight(float(pd.value));
+      strokeWeight(map(mouseY, 0, height, 0.1, 5));
       line(this.pos.x, this.pos.y, this.Lpos.x, this.Lpos.y);
       pop();
     }
@@ -131,12 +143,9 @@ function Ball() {
     }
   }
 }
-/*
-function mousePressed(){
-	if (c<=5){
-		c++;
-		}
-      if (c>5){
-			c=0;
-			}
-		}*/
+
+function mousePressed() {
+  if (mouseY > 0) {
+    offS = true;
+  }
+}

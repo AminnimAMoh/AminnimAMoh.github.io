@@ -53,11 +53,11 @@ function shapeShoft(ele) {
   var c = document.getElementById("eleOne");
   var r = document.getElementById("eleTwo");
   if (ele == "eleOne") {
-    resive.value = "eleOne";
+    receive.value = "eleOne";
     c.classList.add('open');
     r.classList.remove('open');
   } else if (ele == "eleTwo") {
-    resive.value = "eleTwo";
+    receive.value = "eleTwo";
     c.classList.remove('open');
     r.classList.add('open');
   }

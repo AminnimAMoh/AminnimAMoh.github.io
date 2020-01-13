@@ -84,7 +84,7 @@ function Planet(x, y, g, m1) {
 
   this.display = function() {
 
-    // stroke(250, 250, 210);
+    stroke(250, 250, 210);
     strokeWeight(3);
 
     //point(this.pos.x, this.pos.y);

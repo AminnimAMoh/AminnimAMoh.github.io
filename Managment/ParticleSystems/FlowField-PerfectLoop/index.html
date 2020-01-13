@@ -48,19 +48,20 @@
   </div>
 
   <div id="ToolBox">
-    <h3>Tools</h3>
-    <h5>Field Shifts Speed</h5>
-    <h5>Noise Value</h5>
-    <h5>Stroke Thickness</h5>
-    <h5>Canvas Opacity</h5>
+    <h3 style="display: none;">Tools</h3>
+    <h5 style="display:none;">Field Shifts Speed</h5>
+    <h5 style="display:none;">Noise Value</h5>
+    <h5 style="display:none;">Stroke Thickness</h5>
+    <h5 style="display:none;">Canvas Opacity</h5>
     <br>
 
-    <input type="range" min="0.000001" max="0.001" value="0.000001" step="0.00001" class="slider" id="zInc">
-    <input type="range" min="0.0001" max="0.1" value="0.02" step="0.0001" class="slider" id="xyInc">
-    <input type="range" min="10" max="255" value="10" step="1" class="slider" id="ParticlesD">
-    <input type="range" min="0.1" max="255" value="0.1" step="1" class="slider" id="CanD">
+    <input type="range" min="0.000001" max="0.001" value="0.000001" step="0.00001" class="slider" id="zInc" style="display: none;">
+    <input type="range" min="0.0001" max="0.1" value="0.02" step="0.0001" class="slider" id="xyInc" style="display: none;">
+    <input type="range" min="10" max="255" value="10" step="1" class="slider" id="ParticlesD" style="display: none;">
+    <input type="range" min="0.1" max="255" value="0.1" step="1" class="slider" id="CanD" style="display: none;">
     <br>
 
+    <h2>Mouse Intractive!!</h2>
     <div onclick="shapeShoft(this.id)" id="eleOne">Save Screen</div>
     <div onclick="shapeShoft(this.id)" id="eleTwo" style="display: none">Dance Loop Mode</div>
 

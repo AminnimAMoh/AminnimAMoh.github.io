@@ -36,7 +36,7 @@ function setup() {
 function draw() {
   var canDen = float(CanD.value);
   background(0, canDen);
-  zinc = float(zInc.value);
+  zinc = 0.00005;
   inc = float(xyInc.value);
   var mode = resive.value;
   console.log(mode);
@@ -102,10 +102,10 @@ function Particle() {
 
   this.calColor = function() {
     r = map(
-      this.pos.x, 0, width, 0, 255
+      mouseX, 0, width, 0, 255
     );
     g = map(
-      this.pos.y, 0, height, 0, 255
+      mouseY, 0, height, 0, 255
     );
     b = map(
       this.vel.mag(), 0, 4, 0, 255
@@ -116,7 +116,7 @@ function Particle() {
     beginShape();
     var al = float(ParticlesD.value);
 
-    stroke(255, 255, 255, al);
+    stroke(r, g, b, al);
     strokeWeight(0.3);
 
     curveVertex(this.pos.x, this.pos.y);
