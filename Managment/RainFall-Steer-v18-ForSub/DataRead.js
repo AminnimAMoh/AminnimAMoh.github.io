@@ -37,6 +37,11 @@ function Cities() {
     for (var j = 4; j < population.length - 1; j++) {
       pData = population[j].split(/,/);
       pCityName[j] = pData[0];
+      if (int(pData[9]) > 0) {
+        totalPopsVar[1] = int(pData[9]);
+        totalPopsVar[2] = int(pData[10]);
+        totalPopsVar[3] = int(pData[11]);
+      }
       pPop.push([pData[0], int(pData[3]), int(pData[4]), int(pData[5]), int(pData[6]), int(pData[7]), int(pData[8])]);
     }
   }

@@ -16,7 +16,6 @@ window.addEventListener('mouseup', function(event) {
 });
 
 function menuToggle(e) {
-  console.log(e.target)
   var eOne = document.getElementById("mySide");
   var eTwo = document.getElementById("nav-icon1");
   if (e.target == eTwo || event.target.parentNode == eTwo) {

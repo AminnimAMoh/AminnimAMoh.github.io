@@ -1216,15 +1216,17 @@ pre::-webkit-scrollbar-thumb:hover {
 
 #test {
   position: relative;
-  width: auto;
-  border-radius: 12px;
-  margin: 0 auto;
+  margin: -25px;
+  width: 640px;
+  margin: 0;
   padding: 25px;
 }
 
 #YearCircle {
   position: relative;
-  top: -35px;
+  display: block;
+  top: -575px;
+  left: -500px;
   width: 280px;
   height: 320px;
   margin: 0 auto;
@@ -1233,10 +1235,12 @@ pre::-webkit-scrollbar-thumb:hover {
 .canvas-grid {
   position: relative;
   display: grid;
-  width: 100%;
-  grid-template-columns: 230px 230px 230px;
-  grid-template-rows: 280px;
-  margin: 0;
+  width: 230px;
+  top: -1150px;
+  left: 450px;
+  grid-template-columns: 230px;
+  grid-template-rows: 280px 280px 280px;
+  margin: 0 auto;
   padding: 0;
   grid-row-gap: 25px;
 }
@@ -1559,8 +1563,48 @@ footer {
   display: none;
 }
 
+@media only screen and (max-width: 1280px) {
+  .canvas-grid {
+    position: absolute;
+    top: -800px;
+    left: 0px;
+    grid-template-columns: 230px 230px 230px;
+    grid-template-rows: 140px;
+  }
+
+  #YearCircle {
+    top: -610px;
+    left: -15px;
+    width: 640px;
+    height: 610px;
+    margin: 0 auto;
+    display: none;
+  }
+
+  #YearCircle.open {
+    display: block;
+  }
+
+  #test {
+    top: 140px;
+  }
+
+  /* #YearCircle {
+    display: none;
+    background-color: black;
+    opacity: .8;
+    left: -15px;
+    top: -610px;
+    width: 640px;
+    height: 610px;
+  } */
+  /* #YearCircle.open {
+    display: block;
+  } */
+}
+
 @media only screen and (max-width: 1450px) {
-  # .go-up {
+  .go-up {
     display: block;
   }
 

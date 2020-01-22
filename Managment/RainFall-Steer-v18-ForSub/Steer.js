@@ -98,7 +98,13 @@ function Steer(x, y) {
 
       /*----------------------MouseSelect----------------------*/
 
-      if (md < 10) {
+      if (md > 0 && md < 50) {
+        showDetails = true;
+      } else {
+        showDetails = false;
+      }
+      if (showDetails) {
+        yearCan.classList.add("open");
         readCityAve = false;
         att.splice(0, index)
         att.splice(index + 1, att.length)
@@ -152,43 +158,84 @@ function Steer(x, y) {
             var arcAng = map(populationList, 200000, 12043980, 0, TWO_PI - 0.1);
             var x = map(j, 1, 4, -200, 380)
             var r = map(i, 0, pPop.length, 100, 20)
-            if (popName == name) {
-              Location.noStroke();
-              Location.fill(0)
-              Location.text(nfc(pPop[i][j]), -10, -60)
-              Location.strokeWeight(3)
-              Location.stroke(255, 0, 0)
+            if (windowWidth > 1280) {
+              if (popName == name) {
+                Location.noStroke();
+                Location.fill(0)
+                Location.text(nfc(pPop[i][j]), -10, -60)
+                Location.strokeWeight(3)
+                Location.stroke(255, 0, 0)
 
-            } else if (popName == "slum") {
-              var arcAng = map(populationList, 90000000, 102370207, 0, TWO_PI - 0.1);
-              var x = map(j, 1, 4, -200, 380)
-              var r = map(i, 0, pPop.length, 110, 20)
-              var newIndex = floor(map(j, 1, 3, 4, 6))
-              Location.noStroke()
-              Location.fill(0, 100, 255)
-              Location.text("%" + pPop[i][newIndex], -105, 69)
-              Location.stroke(0, 100, 255)
-            } else if (popName == "slum1") {
-              var arcAng = map(populationList, 90000000, 102370207, 0, TWO_PI - 0.1);
-              var x = map(j, 1, 4, -200, 380)
-              var r = map(i, 0, pPop.length, 120, 20)
-              var newIndex = floor(map(j, 1, 3, 4, 6))
-              Location.noStroke()
-              Location.fill(0, 200, 255)
-              Location.text("%" + pPop[i][newIndex], -5, 69)
+              } else if (popName == "slum") {
+                var arcAng = map(populationList, 90000000, 102370207, 0, TWO_PI - 0.1);
+                var x = map(j, 1, 4, -200, 380)
+                var r = map(i, 0, pPop.length, 110, 20)
+                var newIndex = floor(map(j, 1, 3, 4, 6))
+                Location.noStroke()
+                Location.fill(0, 100, 255)
+                Location.text("%" + pPop[i][newIndex], -105, 69)
+                Location.stroke(0, 100, 255)
+              } else if (popName == "slum1") {
+                var arcAng = map(populationList, 90000000, 102370207, 0, TWO_PI - 0.1);
+                var x = map(j, 1, 4, -200, 380)
+                var r = map(i, 0, pPop.length, 120, 20)
+                var newIndex = floor(map(j, 1, 3, 4, 6))
+                Location.noStroke()
+                Location.fill(0, 200, 255)
+                Location.text("%" + pPop[i][newIndex], -5, 69)
+                Location.noFill();
+                Location.stroke(0, 200, 255)
+              } else {
+                Location.strokeWeight(1)
+                Location.stroke(150)
+              }
+
               Location.noFill();
-              Location.stroke(0, 200, 255)
+              Location.arc(0, -55, r, r, 0, arcAng)
             } else {
-              Location.strokeWeight(1)
-              Location.stroke(150)
-            }
+              if (popName == name) {
+                var popPercent = (int(pPop[i][j]) / totalPopsVar[j]) * 100;
+                Location.noStroke();
+                Location.fill(0, 10)
+                Location.textSize(16);
+                Location.text("%" + nf(popPercent, 1, 2) + " of", 10, 0)
+                Location.strokeWeight(3)
+                Location.stroke(255, 0, 0)
 
-            Location.noFill();
-            Location.arc(0, -55, r, r, 0, arcAng)
+              } else if (popName == "slum") {
+                var arcAng = map(populationList, 90000000, 102370207, 0, TWO_PI - 0.1);
+                var x = map(j, 1, 4, -200, 380)
+                var r = map(i, 0, pPop.length, 110, 20)
+                var newIndex = floor(map(j, 1, 3, 4, 6))
+                Location.noStroke()
+                Location.fill(0, 100, 255)
+                Location.text("%" + pPop[i][newIndex], -20, 40)
+                Location.stroke(0, 100, 255)
+              } else if (popName == "slum1") {
+                var arcAng = map(populationList, 90000000, 102370207, 0, TWO_PI - 0.1);
+                var x = map(j, 1, 4, -200, 380)
+                var r = map(i, 0, pPop.length, 120, 20)
+                var newIndex = floor(map(j, 1, 3, 4, 6))
+                Location.noStroke()
+                Location.fill(0, 200, 255)
+                Location.text("%" + pPop[i][newIndex], 70, 40)
+                Location.noFill();
+                Location.stroke(0, 200, 255)
+              } else {
+                Location.strokeWeight(1)
+                Location.stroke(150)
+              }
+
+              // Location.noFill();
+              // Location.arc(0, -55, r, r, 0, arcAng)
+
+            }
           }
           Location.pop()
         }
       } else {
+        yearCan.classList.remove("open");
+        backChack = true;
         readDataAgain = true;
         readCityAve = true;
       }
