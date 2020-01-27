@@ -59,7 +59,7 @@ a {
   display: none;
 }
 
-.top.open {
+.top.change {
   display: block;
 }
 
@@ -1515,7 +1515,7 @@ pre::-webkit-scrollbar-thumb:hover {
   margin-left: 25px;
 }
 
-#nav-icon1 #topB.open span {
+#nav-icon1.change span {
   background: white;
 }
 
@@ -1941,6 +1941,11 @@ footer {
 
   .About-P5 .About-head {
     max-height: 200px;
+  }
+
+  #nav-icon1 {
+    top: -5px;
+    left: -5px;
   }
 
   #nav-icon1.open {
