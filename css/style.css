@@ -1511,6 +1511,10 @@ pre::-webkit-scrollbar-thumb:hover {
   /* margin: 0px; */
 }
 
+.sideMenu ol {
+  margin-left: 25px;
+}
+
 #nav-icon1 #topB.open span {
   background: white;
 }
@@ -1906,11 +1910,15 @@ footer {
   }
 
   .sideMenu li, h3, h2, a {
-    font-size: 10px;
+    font-size: 14px;
   }
 
   .sideMenu li {
-    margin-left: 45px;
+    margin-left: 35px;
+  }
+
+  .sideMenu ol {
+    margin-top: 12px;
   }
 }
 
@@ -1934,13 +1942,8 @@ footer {
     max-height: 200px;
   }
 
-  .sideMenu li {
-    margin-left: 2px;
-    margin-top: 15px;
-  }
-
-  .sideMenu ol {
-    margin-left: 25px;
+  #nav-icon1 {
+    top: -10px;
   }
 
   #nav-icon1.open {
@@ -1968,5 +1971,17 @@ footer {
     box-sizing: border-box;
     margin-right: 5px;
     height: auto;
+  }
+
+  .sideMenu li, h3, h2, a {
+    font-size: 10px;
+  }
+
+  .sideMenu li {
+    margin-left: 0px;
+  }
+
+  .sideMenu ol {
+    margin-left: 55px;
   }
 }
