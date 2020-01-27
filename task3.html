@@ -28,9 +28,11 @@
 
   <a>
     <div id="nav-icon1" onclick="menuToggle()">
-      <span></span>
-      <span></span>
-      <span></span>
+      <div id="topB">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
     </div>
   </a>
 
@@ -52,8 +54,7 @@
 
   <div class="pageGrid-container">
     <div class="sideMenu">
-      <h1 style="color: #9C4830">Menu</h1>
-      <h3>Sections</h3>
+      <h1 style="color: #9C4830">Sections</h1>
       <ol id='intList-2' style="margin-left:25px;">
         <a href="#research">
           <li>Research</li>
@@ -404,9 +405,19 @@
     </div>
   </div>
 
+  <script>
+    function changeColor() {
+      if (document.body.scrollTop > 720 || document.documentElement.scrollTop > 720) {
+        document.getElementById("nav-icon1").classList.add('whiteClass');
+      } else {
+        document.getElementById("nav-icon1").classList.remove('whiteClass');
+      }
+    }
+  </script>
   <script src="js/Scripts.js">
 
   </script>
+
 
 </body>
 
