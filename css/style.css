@@ -1926,6 +1926,7 @@ footer {
   .mySideMenu {
     width: 100vw;
     left: -100vw;
+    top: -5px;
     background-color: #343C40;
   }
 
@@ -1940,10 +1941,6 @@ footer {
 
   .About-P5 .About-head {
     max-height: 200px;
-  }
-
-  #nav-icon1 {
-    top: -10px;
   }
 
   #nav-icon1.open {
