@@ -1491,7 +1491,7 @@ pre::-webkit-scrollbar-thumb:hover {
 }
 
 .heading img {
-  width: 1080px;
+  max-width: 1080px;
 }
 
 .sideMenu {
@@ -1539,13 +1539,14 @@ pre::-webkit-scrollbar-thumb:hover {
 
 .pageGrid-container {
   box-sizing: border-box;
-  width: 100%;
+  max-width: 100%;
   display: grid;
   grid-template-areas:
     "header header"
     "main menu";
   grid-gap: 25px;
   padding: 0px;
+  margin: 0 auto;
 }
 
 #myCover {
@@ -1714,6 +1715,10 @@ footer {
     width: 100vw;
     left: -100vw;
     background-color: #343C40;
+  }
+
+  .mainContent {
+    padding: 0px;
   }
 
   .mySideMenu.open {
