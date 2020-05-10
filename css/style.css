@@ -59,7 +59,7 @@ a {
   display: none;
 }
 
-.top.change {
+.top.open {
   display: block;
 }
 
@@ -113,6 +113,7 @@ a {
 }
 
 .page {
+  display: inline-block;
   position: relative;
   width: 95vw;
   height: 100vh;
@@ -207,24 +208,6 @@ a {
   color: #062B5B;
 }
 
-.About-Task {
-  position: relative;
-  display: inline-grid;
-  grid-template-columns: auto auto auto;
-  align-content: center;
-  text-align: center;
-  margin: 0 auto;
-  margin-top: 75px;
-  grid-gap: 10px;
-  padding: 10px;
-  color: #062B5B;
-}
-
-.About-Task-head img {
-  object-fit: cover;
-  height: 200px;
-}
-
 .About-head img {
   object-fit: cover;
   height: 200px;
@@ -242,12 +225,12 @@ a {
   /* height: 400px; */
 }
 
-.About-Task-head .About-Task-head-Image {
+.About-head .About-head-Image {
   position: relative;
   width: 27px;
 }
 
-.About-Task-head .About-Task-head-Image img {
+.About-head .About-head-Image img {
   height: 55px;
 }
 
@@ -370,7 +353,6 @@ a {
 #topick {
   position: relative;
   top: 50px;
-  padding: 85px;
   margin: 0 auto;
   margin-top: 150px;
   color: #2E4559;
@@ -1491,37 +1473,25 @@ pre::-webkit-scrollbar-thumb:hover {
 }
 
 .heading img {
-  max-width: 1080px;
+  width: 1080px;
 }
 
 .sideMenu {
   grid-area: menu;
   position: sticky;
-  top: 0px;
-  max-height: 100vh;
+  top: 100px;
+  height: 340px;
   border-top: 2px solid #9C4830;
   border-bottom: 2px solid #9C4830;
-  background-color: #222c31;
-  color: #b2b6b8;
-  text-shadow: 2px 2px 6px rgba(0, 0, 0, .2);
+  background-color: rgba(185, 134, 113, .1);
   padding: 20px;
-  padding-top: 55%;
-  /* margin-right: 0;*/
-  margin-top: 50vh;
-  /* margin: 0px; */
-}
-
-.sideMenu ol {
-  margin-left: 25px;
-}
-
-#nav-icon1.change span {
-  background: white;
+  margin-right: 85px;
+  margin-top: 100px;
 }
 
 .sideMenu a {
   text-decoration: none;
-  color: #b2b6b8;
+  color: #2A2819;
   font-weight: 600;
   margin: 5px;
 }
@@ -1532,29 +1502,21 @@ pre::-webkit-scrollbar-thumb:hover {
 
 .sideMenu ul, ol {
   list-style: none;
-  color: #b2b6b8;
-}
-
-.sideMenu h3 {
-  color: #b2b6b8;
 }
 
 .mainContent {
   grid-area: main;
-  padding: 120px;
-  padding-top: 0px;
 }
 
 .pageGrid-container {
   box-sizing: border-box;
-  max-width: 100%;
+  width: 100%;
   display: grid;
   grid-template-areas:
     "header header"
     "main menu";
   grid-gap: 25px;
-  padding: 0px;
-  margin: 0 auto;
+  padding: 25px;
 }
 
 #myCover {
@@ -1628,53 +1590,6 @@ footer {
     top: 140px;
   }
 
-  .pageGrid-container {
-    grid-template-areas:
-      "header"
-      "menu"
-      "main";
-  }
-
-  .pageGrid-container.header img {
-    width: 750px;
-  }
-
-  .pageGrid-container #topick {
-    margin: 0;
-    padding: 0;
-  }
-
-  .sideMenu {
-    box-sizing: content-box;
-    width: 100%;
-    max-height: 130px;
-    top: 0px;
-    background-color: #222c31;
-    color: #b2b6b8;
-    border-top: none;
-    text-shadow: 2px 2px 6px rgba(0, 0, 0, .2);
-    margin: 0px;
-    padding: 0px;
-    z-index: 2;
-  }
-
-  .sideMenu li {
-    display: inline-block;
-    /* color: #BF9673; */
-    margin-left: 50px;
-    margin-bottom: 15px;
-  }
-
-  .sideMenu h3 {
-    color: #9C4830;
-    margin-top: 5px;
-    margin-left: 45px;
-  }
-
-  .sideMenu h1 {
-    display: none;
-  }
-
   /* #YearCircle {
     display: none;
     background-color: black;
@@ -1698,10 +1613,6 @@ footer {
     height: 315px;
   }
 
-  .About-Task {
-    grid-template-columns: auto;
-  }
-
   /* .LargeC-image {
     margin-top: 25%;
   } */
@@ -1715,6 +1626,50 @@ footer {
 
   .About-index h1 {
     font-size: 1.5em;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .mySideMenu {
+    width: 100vw;
+    left: -100vw;
+    background-color: #343C40;
+  }
+
+  .mySideMenu.open {
+    transform: translate3d(100vw, 0, 0);
+    transition: transform 0.5s ease-in-out;
+  }
+
+  .About-P5 .About-head {
+    max-height: 200px;
+  }
+
+  #nav-icon1.open {
+    margin-left: 90%;
+  }
+
+  #facing {
+    grid-template-columns: auto;
+    width: 200px;
+  }
+
+  #PhotoGride h3 {
+    font-size: 23px;
+  }
+
+  #topick p {
+    font-size: 12px;
+  }
+
+  #mainButtn h2 {
+    font-size: 16px;
+  }
+
+  .sideMenu {
+    box-sizing: border-box;
+    margin-right: 5px;
+    height: auto;
   }
 }
 
@@ -1896,9 +1851,48 @@ footer {
     height: 320px;
   }
 
+  .pageGrid-container {
+    grid-template-areas:
+      "header"
+      "menu"
+      "main";
+  }
+
+  .pageGrid-container.header img {
+    width: 750px;
+  }
+
+  .pageGrid-container #topick {
+    margin: 0;
+    padding: 0;
+  }
+
+  .sideMenu {
+    width: 100%;
+    height: 85px;
+    top: 60px;
+    background-color: #2A2819;
+    margin: 0px;
+    padding: 0px;
+    z-index: 3;
+  }
+
+  .sideMenu li {
+    display: inline-block;
+    color: #BF9673;
+  }
+
+  .sideMenu h3 {
+    color: #9C4830;
+  }
+
   .centerVideo {
     width: 320px;
     height: 180PX;
+  }
+
+  .sideMenu h1 {
+    display: none;
   }
 
   #ToolBox {
@@ -1907,83 +1901,5 @@ footer {
 
   #ToolBox div {
     width: 200px;
-  }
-
-  .sideMenu li, h3, h2, a {
-    font-size: 14px;
-  }
-
-  .sideMenu li {
-    margin-left: 35px;
-  }
-
-  .sideMenu ol {
-    margin-top: 12px;
-  }
-}
-
-@media only screen and (max-width: 600px) {
-  .mySideMenu {
-    width: 100vw;
-    left: -100vw;
-    top: -5px;
-    background-color: #343C40;
-  }
-
-  .mainContent {
-    padding: 20px;
-  }
-
-  .mySideMenu.open {
-    transform: translate3d(100vw, 0, 0);
-    transition: transform 0.5s ease-in-out;
-  }
-
-  .About-P5 .About-head {
-    max-height: 200px;
-  }
-
-  #nav-icon1 {
-    top: -2px;
-    left: -12px;
-  }
-
-  #nav-icon1.open {
-    margin-left: 90%;
-  }
-
-  #facing {
-    grid-template-columns: auto;
-    width: 200px;
-  }
-
-  #PhotoGride h3 {
-    font-size: 23px;
-  }
-
-  #topick p {
-    font-size: 12px;
-  }
-
-  #mainButtn h2 {
-    font-size: 16px;
-  }
-
-  .sideMenu {
-    box-sizing: border-box;
-    margin-right: 5px;
-    height: auto;
-  }
-
-  .sideMenu li, h3, h2, a {
-    font-size: 10px;
-  }
-
-  .sideMenu li {
-    margin-left: 0px;
-  }
-
-  .sideMenu ol {
-    margin-left: 55px;
   }
 }

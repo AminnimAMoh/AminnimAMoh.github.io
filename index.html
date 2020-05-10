@@ -4,6 +4,7 @@
 <head>
   <meta charset="utf-8">
   <link rel="stylesheet" href="css/style.css">
+  <script src="https://d3js.org/d3.v5.min.js"></script>
   <link rel="shortcut icon" type="image/png" href="favicon.png">
   <link href="https://fonts.googleapis.com/css?family=Alata|Anton|Assistant|BenchNine|Orbitron|Pathway+Gothic+One|Teko&display=swap" rel="stylesheet">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -44,15 +45,16 @@
         <li><a href="Sound.html">Sound Visualization</a></li>
         <li><a href="Managment/RainFall-Steer-v18-ForSub/index.html">Information Visualization</a></li>
         <li><a href="Logo.html">Logo Redesign</a></li>
+        <li><a href="VR/index.html">VR</a></li>
       </ul>
     </nav>
   </div>
 
-  <div class="page" style="height:100vh;">
+  <div class="page" id="page" style="height:100vh;">
     <div id="Welcome">
       <h1>Hello, I am <span id="colorChange">Mohammad Amin Mohammadi</span>.</h1>
       <h1>I am a enthusiastic student in Design Computing.</h1>
-      <a href="#AboutPage" style="text-decoration: none;">
+      <a style="text-decoration: none;">
         <div id="mainButtn">
           <h2 style="font-size:18px;">More About Me</h2>
           <i class="arrowLeft"></i></p>
@@ -173,9 +175,11 @@
       <i class="arrowUp"></i></div>
   </a>
 
-  <script src="js/Scripts.js">
+  <script src="js/Scripts.js"></script>
 
-  </script>
+  <script src="js/D3-Scripts.js"></script>
+
+
 
 </body>
 

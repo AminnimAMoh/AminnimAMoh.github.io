@@ -104,27 +104,10 @@ window.onscroll = function() {
 };
 
 function scrollFunction() {
-  var element;
-  if (document.title == "Interaction Design Studio") {
-    element = document.getElementById("nav-icon1");
+  if (document.body.scrollTop > 720 || document.documentElement.scrollTop > 720) {
+    document.getElementById("topB").classList.add('open');
   } else {
-    element = document.getElementById("topB");
-  }
-  if (element.id == "nav-icon1") {
-    if (document.body.scrollTop > 720 || document.documentElement.scrollTop > 720) {
-      element.classList.add('change');
-    } else {
-      element.classList.remove('change');
-    }
-    if (window.innerWidth > 1280) {
-      element.classList.remove('change');
-    }
-  } else {
-    if (document.body.scrollTop > 720 || document.documentElement.scrollTop > 720) {
-      element.classList.add('change');
-    } else {
-      element.classList.remove('change');
-    }
+    document.getElementById("topB").classList.remove('open');
   }
 }
 

@@ -28,11 +28,9 @@
 
   <a>
     <div id="nav-icon1" onclick="menuToggle()">
-      <div id="topB">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
+      <span></span>
+      <span></span>
+      <span></span>
     </div>
   </a>
 
@@ -54,7 +52,8 @@
 
   <div class="pageGrid-container">
     <div class="sideMenu">
-      <h1 style="color: #9C4830">Sections</h1>
+      <h1 style="color: #9C4830">Menu</h1>
+      <h3 style="color:#513F29">Sections</h3>
       <ol id='intList-2' style="margin-left:25px;">
         <a href="#research">
           <li>Research</li>
@@ -84,7 +83,7 @@
     </div>
 
     <div class="mainContent">
-      <div id="topick" style="margin-top: 0px;">
+      <div id="topick">
         <h3>Collaboration Team:</h3>
         <p>Maya Okada-Zalewski, Mohammad Amin Mohammadi, Heath McGregor</p>
         <h1 style="margin-top: 50px;">Introduction</h1>
@@ -132,17 +131,17 @@
       <div id="cont-container-Logo" style="margin-top: 150px;">
         <h1>Research and insights from Task One</h1>
 
-        <div class="About-Task" style="text-align: justify; grid-gap:35px;">
-          <div class="About-Task-head" style="border-top: 2px solid blue;">
-            <div class="About-Task-head-Image">
+        <div class="About" style="text-align: justify; grid-gap:35px;">
+          <div class="About-head" style="border-top: 2px solid blue;">
+            <div class="About-head-Image">
               <img src="Assets/img/ImportedAssets/Icone1.png" alt="Icone-Image">
             </div>
             <h1>Research</h1>
             <h1>and insights</h1>
           </div>
 
-          <div class="About-Task-head" style="border-top: 2px solid green; ">
-            <div class="About-Task-head-Image">
+          <div class="About-head" style="border-top: 2px solid green; ">
+            <div class="About-head-Image">
               <img src="Assets/img/ImportedAssets/Icone2.png" alt="Icone-Image">
             </div>
             <h2>Underage Drinking</h2>
@@ -156,8 +155,8 @@
             </p>
           </div>
 
-          <div class="About-Task-head" style="border-top: 2px solid orange;">
-            <div class="About-Task-head-Image">
+          <div class="About-head" style="border-top: 2px solid orange;">
+            <div class="About-head-Image">
               <img src="Assets/img/ImportedAssets/Icone3.png" alt="Icone-Image">
             </div>
             <h2>Gaming</h2>
@@ -169,8 +168,8 @@
           </div>
 
 
-          <div class="About-Task-head" style="border-top: 2px solid brown;">
-            <div class="About-Task-head-Image">
+          <div class="About-head" style="border-top: 2px solid brown;">
+            <div class="About-head-Image">
               <img src="Assets/img/ImportedAssets/Icone4.png" alt="Icone-Image">
             </div>
             <h2>Education System</h2>
@@ -178,8 +177,8 @@
               material. However, traditional practises that are performed in the class-room environment are becoming ineffective when referring to the outside the class-room environment. Students are retaining ONLY information received in-class for
               assessment purposes, later dismissing information and/or being unable to execute those practises. New models of schooling are necessary as educational institutions attempt to transition into the digital age. </p>
           </div>
-          <div class="About-Task-head" style="border-top: 2px solid black;">
-            <div class="About-Task-head-Image">
+          <div class="About-head" style="border-top: 2px solid black;">
+            <div class="About-head-Image">
               <img src="Assets/img/ImportedAssets/Icone5.png" alt="Icone-Image">
             </div>
             <h2>Virtual Reality</h2>
@@ -190,8 +189,8 @@
               treatment (Merchant et al. 2014).
             </p>
           </div>
-          <div class="About-Task-head" style="border-top: 2px solid #15f4ee;">
-            <div class="About-Task-head-Image">
+          <div class="About-head" style="border-top: 2px solid #15f4ee;">
+            <div class="About-head-Image">
               <img src="Assets/img/ImportedAssets/Icone5 - Copy.png" alt="Icone-Image">
             </div>
             <h2>Justification of Problem</h2>
@@ -218,8 +217,8 @@
         </p>
       </div>
 
-      <div class="About-Task" style="text-align: justify; grid-gap:35px;">
-        <div class="About-Task-head">
+      <div class="About" style="text-align: justify; grid-gap:35px;">
+        <div class="About-head">
           <div class="centerImage" style="width:150px;">
             <img src="Assets/img/ImportedAssets/Concept1.png" alt="Content-Image">
           </div>
@@ -232,7 +231,7 @@
           </p>
         </div>
 
-        <div class="About-Task-head">
+        <div class="About-head">
           <div class="centerImage" style="width:200px;">
             <img src="Assets/img/ImportedAssets/Concept2.png" alt="Content-Image">
           </div>
@@ -246,7 +245,7 @@
           </p>
         </div>
 
-        <div class="About-Task-head">
+        <div class="About-head">
           <div class="centerImage" style="width:100px;">
             <img src="Assets/img/ImportedAssets/Concept3.png" alt="Content-Image">
           </div>
@@ -405,19 +404,9 @@
     </div>
   </div>
 
-  <script>
-    function changeColor() {
-      if (document.body.scrollTop > 720 || document.documentElement.scrollTop > 720) {
-        document.getElementById("nav-icon1").classList.add('whiteClass');
-      } else {
-        document.getElementById("nav-icon1").classList.remove('whiteClass');
-      }
-    }
-  </script>
   <script src="js/Scripts.js">
 
   </script>
-
 
 </body>
 
