@@ -10,8 +10,8 @@ var rain2010 = [];
 var rain2013 = [];
 var stationCord = [];
 var slider = document.getElementById("myRange");
-var w = 960;
-var h = 1000;
+var w = containerX;
+var h = containerY;
 var yearSelected = "0";
 var ellipsesLength = [{
   size: 70,
@@ -185,8 +185,8 @@ d3.csv("data/Month-FiveYears.csv", function(data) {
   }
 })
 var container = d3.select("#Script-Container").append("svg")
-  .attr("width", 960)
-  .attr("height", 1000);
+  .attr("width", w)
+  .attr("height", h);
 
 /*--------------------------------------------------------------*/
 /*--------------------------------------------------------------*/

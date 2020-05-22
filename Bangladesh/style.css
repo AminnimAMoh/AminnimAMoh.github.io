@@ -60,7 +60,9 @@ p {
 }
 
 .info-content a {
-  text-decoration: none;
+  font-family: "imported-Azo";
+  text-decoration: underline;
+  color: black;
 }
 
 .info-content h1 {
