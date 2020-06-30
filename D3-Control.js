@@ -8,7 +8,7 @@ var menuData = [{
   img: "Assets/Buttons-Icon/D3.png"
 }, {
   name: "Info",
-  img: "Assets/Buttons-Icon/Info.png"
+  img: "Assets/Buttons-Icon/info.png"
 }, {
   name: "Contact",
   img: "Assets/Buttons-Icon/Null.png"
