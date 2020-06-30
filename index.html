@@ -1,183 +1,92 @@
 <!DOCTYPE html>
-<html lang="">
+<html lang="en">
 
 <head>
-  <meta charset="utf-8">
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="shortcut icon" type="image/png" href="favicon.png">
-  <link href="https://fonts.googleapis.com/css?family=Alata|Anton|Assistant|BenchNine|Orbitron|Pathway+Gothic+One|Teko&display=swap" rel="stylesheet">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Generative Art</title>
-  <style>
-    body {
-      padding: 0;
-      margin: 0;
-    }
-  </style>
-  <script src="libraries/p5.js"></script>
-  <script src="libraries/p5.dom.js"></script>
-  <script src="FlowField.js"></script>
-  <script src="Ball.js"></script>
-  <script src="Train.js"></script>
+	<meta charset="utf-8">
+
+	<title>Power Generation</title>
+
+	<link rel="stylesheet" href="style.css">
+	<link rel="shortcut icon" type="image/png" href="Assets/favicon.png">
+	<script src="https://d3js.org/d3.v5.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.2.2/d3.min.js"></script>
+	<script src="https://d3js.org/topojson.v1.min.js"></script>
+	<script src="https://unpkg.com/d3-composite-projections@1.2.0/d3-composite-projections.min.js"></script>
+	<script src="https://d3js.org/d3-ease.v1.min.js"></script>
+	<script src="radarChart.js" charset="utf-8"></script>
+
 </head>
 
-<body id="bodyTest">
+<body>
 
-  <!-- <div id="topnav"> -->
-  <div id="start"></div>
+	<div class="content-page" id="D3">
+		<div class="topic-grid">
+			<div class="topick-heading">
+				<h1>Visualising Rainfall Data to Enhance Bangladesh’s Capacity for Risk Reduction in City Planning</h1>
+				<h3>Collaboration Team:</h3>
+				<p style="font-size: 12px; color:#5C3B42;">Maya Okada-Zalewski, Mohammad Amin Mohammadi, Heath McGregor</p>
+			</div>
 
-  <a>
-    <div id="nav-icon1" onclick="menuToggle()">
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
-  </a>
+			<div class="topic-pragraph">
+				<p>The focus of this research is on Bangladesh and the severity of their natural disasters.
+					This involves two main sets of data, natural disaster levels and population which would be displayed
+					according to each
+					district.
+					We collected data of Bangladesh’s monthly rainfall data from 1948-2014.
+					Experimenting with ways to visualise it, we have plotted the data on a map and animated the
+					visualisation according to its data. The images below show the first four
+					iterations to achieve a better understanding of the best way to visualize the main factors.
+				</p>
+			</div>
+		</div>
+		<div id="Script-Container"></div>
+	</div>
 
-  <div class="mySideMenu" id="mySide">
-    <nav id="MyNav" class="MyNav">
-      <h2 style="color:#BF9673">Sidebar</h2>
-      <ul>
-        <li><a id="active">Home</a></li>
-        <li><a href="task3.html">Interaction Design & Unity</a></li>
-        <li><a href="p5.html">JavaScript</a></li>
-        <li><a href="Sound.html">Sound Visualization</a></li>
-        <li><a href="Managment/RainFall-Steer-v18-ForSub/index.html">Information Visualization</a></li>
-        <li><a href="Logo.html">Logo Redesign</a></li>
-      </ul>
-    </nav>
-  </div>
+	<div class="content-page" id="Info">
+		<div class="topic-grid">
+			<div class="topick-heading">
+				<h1>Hi I am Amin</h1>
+			</div>
 
-  <div class="page" style="height:100vh;">
-    <div id="Welcome">
-      <h1>Hello, I am <span id="colorChange">Mohammad Amin Mohammadi</span>.</h1>
-      <h1>I am a enthusiastic student in Design Computing.</h1>
-      <a href="#AboutPage" style="text-decoration: none;">
-        <div id="mainButtn">
-          <a href="VR/WebVR-Reticle-Test/index.html">Vertual Reality-New</a>
-          <!-- <h2 style="font-size:18px;">More About Me</h2> -->
-          <i class="arrowLeft"></i></p>
-        </div>
-      </a>
-    </div>
-  </div>
+			<div class="topic-pragraph">
+				<p>I am a student in Design Computing at the University of Sydney. My passion
+					is programming and learning new programming languages. I have start
+					programming with P5.js which is an interactive JavaScript DOM library.
+					Combing this knowledge with complex data sets I have found great potential
+					in my self in the field of data visualization and data mining.
+					I am a curious person who likes to look at problems from different points of
+					view to generate and iterate new ideas. I enjoy working in groups and share
+					my insights with others. this has improved my abilities in the field of user
+					experience designs.</p>
+				<p>
+					In addition, Web Development is a combination of all my passions
+					altogether. This skill provides me with tools to showcase information in an
+					interactive and responsive environment. My JavaScript skills have improved
+					my performance in bringing static web pages alive.
+				</p>
+			</div>
+		</div>
+	</div>
 
-  <div id="topnav" style="position: sticky; top:0;">
-    <h2 id="PageTag"></h2>
-  </div>
+	<div class="content-page" id="Contact">
+		<div class="topic-grid">
+			<div class="topick-heading">
+			</div>
 
-  <div class="page" id="AboutPage">
+			<div class="topic-pragraph">
+			</div>
+		</div>
+	</div>
 
-    <div class="About">
-      <section class="About-head">
-        <img src="Assets/Icons/Aim.png" alt="Content-Image" style="height:150px;">
-        <p>My aim is to be a valubale and suppotive team member on the voage of development in Web Design (UX/UI).</p>
-      </section>
-      <section class="About-head">
-        <img src="Assets/Icons/abilities.png" alt="Content-Image" style="height:150px;">
-        <p>Since I was intruduced to programming I have been resilient towards challenges by combining my creative side with the passion I have for programming and web development.</p>
-      </section>
-      <section class="About-head">
-        <img src="Assets/Icons/UXUI.png" alt="Content-Image" style="height:150px;">
-        <p>Through out my university studies using user experience methods has shown me it can significantly improve the usibility of any product.</p>
-      </section>
-    </div>
+	<div class="d3-container" id="d3-container">
+		<div class="main-button" id="main-button" onclick="myTransit()">
+			<img src="Assets/Power_Button-Stoke.png" alt="Image-Content">
+		</div>
 
-    <div class="Info-slide-container" id="contentMenu">
-      <span id="Info-slider-image-1" style="background-color:black;"></span>
-      <span id="Info-slider-image-2" style="background-color:black;"></span>
-      <span id="Info-slider-image-3" style="background-color:black;"></span>
-      <span id="Info-slider-image-4" style="background-color:black;"></span>
-      <span id="Info-slider-image-5" style="background-color:black;"></span>
-      <span id="Info-slider-image-6" style="background-color:black;"></span>
+	</div>
 
-
-      <div class="image-container-Info">
-        <div class="slider-image-Info">
-          <img src="Assets/Logo/P5.png" alt="Content-Image">
-          <p>P5.js library is a tool for me to develop dynamic web pages. Using this library the pages become alive with a great level of interaction and real-time visuals.</p>
-        </div>
-        <div class="slider-image-Info">
-          <img src="Assets/Logo/Processing.png" alt="Content-Image">
-          <p>Processing provides a powerful field of tools to generate novel and creative asset packages for pages combining mathematics and physics.</p>
-        </div>
-        <div class="slider-image-Info">
-          <img src="Assets/Logo/D3.png" alt="Content-Image">
-          <p>D3 is another library of JavaScript which is powerful for information visualization. This library able me to generate interactive graphs and tables for better User Interaction.</p>
-        </div>
-        <div class="slider-image-Info">
-          <img src="Assets/Logo/CSS.png" alt="Content-Image">
-          <p>I have been learning new futures from CSS every day since the very first day I have started developing dynamic and responsive pages to improve UI. </p>
-        </div>
-        <div class="slider-image-Info">
-          <img src="Assets/Logo/HTML-2.png" alt="Content-Image">
-          <p>HTML is the key to enter a word in which imagination and information have combined.</p>
-        </div>
-        <div class="slider-image-Info">
-          <img src="Assets/Logo/JS.png" alt="Content-Image">
-          <p>JavaScript and jQuery are tools connecting me to the DOM library of HTML JavaScript. These provide a connection between the front and back end of any page.</p>
-        </div>
-      </div>
-
-      <div class="button-container">
-        <a href="#Info-slider-image-1" class="Info-slider-button" id="Info-slider-1" onclick="feuse(this.id,this.className)">
-        </a>
-        <a href="#Info-slider-image-2" class="Info-slider-button" id="Info-slider-2" onclick="feuse(this.id,this.className)">
-        </a>
-        <a href="#Info-slider-image-3" class="Info-slider-button" id="Info-slider-3" onclick="feuse(this.id,this.className)">
-        </a>
-        <a href="#Info-slider-image-4" class="Info-slider-button" id="Info-slider-4" onclick="feuse(this.id,this.className)">
-        </a>
-        <a href="#Info-slider-image-5" class="Info-slider-button" id="Info-slider-5" onclick="feuse(this.id,this.className)">
-        </a>
-        <a href="#Info-slider-image-6" class="Info-slider-button" id="Info-slider-6" onclick="feuse(this.id,this.className)">
-        </a>
-      </div>
-    </div>
-
-    <a href="#cont-container-Logo" style="text-decoration: none;">
-      <div id="mainButtn" style="margin-top: 25px;">
-        <h2 style="font-size:18px;">My Projects</h2>
-        <i class="arrowLeft"></i></p>
-      </div>
-    </a>
-  </div>
-
-  <div id="cont-container-Logo">
-    <div class="page" id="cardsPage" style="max-width: 1300px;">
-      <div class="About-index">
-
-        <a href="p5.html">
-          <div id="pSketch"></div>
-        </a>
-
-        <a href="Sound.html">
-          <div id="soundSketch"></div>
-        </a>
-
-        <a href="Managment/RainFall-Steer-v18-ForSub/index.html">
-          <div id="InfoSketch"></div>
-        </a>
-
-        <a href="Logo.html">
-          <div id="LogoSketch"></div>
-        </a>
-      </div>
-
-      <div id="intSketch"></div>
-      <a href="task3.html" id="intSketch-button"></a>
-
-    </div>
-  </div>
-  <a href="#start">
-    <div class="top" id="topB">
-      <i class="arrowUp"></i></div>
-  </a>
-
-  <script src="js/Scripts.js">
-
-  </script>
-
+	<script src="D3-Control.js"></script>
+	<script src="d3.js"></script>
 </body>
 
 </html>

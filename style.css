@@ -1,0 +1,227 @@
+@font-face {
+  font-family: "imported-Azo";
+  src: url("Fonts/Azo/AzoSansLight.otf");
+}
+
+@font-face {
+  font-family: "imported-Azo-Medium";
+  src: url("Fonts/Azo/AzoSansMedium.otf");
+}
+
+@font-face {
+  font-family: "imported-Azo-Bold";
+  src: url("Fonts/Azo/AzoSansBold.otf");
+}
+
+h1 {
+  font-family: "imported-Azo-Bold";
+  color: #9C3C41;
+}
+
+h2, h3 {
+  font-family: "imported-Azo-Medium";
+  color: #5C3B42;
+}
+
+p {
+  font-family: "imported-Azo";
+  color: #E4E5E7;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  /* background-color: #061621; */
+}
+
+.d3-container {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  padding: 0;
+  margin: 0;
+  background-color: #061621;
+  transition: margin-left .5s;
+}
+
+.main-button {
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  top: 50%;
+  left: 50%;
+  margin-top: -150px;
+  margin-left: -150px;
+  cursor: pointer;
+  z-index: 0;
+}
+
+.main-button img {
+  width: 100%;
+}
+
+.stop-left {
+  stop-color: #426164;
+}
+
+.stop-right {
+  stop-color: #061621;
+}
+
+.button-circle {
+  fill: #061621;
+  stroke: url(#Gradient);
+  stroke-width: 2;
+  cursor: pointer;
+  filter: url(#drop-shadow);
+}
+
+.button-circle.selected {
+  fill: #E4E5E7;
+}
+
+.menu-lables {
+  font-family: "imported-Azo-Bold";
+  font-size: 25px;
+  fill: #9C3C41;
+  text-anchor: middle;
+}
+
+.buttonEmmision {
+  fill: black;
+}
+
+/* //////////////////////////////////////////////////////////////////////////////////////////////////
+
+                                            Index Style
+
+/////////////////////////////////////////////////////////////////////////////////////////////////// */
+.content-page {
+  background-image: url("Assets/Page-Frame-Light-Shadow.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: fixed;
+  width: 0;
+  height: 100vh;
+  z-index: 1;
+  transition: width .5s;
+  overflow-y: auto;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.content-page::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.content-page {
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
+}
+
+.content-page.open {
+  width: 70vw;
+}
+
+.topic-grid {
+  display: inline-grid;
+  grid-template-columns: 35% 35%;
+  grid-template-rows: 200px;
+  grid-column-gap: 25px;
+  margin: 55px;
+}
+
+.topic-pragraph {
+  line-height: 24px;
+}
+
+/* //////////////////////////////////////////////////////////////////////////////////////////////////
+
+                                            Map Style
+
+/////////////////////////////////////////////////////////////////////////////////////////////////// */
+#Script-Container {
+  box-sizing: border-box;
+  position: relative;
+  top: 60px;
+  width: 820px;
+  height: 820px;
+  padding: 25px;
+}
+
+text {
+  font-family: "imported-Azo-Medium";
+  color: #E4E5E7;
+}
+
+path {
+  fill: #E4E5E7;
+  stroke: none;
+  stroke-width: .5px;
+  box-shadow: 2px 2px 15px rgba(0, 0, 0, .5);
+}
+
+.cities-circles {
+  fill: url(#Gradient);
+  stroke: url(#Gradient);
+  stroke-width: 1.5px;
+  fill-opacity: .7;
+  z-index: -1;
+  transition: .5s;
+  filter: url(#legend-drop-shadow);
+}
+
+.cities-circles.clicked {
+  fill: #9C3C41;
+  fill-opacity: 1;
+  r: 10;
+}
+
+.cities-circles.active {
+  fill: #5C3B42;
+  r: 10;
+}
+
+path.active {
+  fill: pink;
+}
+
+.ellipseCan {
+  width: 100px;
+  height: 100px;
+  stroke-width: .3;
+  opacity: .9;
+}
+
+.year-container text {
+  cursor: pointer;
+  fill: #E4E5E7;
+}
+
+.year-container text.active {
+  fill: #5C3B42;
+}
+
+.legend-circles {
+  fill: url(#Gradient);
+  opacity: .5;
+  stroke: url(#Gradient);
+  stroke-width: 1.5px;
+  filter: url(#legend-drop-shadow);
+}
+
+.legend tspan {
+  fill: #E4E5E7;
+}
+
+.node text {
+  display: none;
+  font: 10px sans-serif;
+}
+
+.node:hover text {
+  display: inline;
+}
