@@ -61,6 +61,22 @@ body {
   width: 100%;
 }
 
+.tool-kit-box {
+  stroke: url(#Gradient);
+  filter: url(#drop-shadow);
+  fill: #e4e5e7;
+  fill-opacity: .7;
+  cx: 12;
+  cy: 12;
+  text-anchor: middle;
+}
+
+.toolKit-text {
+  fill: #b0b2b8;
+  font-size: 12px;
+  text-anchor: middle;
+}
+
 .stop-left {
   stop-color: #426164;
 }
@@ -127,15 +143,79 @@ body {
 }
 
 .topic-grid {
+  position: relative;
   display: inline-grid;
   grid-template-columns: 35% 35%;
-  grid-template-rows: 200px;
+  grid-template-rows: auto;
   grid-column-gap: 25px;
   margin: 55px;
 }
 
 .topic-pragraph {
   line-height: 24px;
+}
+
+.image-grid {
+  font-family: "imported-Azo-Medium";
+  position: relative;
+  display: grid;
+  width: 70vw;
+  grid-template-columns: 10% 50%;
+  grid-template-rows: 65px 65px 65px 65px 65px 65px 65px;
+  grid-row-gap: 12px;
+  margin: 75px;
+  text-align: right;
+  text-indent: 12px;
+  color: #7a9193;
+}
+
+.image-grid img {
+  height: 100%;
+}
+
+.image-grid .line-indicator {
+  position: relative;
+  display: block;
+  /* max-width: 50%; */
+  height: 2px;
+  background-color: #12393d;
+  top: 50%;
+  /* box-shadow: 0 0 8px 2.5px rgba(122, 145, 147, .8); */
+  box-shadow:
+    inset 0 0 50px #fff,
+    /* inner white */
+    inset 20px 0 80px #f0f,
+    /* inner left magenta short */
+    inset -20px 0 80px #0ff,
+    /* inner right cyan short */
+    inset 20px 0 300px #f0f,
+    /* inner left magenta broad */
+    inset -20px 0 300px #0ff,
+    /* inner right cyan broad */
+    0 0 50px #fff,
+    /* outer white */
+    -10px 0 80px #f0f,
+    /* outer left magenta */
+    10px 0 80px #0ff;
+  /* outer right cyan */
+}
+
+.section-devider {
+  display: block;
+  position: relative;
+  width: 60%;
+  text-align: center;
+  height: 1px;
+  background-color: #b0b2b8;
+  margin: 55px;
+}
+
+#D3 img {
+  position: absolute;
+  height: 150px;
+  top: 90%;
+  left: 25px;
+  z-index: -1;
 }
 
 /* //////////////////////////////////////////////////////////////////////////////////////////////////
@@ -146,9 +226,9 @@ body {
 #Script-Container {
   box-sizing: border-box;
   position: relative;
-  top: 60px;
-  width: 820px;
-  height: 820px;
+  top: 55px;
+  width: 920px;
+  height: 920px;
   padding: 25px;
 }
 

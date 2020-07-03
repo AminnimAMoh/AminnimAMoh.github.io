@@ -5,22 +5,32 @@ var overlayOffset = "70vw";
 var rad = 120;
 var menuData = [{
   name: "D3",
-  img: "Assets/Buttons-Icon/D3.png"
+  img: "Assets/Buttons-Icon/D3.png",
+  toolKit: "Bangladesh Disaster Case",
+  width: 200
 }, {
   name: "Info",
-  img: "Assets/Buttons-Icon/info.png"
+  img: "Assets/Buttons-Icon/info.png",
+  toolKit: "How am I",
+  width: 90
 }, {
   name: "Contact",
-  img: "Assets/Buttons-Icon/Null.png"
+  img: "Assets/Buttons-Icon/Null.png",
+  toolKit: "Get in touch",
+  width: 90
 }, {
-  name: "Info",
-  img: "Assets/Buttons-Icon/UX.png"
+  name: "UX",
+  img: "Assets/Buttons-Icon/UX.png",
+  toolKit: "UX Design Case Study",
+  width: 150
 }];
-var Can = d3.select("#d3-container").append("svg");
+var Can = d3.select("#d3-container").append("svg").attr("id", "control-canvas");
 var menuButtonsGroupContainer = Can.append("g").attr("id", "menuButtons-Group");
 var menuButtons = menuButtonsGroupContainer.append("g").attr("id", "menuButtons");
 var menuButtonsBack = Can.append("g");
 var iconContainer = menuButtons.append("g").attr("id", "menu-Icons");
+var toolKitGroupText = menuButtons.append("g").attr("id", "tool-Kit-Group-text");
+
 
 /*--------------------------------------------------------------*/
 /*--------------------------------------------------------------*/
@@ -80,6 +90,8 @@ gradient.append("stop")
   .attr("class", "stop-right")
   .attr("offset", "1");
 
+iconContainer.attr("transform", "translate(-30,-30)");
+
 
 function redraw() {
   var w = sketchContainer.clientWidth;
@@ -87,6 +99,26 @@ function redraw() {
 
   Can.attr("width", w)
     .attr("height", h);
+
+
+  var toolKitTexy = toolKitGroupText.selectAll("text")
+    .data(menuData)
+    .enter().append("text")
+    .attr("transform", function(d, i) {
+      return "translate(" +
+        (rad * Math.cos(((2 * Math.PI) / menuData.length * i))) +
+        "," +
+        (rad * Math.sin(((2 * Math.PI) / menuData.length * i))) +
+        ")";
+    })
+    .text(function(d) {
+      return d.toolKit;
+    })
+    .attr("class", "toolKit-text")
+    .attr("id", function(d, i) {
+      return d.name + "-tool-text";
+    })
+    .style("opacity", "0");
 
   var menuTransition = d3.transition()
     .ease(d3.easeQuad)
@@ -130,7 +162,21 @@ function redraw() {
     .attr("id", function(d) {
       return d.name;
     })
+    .on("mouseenter", function(d, i) {
+      var data = d;
+      var thisBoxName = "#" + this.id + "-tool-box";
+      var thisTextName = "#" + this.id + "-tool-text";
+
+      toolKitGroupText.select(thisTextName).style("opacity", "1");
+
+    })
+    .on("mouseout", function(d, i) {
+      var data = d;
+      var thisTextName = "#" + this.id + "-tool-text";
+      toolKitGroupText.selectAll(thisTextName).style("opacity", "0");
+    })
     .on("click", function(d, i) {
+
       menuButtons.selectAll("circle").classed("selected", false);
       var index = i;
       var name = d.name;
@@ -168,6 +214,21 @@ function redraw() {
             (rad * 2) * Math.sin(((2 * Math.PI) / menuData.length * imgIndex)) + ")rotate(" + (index * 90 * inc) + ")";
         });
 
+      toolKitGroupText.selectAll("text")
+        .transition(menuTransition).duration(1000)
+        .attr("transform", function(d, i) {
+          var imgIndex = i;
+          var inc = 1;
+
+          if (index == 0 || index == 2) {
+            inc = 1;
+          } else {
+            inc = -1;
+          }
+          return "translate(" + (rad * 2) * Math.cos(((2 * Math.PI) / menuData.length * imgIndex)) + "," +
+            (rad * 2) * Math.sin(((2 * Math.PI) / menuData.length * imgIndex)) + ")rotate(" + (index * 90 * inc) + ")";
+        });
+
       iconContainer.transition(menuTransition).duration(1000).attr("transform", function() {
         if (index == 0) {
           return "translate(-30,-30)";
@@ -181,14 +242,15 @@ function redraw() {
       });
 
       d3.select(this).classed("selected", true);
+
     });
 
   menuButtonsGroupContainer.attr("transform", "translate(" + w / 2 + "," + h / 2 + ")");
 
   menuButtonsBack.attr("transform", "translate(" + w / 2 + "," + h / 2 + ")");
 
-  iconContainer.attr("transform", "translate(-30,-30)");
   iconContainer.raise();
+  toolKitGroupText.raise();
 }
 
 
@@ -215,6 +277,11 @@ function myTransit() {
   var imageLables = iconContainer.selectAll("image")
     .data(menuData)
   imageLables.exit().remove();
+
+
+  var toolKitText = toolKitGroupText.selectAll("text")
+    .data(menuData)
+  toolKitText.exit().remove();
 
   menu.select("circle")
     .data(menuData)
@@ -256,6 +323,22 @@ function myTransit() {
         (r / 2) * Math.sin(((2 * Math.PI) / menuData.length * i)) + ")";
     });
 
+
+  toolKitText.select("text")
+    .data(menuData)
+    .enter().selectAll("text")
+    .transition(menuOptionsTransition)
+    .attr("transform", function(d, i) {
+      var r = rad;
+      if (menuSwitch) {
+        r = newRad * 2;
+      } else {
+        r = rad * 2;
+      }
+      return "translate(" + (r / 2) * Math.cos(((2 * Math.PI) / menuData.length * i)) + "," +
+        (r / 2) * Math.sin(((2 * Math.PI) / menuData.length * i)) + ")";
+    });
+
   Can.selectAll("#Gradient").transition()
     .duration(1000)
     .attr("gradientTransform", function() {
@@ -268,10 +351,28 @@ function myTransit() {
 
   if (!menuSwitch) {
     menuButtons.attr("transform", "rotate(0)");
+    iconContainer.attr("transform", "translate(-30,-30)");
     redraw();
   }
 }
 redraw();
 
 
-window.addEventListener("resize", redraw);
+window.addEventListener("resize", function() {
+  redraw();
+});
+
+/*---------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------
+                                            Java Controle
+-----------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------*/
+
+var blumLights = document.getElementsByClassName("line-indicator");
+var values = [95, 80, 85, 95, 95, 98, 60, 75, 60, 80, 80, 60];
+
+for (var i = 0; i < blumLights.length; i++) {
+  console.log(blumLights[i].innerText);
+  blumLights[i].style.width = values[i] + "%";
+  blumLights[i].innerText = "\n" + "%" + values[i];
+}
