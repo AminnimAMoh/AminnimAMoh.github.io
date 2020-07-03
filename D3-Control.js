@@ -369,7 +369,7 @@ window.addEventListener("resize", function() {
 -----------------------------------------------------------------------------------------------------------------*/
 
 var blumLights = document.getElementsByClassName("line-indicator");
-var values = [95, 80, 85, 95, 95, 98, 60, 75, 60, 80, 80, 60];
+var values = [95, 80, 85, 95, 95, 98, 70, 75, 60, 80, 80, 60, 80, 70, 80, 60];
 
 for (var i = 0; i < blumLights.length; i++) {
   console.log(blumLights[i].innerText);
