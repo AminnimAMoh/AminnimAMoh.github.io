@@ -14,9 +14,9 @@ var menuData = [{
   toolKit: "How am I",
   width: 90
 }, {
-  name: "Contact",
-  img: "Assets/Buttons-Icon/Null.png",
-  toolKit: "Get in touch",
+  name: "CV",
+  img: "Assets/Buttons-Icon/CV.png",
+  toolKit: "Resume",
   width: 90
 }, {
   name: "UX",
