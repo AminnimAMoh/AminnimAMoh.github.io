@@ -376,3 +376,14 @@ for (var i = 0; i < blumLights.length; i++) {
   blumLights[i].style.width = values[i] + "%";
   blumLights[i].innerText = "\n" + "%" + values[i];
 }
+
+function CVControl(element) {
+  var trans = document.getElementById(element);
+  var e = trans.childNodes[5];
+
+  if (e.classList.contains("open")) {
+    e.classList.remove("open");
+  } else {
+    e.classList.add("open");
+  }
+}
