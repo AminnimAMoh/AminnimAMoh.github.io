@@ -291,6 +291,11 @@ body {
   color: #b0b2b8;
 }
 
+.UX-Images {
+  width: 75%;
+  margin: 55px;
+}
+
 .content-grid .line-indicator-Resume {
   position: relative;
   display: block;
