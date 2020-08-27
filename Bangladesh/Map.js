@@ -124,8 +124,8 @@ var yearsContainer = container.append("g").attr("class", "year-container");
 var yearsSluems = container.append("g").attr("class", "year-slumes");
 var lableSluems = container.append("g").attr("class", "lable-slumes");
 var cityCircles = container.append("g").attr("id", "city-indicators");
-var cityLables = container.append("g").attr("id", "city-Lable");
 var ellipseContainer = container.append("g").attr("id", "ellipse-group");
+var cityLables = container.append("g").attr("id", "city-Lable");
 var groupOne = container.append("g").attr("id", "population-groupOne");
 var groupTwo = container.append("g").attr("id", "population-groupTwo");
 var groupThree = container.append("g").attr("id", "population-groupThree");
@@ -565,12 +565,6 @@ d3.json(url, function(error, countries) {
 
         cityLables.selectAll("text").remove();
 
-        var myLable = cityLables.append("text")
-          .attr("x", coords[0])
-          .attr("y", coords[1] + 5)
-          .text(nameOfCity)
-          .attr("text-anchor", "middle")
-          .style("fill", "#436265");
 
         d3.selectAll("circle").classed("clicked", false)
         d3.select(this)
@@ -617,6 +611,25 @@ d3.json(url, function(error, countries) {
           })
           .style("stroke-width", "1.5px")
           .style("filter", "url(#graph-drop-shadow)");
+
+        var myLable = cityLables.selectAll("text")
+          .data(ellipsesLength)
+          .enter().append("text")
+          .attr("x", function(d, i) {
+            return coords[0] + graphRad * Math.cos(angleScale(i));
+          })
+          .attr("y", function(d, i) {
+            return coords[1] + graphRad * Math.sin(angleScale(i)) - 20;
+          })
+          .text(function(d, i) {
+            if (i <= 2) {
+              return nameOfCity;
+            }
+          })
+          .attr("text-anchor", "middle")
+          .style("fill", "#9c3c41")
+          .style("font-size", "8pt");
+
 
         var outer = d3.scaleLinear()
           .domain([popMinThree, popMaxThree])
