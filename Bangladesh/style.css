@@ -258,14 +258,6 @@ body {
   margin: 55px;
 }
 
-#D3 img {
-  position: absolute;
-  height: 150px;
-  top: 90%;
-  left: 25px;
-  z-index: -1;
-}
-
 .UX-Container-Size {
   position: relative;
   width: 80%;
@@ -435,6 +427,15 @@ input[type=submit]:hover {
   width: 920px;
   height: 920px;
   padding: 25px;
+}
+
+.image-test {
+  position: absolute;
+  top: 350px;
+  left: 20px;
+  width: 920px;
+  height: 920px;
+  opacity: .1;
 }
 
 text {

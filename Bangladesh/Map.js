@@ -124,6 +124,7 @@ var yearsContainer = container.append("g").attr("class", "year-container");
 var yearsSluems = container.append("g").attr("class", "year-slumes");
 var lableSluems = container.append("g").attr("class", "lable-slumes");
 var cityCircles = container.append("g").attr("id", "city-indicators");
+var legend = container.append("g").attr("id", "graph-legend");
 var ellipseContainer = container.append("g").attr("id", "ellipse-group");
 var cityLables = container.append("g").attr("id", "city-Lable");
 var groupOne = container.append("g").attr("id", "population-groupOne");
@@ -131,7 +132,7 @@ var groupTwo = container.append("g").attr("id", "population-groupTwo");
 var groupThree = container.append("g").attr("id", "population-groupThree");
 var lables = container.append("g").attr("id", "graph-lables");
 var rainGroup = container.append("g").attr("class", "rainG");
-var legend = container.append("g").attr("id", "graph-legend");
+
 
 
 /*--------------------------------------------------------------*/
@@ -377,9 +378,7 @@ var angleScale = d3.scaleLinear()
   .domain([0, 4])
   .range([0, Math.PI * 2]);
 
-var radScale = d3.scaleLinear()
-  .domain([1100, 4300])
-  .range([4, 24]);
+
 
 d3.csv("data/Annual-Rain-All-Years.csv", function(data) {
   for (var i = 0; i < data.length; i++) {
@@ -471,6 +470,13 @@ d3.json(url, function(error, countries) {
     .attr("d", geoGenerator)
 
 
+  var datatransfer = rain2013;
+  var firstMin = d3.min(datatransfer);
+  var firstMax = d3.max(datatransfer);
+  // console.log(firstMin);
+  var radScale = d3.scaleLinear()
+    .domain([firstMin, firstMax])
+    .range([4, 24]);
 
   // function reDrawCan() {
   containerElement = document.getElementById("Script-Container");
@@ -485,7 +491,9 @@ d3.json(url, function(error, countries) {
     .attr("transform", "translate(" + w / 2 + "," + h / 2 + ")");
 
   mapContainer.attr("transform", "translate(0,0)");
-  legend.attr("transform", "translate(-200 ," + (h / 2 + 50) + ")");
+  legend.attr("transform", "translate(265 ," + (h - 230) + ")");
+
+
 
   ellipseContainer.selectAll("ellipse")
     .data(ellipsesLength)
@@ -531,6 +539,49 @@ d3.json(url, function(error, countries) {
   cityCircles.attr("transform", "translate(0,0)");
   cityLables.attr("transform", "translate(0,0)");
   ellipseContainer.attr("transform", "translate(0,0)");
+
+  var managedArray = [];
+  var sortedData = rain2013.sort(d3.descending);
+  managedArray.push(sortedData[0]);
+  managedArray.push(sortedData[sortedData.length / 2]);
+  managedArray.push(sortedData[sortedData.length - 1]);
+
+  legend.selectAll("circle")
+    .data(managedArray)
+    .enter().append("circle")
+    .attr("class", "cities-circles")
+    .attr("transform", function(d, i) {
+      return "translate(0," + (-radScale(d)) + ")";
+    })
+    .attr("r", function(d) {
+      return radScale(d);
+    });
+
+  legend.selectAll("line")
+    .data(managedArray)
+    .enter().append("line")
+    .attr("transform", function(d, i) {
+      return "translate(0," + (-radScale(d) * 2) + ")";
+    })
+    .attr("x1", 0)
+    .attr("y1", 0)
+    .attr("x1", function(d, i) {
+      return (i * 50) + 50;
+    })
+    .attr("y1", 1)
+    .style("stroke", "white");
+
+  legend.selectAll("text")
+    .data(managedArray)
+    .enter().append("text")
+    .attr("transform", function(d, i) {
+      return "translate(" + ((i * 50) + 12) + "," + (-radScale(d) * 2 - 3) + ")";
+    })
+    .text(function(d) {
+      return d + "mm";
+    })
+    .style("font-size", "6pt")
+    .style("fill", "white");
 
   for (var i = 0; i < stationCord.length; i++) {
     var cord = stationCord[i];
@@ -843,7 +894,11 @@ d3.json(url, function(error, countries) {
           .enter()
           .append("text")
           .attr("x", function(d) {
-            return d.x + 35;
+            if (formatComma(popOne) == "NaN" || formatComma(popTwo) == "NaN" || formatComma(popThree) == "NaN") {
+              return d.x + 25;
+            } else {
+              return d.x + 35;
+            }
           })
           .attr("y", function(d) {
             return d.y + 25;
@@ -851,20 +906,29 @@ d3.json(url, function(error, countries) {
           .text(function(d, i) {
             switch (i) {
               case 0:
+                if (formatComma(popOne) == "NaN") {
+                  return "Data Missing";
+                }
                 return formatComma(popOne);
                 break;
               case 1:
+                if (formatComma(popTwo) == "NaN") {
+                  return "Data Missing";
+                }
                 return formatComma(popTwo);
                 break;
               case 2:
+                if (formatComma(popThree) == "NaN") {
+                  return "Data Missing";
+                }
                 return formatComma(popThree);
                 break;
             }
 
           })
           .attr("width", 20)
-          .attr("fill", "#E4E5E7")
-          .attr("font-size", 11);
+          .style("fill", "#E4E5E7")
+          .style("font-size", 11);
 
         lables.attr("transform", "translate(" + groupTx + "," + groupTy + ")");
 
@@ -889,6 +953,7 @@ d3.json(url, function(error, countries) {
   var slumScale = d3.scaleLinear()
     .domain([slumMin, slumMax])
     .range([20, 100]);
+
 
   lableSluems.attr("transform", "translate(100,20)");
   yearsSluems.attr("transform", "translate(150,20)");
@@ -918,7 +983,7 @@ d3.json(url, function(error, countries) {
 
   lableSluems.append("text")
     .attr("transform", "translate(-100,60)")
-    .text("Slumes Population")
+    .text("Slums Population")
     .style("fill", "#9C3C41")
     .style("font-size", "8pt");
 
@@ -1017,6 +1082,54 @@ d3.json(url, function(error, countries) {
         return arc(d);
       };
     }
+    legend.selectAll("text").remove();
+  }
+
+  function removeEllipses() {
+    cityLables.selectAll("text").remove();
+    var ellipseG = ellipseContainer.selectAll("ellipse");
+    ellipseG.transition().duration(500).attr("rx", 0).attr("ry", 0);
+
+    var pathOne = groupOne.selectAll("path");
+    pathOne.transition()
+      .ease(d3.easePoly)
+      .duration(1000)
+      .attrTween("d", arcTweenClose)
+      .style("opacity", 0);
+
+    var pathOne = groupTwo.selectAll("path");
+    pathOne.transition()
+      .ease(d3.easePoly)
+      .duration(1000)
+      .attrTween("d", arcTweenClose)
+      .style("opacity", 0);
+
+    var pathOne = groupThree.selectAll("path");
+    pathOne.transition()
+      .ease(d3.easePoly)
+      .duration(1000)
+      .attrTween("d", arcTweenClose)
+      .style("opacity", 0);
+
+    var monthRain = container.select(".rainG")
+      .transition().duration(500).style("opacity", 0);
+
+    var labelsContainer = lables.selectAll("text")
+      .transition().duration(500).style("opacity", 0);
+
+    var cityCircleContainer = cityCircles.selectAll("circle")
+      .classed("clicked", false);
+
+    function arcTweenClose(d) {
+      var i = d3.interpolateNumber(70, 0);
+      return function(t) {
+        var r = i(t),
+          arc = d3.arc()
+          .outerRadius(r - 2)
+          .innerRadius(r)
+        return arc(d);
+      };
+    }
   }
 
   function onClickTextFunction(d) {
@@ -1054,15 +1167,17 @@ d3.json(url, function(error, countries) {
         dataSet = rain2013;
         break;
     }
+
     var circleTransition = d3.transition()
       .ease(d3.easeExp)
       .duration(1000);
 
-    var dmin = d3.min(dataSet);
-    var dmax = d3.max(dataSet);
-    var radScale = d3.scaleLinear()
-      .domain([dmin, dmax])
-      .range([0, 24]);
+    firstMin = d3.min(dataSet);
+    firstMax = d3.max(dataSet);
+    // console.log(dataSet);
+    radScale = d3.scaleLinear()
+      .domain([firstMin, firstMax])
+      .range([4, 24]);
 
     var selectContainerCircles = cityCircles.selectAll("circle")
       .data(dataSet);
@@ -1082,6 +1197,42 @@ d3.json(url, function(error, countries) {
       .attr("cy", function(d, i) {
         return stationCord[i][1];
       })
+
+    let managedArray = [];
+    var sortedData = dataSet.sort(d3.descending);
+    managedArray.push(sortedData[0]);
+    managedArray.push(sortedData[sortedData.length / 2]);
+    managedArray.push(sortedData[sortedData.length - 1]);
+    console.log(firstMin);
+
+    legend.select("circle")
+      .data(managedArray)
+      .enter().selectAll("circle").transition().duration(500)
+      .attr("transform", function(d, i) {
+        return "translate(0," + (-radScale(d)) + ")";
+      })
+      .attr("r", function(d) {
+        return radScale(d);
+      });
+
+    legend.select("line")
+      .data(managedArray)
+      .enter().selectAll("line").transition().duration(500)
+      .attr("transform", function(d, i) {
+        return "translate(0," + (-radScale(d) * 2) + ")";
+      });
+
+    legend.selectAll("text")
+      .data(managedArray)
+      .enter().append("text")
+      .attr("transform", function(d, i) {
+        return "translate(" + ((i * 50) + 12) + "," + ((-radScale(d) * 2) - 6) + ")";
+      })
+      .text(function(d) {
+        return d + "mm";
+      })
+      .style("font-size", "6pt")
+      .style("fill", "white");
   }
   d3.selectAll("g").raise();
 
@@ -1092,12 +1243,12 @@ d3.json(url, function(error, countries) {
       event.srcElement.id == "control-canvas" ||
       event.srcElement.id == "map-canvas"
     ) {
-      yearsContainer.selectAll("text")
-        .attr("font-size", 12)
-        .style("fill", "white")
-        .style("font-family", "imported-Azo");
+      // yearsContainer.selectAll("text")
+      //   .attr("font-size", 12)
+      //   .style("fill", "white")
+      //   .style("font-family", "imported-Azo");
 
-      removeFunction();
+      removeEllipses();
     }
   });
 });
