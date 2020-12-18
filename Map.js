@@ -9,7 +9,7 @@ var rain2005 = [];
 var rain2010 = [];
 var rain2013 = [];
 var stationCord = [];
-
+var slumes = [];
 var w = containerX;
 var h = containerY;
 var yearSelected = "0";
@@ -116,18 +116,24 @@ var yearSelector = [{
 }];
 
 
+var yearLableInc = 80;
+var mapXOffSet = -100;
+
 var container = d3.select("#Script-Container").append("svg").attr("id", "map-canvas");
 
 var mapContainer = container.append("g").attr("id", "map-container-group");
 var yearsContainer = container.append("g").attr("class", "year-container");
+var yearsSluems = container.append("g").attr("class", "year-slumes");
+var lableSluems = container.append("g").attr("class", "lable-slumes");
 var cityCircles = container.append("g").attr("id", "city-indicators");
+var legend = container.append("g").attr("id", "graph-legend");
 var ellipseContainer = container.append("g").attr("id", "ellipse-group");
+var cityLables = container.append("g").attr("id", "city-Lable");
 var groupOne = container.append("g").attr("id", "population-groupOne");
 var groupTwo = container.append("g").attr("id", "population-groupTwo");
 var groupThree = container.append("g").attr("id", "population-groupThree");
 var lables = container.append("g").attr("id", "graph-lables");
 var rainGroup = container.append("g").attr("class", "rainG");
-var legend = container.append("g").attr("id", "graph-legend");
 
 
 /*--------------------------------------------------------------*/
@@ -301,22 +307,32 @@ var angleScale = d3.scaleLinear()
   .domain([0, 4])
   .range([0, Math.PI * 2]);
 
-var radScale = d3.scaleLinear()
-  .domain([1100, 4300])
-  .range([4, 24]);
-
 d3.csv("data/Annual-Rain-All-Years.csv", function(data) {
   for (var i = 0; i < data.length; i++) {
     stationName[i] = data[i].Station;
-    rain1990.push(parseInt(data[i].Sum1990));
-    rain1995.push(parseInt(data[i].Sum1995));
+    if (data[i].Sum1990 != 0) {
+      rain1990.push(parseInt(data[i].Sum1990));
+    }
+    if (data[i].Sum1995 != 0) {
+      rain1995.push(parseInt(data[i].Sum1995));
+    }
+    if (data[i].Sum2005 != 0) {
+      rain2005.push(parseInt(data[i].Sum2005));
+    }
     rain2000.push(parseInt(data[i].Sum2000));
-    rain2005.push(parseInt(data[i].Sum2005));
     rain2010.push(parseInt(data[i].Sum2010));
     rain2013.push(parseInt(data[i].Sum2013));
     stationCord.push(projectionTest([+data[i].longitude, +data[i].latitude]));
   }
 });
+d3.csv("data/bangladesh_slums_total (1).csv", function(data) {
+  for (var i = 0; i < data.length; i++) {
+    slumes.push({
+      year: data[i].year,
+      pop: data[i].number,
+    });
+  }
+})
 
 d3.csv("data/PThreeYears.csv", function(data) {
   for (var i = 2; i < data.length; i++) {
@@ -377,7 +393,6 @@ var url = "data/GeoJson/bangladesh.geojson";
 d3.json(url, function(error, countries) {
   if (error) console.log(error);
   var names = [];
-
   for (var i = 0; i < countries.features.length; i++) {
     names.push(countries.features[i].properties.NAME_4);
   }
@@ -388,8 +403,15 @@ d3.json(url, function(error, countries) {
 });
 
 function reDrawCan() {
+  var datatransfer = rain2013;
+  var firstMin = d3.min(datatransfer);
+  var firstMax = d3.max(datatransfer);
+  // console.log(firstMin);
+  var radScale = d3.scaleLinear()
+    .domain([firstMin, firstMax])
+    .range([6, 24]);
 
-
+  // function reDrawCan() {
   containerElement = document.getElementById("Script-Container");
   w = containerElement.offsetWidth;
   h = containerElement.offsetHeight;
@@ -401,8 +423,10 @@ function reDrawCan() {
   var allGroups = container.selectAll("g")
     .attr("transform", "translate(" + w / 2 + "," + h / 2 + ")");
 
-  mapContainer.attr("transform", "translate(0,0)");
-  legend.attr("transform", "translate(-200 ," + (h / 2 + 50) + ")");
+  mapContainer.attr("transform", "translate(" + mapXOffSet + ",0)");
+  legend.attr("transform", "translate(" + (265 + mapXOffSet) + " ," + (h - 230) + ")");
+
+
 
   ellipseContainer.selectAll("ellipse")
     .data(ellipsesLength)
@@ -445,8 +469,52 @@ function reDrawCan() {
   }
 
 
-  cityCircles.attr("transform", "translate(0,0)");
-  ellipseContainer.attr("transform", "translate(0,0)");
+  cityCircles.attr("transform", "translate(" + mapXOffSet + ",0)");
+  cityLables.attr("transform", "translate(" + mapXOffSet + ",0)");
+  ellipseContainer.attr("transform", "translate(" + mapXOffSet + ",0)");
+
+  var managedArray = [];
+  var sortedData = rain2013.sort(d3.descending);
+  managedArray.push(sortedData[0]);
+  managedArray.push(sortedData[sortedData.length / 2]);
+  managedArray.push(sortedData[sortedData.length - 1]);
+
+  legend.selectAll("circle")
+    .data(managedArray)
+    .enter().append("circle")
+    .attr("class", "cities-circles")
+    .attr("transform", function(d, i) {
+      return "translate(0," + (-radScale(d)) + ")";
+    })
+    .attr("r", function(d) {
+      return radScale(d);
+    });
+
+  legend.selectAll("line")
+    .data(managedArray)
+    .enter().append("line")
+    .attr("transform", function(d, i) {
+      return "translate(0," + (-radScale(d) * 2) + ")";
+    })
+    .attr("x1", 0)
+    .attr("y1", 0)
+    .attr("x1", function(d, i) {
+      return (i * 50) + 50;
+    })
+    .attr("y1", 1)
+    .style("stroke", "white");
+
+  legend.selectAll("text")
+    .data(managedArray)
+    .enter().append("text")
+    .attr("transform", function(d, i) {
+      return "translate(" + ((i * 50) + 12) + "," + (-radScale(d) * 2 - 3) + ")";
+    })
+    .text(function(d) {
+      return d + "mm";
+    })
+    .style("font-size", "6pt")
+    .style("fill", "white");
 
   for (var i = 0; i < stationCord.length; i++) {
     var cord = stationCord[i];
@@ -478,6 +546,10 @@ function reDrawCan() {
         var group = container.append("g");
         var nameOfCity = this.id;
         var popOne, popTwo, popThree;
+
+        cityLables.selectAll("text").remove();
+
+
         d3.selectAll("circle").classed("clicked", false)
         d3.select(this)
           .classed("clicked", true);
@@ -523,6 +595,25 @@ function reDrawCan() {
           })
           .style("stroke-width", "1.5px")
           .style("filter", "url(#graph-drop-shadow)");
+
+        var myLable = cityLables.selectAll("text")
+          .data(ellipsesLength)
+          .enter().append("text")
+          .attr("x", function(d, i) {
+            return coords[0] + graphRad * Math.cos(angleScale(i));
+          })
+          .attr("y", function(d, i) {
+            return coords[1] + graphRad * Math.sin(angleScale(i)) - 20;
+          })
+          .text(function(d, i) {
+            if (i <= 2) {
+              return nameOfCity;
+            }
+          })
+          .attr("text-anchor", "middle")
+          .style("fill", "#9c3c41")
+          .style("font-size", "8pt");
+
 
         var outer = d3.scaleLinear()
           .domain([popMinThree, popMaxThree])
@@ -595,13 +686,13 @@ function reDrawCan() {
             };
           }
 
-          var groupTx = coords[0] + graphRad * Math.cos(angleScale(i));
+          var groupTx = mapXOffSet + coords[0] + graphRad * Math.cos(angleScale(i));
           var groupTy = coords[1] + graphRad * Math.sin(angleScale(i));
 
           groupContainer.attr("transform", "translate(" + groupTx + "," + groupTy + ")");
         }
 
-        var rainGroupTx = (coords[0] + graphRad * Math.cos(angleScale(3))) - 125;
+        var rainGroupTx = (mapXOffSet + coords[0] + graphRad * Math.cos(angleScale(3))) - 125;
         var rainGroupTy = (coords[1] + graphRad * Math.sin(angleScale(3))) - 125;
 
         rainGroup.attr("transform", "translate(" + rainGroupTx + "," + rainGroupTy + ")")
@@ -736,7 +827,11 @@ function reDrawCan() {
           .enter()
           .append("text")
           .attr("x", function(d) {
-            return d.x + 35;
+            if (formatComma(popOne) == "NaN" || formatComma(popTwo) == "NaN" || formatComma(popThree) == "NaN") {
+              return d.x + 25;
+            } else {
+              return d.x + 35;
+            }
           })
           .attr("y", function(d) {
             return d.y + 25;
@@ -744,20 +839,29 @@ function reDrawCan() {
           .text(function(d, i) {
             switch (i) {
               case 0:
+                if (formatComma(popOne) == "NaN") {
+                  return "Data Missing";
+                }
                 return formatComma(popOne);
                 break;
               case 1:
+                if (formatComma(popTwo) == "NaN") {
+                  return "Data Missing";
+                }
                 return formatComma(popTwo);
                 break;
               case 2:
+                if (formatComma(popThree) == "NaN") {
+                  return "Data Missing";
+                }
                 return formatComma(popThree);
                 break;
             }
 
           })
           .attr("width", 20)
-          .attr("fill", "#E4E5E7")
-          .attr("font-size", 11);
+          .style("fill", "#E4E5E7")
+          .style("font-size", 11);
 
         lables.attr("transform", "translate(" + groupTx + "," + groupTy + ")");
 
@@ -776,41 +880,52 @@ function reDrawCan() {
     .domain([0, 20])
     .range([255, 153]);
 
-  // for (var i = 20; i > 0; i--) {
-  //   legend.append("circle")
-  //     .attr("cx", 0)
-  //     .attr("cy", function() {
-  //       return i * 28;
-  //     })
-  //     .attr("r", function() {
-  //       return legendCircleScale(i)
-  //     })
-  //     .attr("class", "legend-circles");
-  //   legend.attr("transform", "translate(110,100)")
-  // }
-  // for (var i = 0; i < 2; i++) {
-  //   container.append("text")
-  //     .attr("x", 60)
-  //     .attr("y", function() {
-  //       return 90 + i * 220;
-  //     })
-  //     .text(function() {
-  //       if (i == 0) {
-  //         return "Min (0 millimeters)";
-  //       } else {
-  //         return "Max (4200 millimeters)";
-  //       }
-  //     })
-  //     .attr("fill", "#E4E5E7")
-  //     .attr("font-size", 12);
-  // }
+
+  var slumMin = 55.1;
+  var slumMax = 87.3;
+  var slumScale = d3.scaleLinear()
+    .domain([slumMin, slumMax])
+    .range([20, 100]);
+
+  lableSluems.attr("transform", "translate(100,20)");
+  yearsSluems.attr("transform", "translate(150,20)");
+  yearsSluems.selectAll("rect")
+    .data(slumes)
+    .enter().append("rect")
+    .attr("transform", function(d, i) {
+      return "translate(" + ((i * yearLableInc)) + "," + (10) + ")";
+    })
+    .attr("width", 2)
+    .attr("height", 0)
+    .style("fill", "#7a9193");
+
+  yearsSluems.selectAll("text")
+    .data(slumes)
+    .enter().append("text")
+    .attr("transform", function(d, i) {
+      return "translate(" + ((i * yearLableInc) + 30) + "," + (60) + ")";
+    })
+    .text(function(d) {
+      return "%" + d.pop;
+    })
+    .style("text-anchor", "middle")
+    .style("opacity", 0)
+    .style("fill", "#9C3C41")
+    .style("font-size", "8pt");
+
+  lableSluems.append("text")
+    .attr("transform", "translate(-100,60)")
+    .text("Slums Population")
+    .style("fill", "#9C3C41")
+    .style("font-size", "8pt");
+
   var check;
-  yearsContainer.attr("transform", "translate(100,20)");
+  yearsContainer.attr("transform", "translate(150,20)");
   yearsContainer.selectAll("text")
     .data(yearSelector)
     .enter().append("text")
     .attr("x", function(d, i) {
-      return i * 100;
+      return i * yearLableInc;
     })
     .attr("y", 0)
     .text(function(d) {
@@ -823,12 +938,30 @@ function reDrawCan() {
     .attr("font-size", 12)
 
     .on("mouseover", function(d) {
+      var year = this.id;
       d3.select(this)
         .classed("active", true);
+
+      yearsSluems.selectAll("rect").transition().duration(500)
+        .attr("height", function(d, i) {
+          return slumScale(d.pop);
+        })
+      yearsSluems.selectAll("text").transition().delay(500).duration(100)
+        .style("opacity", function(d) {
+          if (d.year == year) {
+            return 1;
+          } else {
+            return 0;
+          }
+        });
     })
     .on("mouseout", function(d) {
       d3.select(this)
         .classed("active", false);
+      yearsSluems.selectAll("rect").transition().duration(500)
+        .attr("height", 0);
+      yearsSluems.selectAll("text").transition().delay(500).duration(100)
+        .style("opacity", 0);
     })
     .on("click", function(d) {
       removeFunction();
@@ -837,7 +970,55 @@ function reDrawCan() {
     });
 
   function removeFunction() {
+    cityLables.selectAll("text").remove();
+    var ellipseG = ellipseContainer.selectAll("ellipse");
+    ellipseG.transition().duration(500).attr("rx", "0").attr("ry", "0");
 
+    var pathOne = groupOne.selectAll("path");
+    pathOne.transition()
+      .ease(d3.easePoly)
+      .duration(1000)
+      .attrTween("d", arcTweenClose)
+      .style("opacity", 0);
+
+    var pathOne = groupTwo.selectAll("path");
+    pathOne.transition()
+      .ease(d3.easePoly)
+      .duration(1000)
+      .attrTween("d", arcTweenClose)
+      .style("opacity", 0);
+
+    var pathOne = groupThree.selectAll("path");
+    pathOne.transition()
+      .ease(d3.easePoly)
+      .duration(1000)
+      .attrTween("d", arcTweenClose)
+      .style("opacity", 0);
+
+    var monthRain = container.select(".rainG")
+      .transition().duration(500).style("opacity", 0);
+
+    var labelsContainer = lables.selectAll("text")
+      .transition().duration(500).style("opacity", 0);
+
+    var cityCircleContainer = cityCircles.selectAll("circle")
+      .classed("clicked", false);
+
+    function arcTweenClose(d) {
+      var i = d3.interpolateNumber(70, 0);
+      return function(t) {
+        var r = i(t),
+          arc = d3.arc()
+          .outerRadius(r - 2)
+          .innerRadius(r)
+        return arc(d);
+      };
+    }
+    legend.selectAll("text").remove();
+  }
+
+  function removeEllipses() {
+    cityLables.selectAll("text").remove();
     var ellipseG = ellipseContainer.selectAll("ellipse");
     ellipseG.transition().duration(500).attr("rx", 0).attr("ry", 0);
 
@@ -918,15 +1099,17 @@ function reDrawCan() {
         dataSet = rain2013;
         break;
     }
+
     var circleTransition = d3.transition()
       .ease(d3.easeExp)
       .duration(1000);
 
-    var dmin = d3.min(dataSet);
-    var dmax = d3.max(dataSet);
-    var radScale = d3.scaleLinear()
-      .domain([dmin, dmax])
-      .range([0, 24]);
+    firstMin = d3.min(dataSet);
+    firstMax = d3.max(dataSet);
+
+    radScale = d3.scaleLinear()
+      .domain([firstMin, firstMax])
+      .range([4, 24]);
 
     var selectContainerCircles = cityCircles.selectAll("circle")
       .data(dataSet);
@@ -936,7 +1119,9 @@ function reDrawCan() {
     selectContainerCircles.enter().append("circle")
       .attr("r", 0);
 
-    selectContainerCircles.transition().duration(500)
+    selectContainerCircles.select("circle")
+      .data(dataSet)
+      .enter().selectAll("circle").attr("class", "cities-circles").transition().duration(500)
       .attr("r", function(d) {
         return radScale(d);
       })
@@ -946,24 +1131,46 @@ function reDrawCan() {
       .attr("cy", function(d, i) {
         return stationCord[i][1];
       })
+
+    let managedArray = [];
+    var sortedData = dataSet.sort(d3.descending);
+    var mid = Math.floor(sortedData.length / 2);
+    managedArray.push(sortedData[0]);
+    managedArray.push(sortedData[mid]);
+    managedArray.push(sortedData[sortedData.length - 1]);
+
+    // legend.select("circle")
+    //   .data(managedArray)
+    //   .enter().selectAll("circle").transition().duration(500)
+    //   .attr("transform", function(d, i) {
+    //     return "translate(0," + (-radScale(d)) + ")";
+    //   })
+    //   .attr("r", function(d) {
+    //     return radScale(d);
+    //   });
+
+    legend.select("line")
+      .data(managedArray)
+      .enter().selectAll("line").transition().duration(500)
+      .attr("transform", function(d, i) {
+        return "translate(0," + (-radScale(d) * 2) + ")";
+      });
+
+    legend.selectAll("text")
+      .data(managedArray)
+      .enter().append("text")
+      .attr("transform", function(d, i) {
+        return "translate(" + ((i * 50) + 12) + "," + ((-radScale(d) * 2) - 6) + ")";
+      })
+      .text(function(d) {
+        return d + "mm";
+      })
+      .style("font-size", "6pt")
+      .style("fill", "white");
   }
   d3.selectAll("g").raise();
 
-  var powerButton = document.getElementById('main-button');
-  powerButton.addEventListener("click", function() {
-    cityCircles.selectAll("circle").remove();
-
-    yearsContainer.selectAll("text")
-      .attr("font-size", 12)
-      .style("fill", "white")
-      .style("font-family", "imported-Azo");
-
-    removeFunction();
-  });
-
   window.addEventListener("click", function(event) {
-
-
     if (
       event.srcElement.className == "content-page open" &&
       event.srcElement.id == "D3" ||
@@ -975,12 +1182,10 @@ function reDrawCan() {
         .style("fill", "white")
         .style("font-family", "imported-Azo");
 
-      removeFunction();
+      removeEllipses();
     }
   });
 }
-
-reDrawCan();
 
 
 window.addEventListener("click", function(event) {
