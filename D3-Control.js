@@ -48,8 +48,8 @@ var imgDefs = Can.append("defs")
 ///////////////////////////Image Background///////////////////////////
 /*--------------------------------------------------------------*/
 /*--------------------------------------------------------------*/
-var img_id = function(d) { return ("img_" + d.name) }
-var img_url = function(d) { return ("url(#img_" + d.name + ")") }
+var img_id = function (d) { return ("img_" + d.name) }
+var img_url = function (d) { return ("url(#img_" + d.name + ")") }
 console.log(circlesRad);
 var imgPattern = imgDefs.selectAll("pattern")
     .data(menuData)
@@ -63,7 +63,7 @@ var imgPattern = imgDefs.selectAll("pattern")
     .attr("y", 0)
     .attr("width", circlesRad * 2)
     .attr("height", circlesRad * 2)
-    .attr("xlink:href", function(d) {
+    .attr("xlink:href", function (d) {
         return d.img;
     })
 
@@ -77,7 +77,7 @@ var imgPattern = imgDefs.selectAll("pattern")
 
 /*--------------------------------------------------------------*/
 /*--------------------------------------------------------------*/
-///////////////////////////Circles Drop Shadow///////////////////////////
+///////////////////////////Circles Drop Shadow////////////////////
 /*--------------------------------------------------------------*/
 /*--------------------------------------------------------------*/
 var defs = Can.append("defs");
@@ -102,7 +102,51 @@ feMerge.append("feMergeNode")
     .attr("in", "SourceGraphic");
 /*--------------------------------------------------------------*/
 /*--------------------------------------------------------------*/
-///////////////////////////Circles Drop Shadow///////////////////////////
+///////////////////////////Circles Drop Shadow////////////////////
+/*--------------------------------------------------------------*/
+/*--------------------------------------------------------------*/
+
+/*--------------------------------------------------------------*/
+/*--------------------------------------------------------------*/
+///////////////////////////Circles Drop Shadow White//////////////
+/*--------------------------------------------------------------*/
+/*--------------------------------------------------------------*/
+var defs = Can.append("defs");
+
+
+var filter = defs.append('filter')
+    .attr('id', 'drop-shadow-White')
+    .attr('y', '-100%')
+    .attr('x', '-100%')
+    .attr('height', '330%')
+    .attr('width', '330%')
+
+filter.append('feGaussianBlur')
+    .attr('in', 'SourceAlpha')
+    .attr('stdDeviation', 25)
+
+filter.append('feOffset')
+    .attr('dx', 8)
+    .attr('dy', 8)
+    .attr('result', 'offsetblur')
+
+filter.append('feFlood')
+    .attr('flood-color', "#E4E5E7")
+    .attr('flood-opacity', '.1')
+
+filter.append('feComposite')
+    .attr('in2', 'offsetblur')
+    .attr('operator', 'in')
+
+var feMerge = filter.append('feMerge')
+
+feMerge.append('feMergeNode')
+    .attr('in', 'offsetBlur')
+feMerge.append('feMergeNode')
+    .attr('in', 'SourceGraphic')
+/*--------------------------------------------------------------*/
+/*--------------------------------------------------------------*/
+///////////////////////////Circles Drop Shadow White//////////////
 /*--------------------------------------------------------------*/
 /*--------------------------------------------------------------*/
 var blurFilter = Can.append("defs").append("filter")
@@ -128,17 +172,17 @@ function redrawControl() {
     var toolKitTexy = toolKitGroupText.selectAll("text")
         .data(menuData)
         .enter().append("text")
-        .attr("transform", function(d, i) {
+        .attr("transform", function (d, i) {
             var r = rad;
             var angle = ((2 * Math.PI) / menuData.length * i);
             return "translate(" + (r / 2) * Math.cos(angle) + "," +
                 (r / 2) * Math.sin(angle) + ")";
         })
-        .text(function(d) {
+        .text(function (d) {
             return d.toolKit;
         })
         .attr("class", "toolKit-text")
-        .attr("id", function(d, i) {
+        .attr("id", function (d, i) {
             return d.name + "-tool-text";
         })
         .style("opacity", "0");
@@ -169,30 +213,30 @@ function redrawControl() {
     var menu = menuButtons.selectAll("circle")
         .data(menuData)
         .enter().append("circle")
-        .attr("transform", function(d, i) {
+        .attr("transform", function (d, i) {
             var angle = ((2 * Math.PI) / menuData.length * i);
             return "translate(" + ((rad) * Math.cos(angle)) + ", " + ((rad) * Math.sin(angle)) + ")"
         })
         .attr("r", circlesRad)
-        .style("fill", function(d) {
+        .style("fill", function (d) {
             console.log(img_url)
         })
         .attr("class", "button-circle")
-        .attr("id", function(d) {
+        .attr("id", function (d) {
             return d.name;
         })
-        .on("mouseenter", function(d, i) {
+        .on("mouseenter", function (d, i) {
             var data = d;
             var thisBoxName = "#" + this.id + "-tool-box";
             var thisTextName = "#" + this.id + "-tool-text";
             toolKitGroupText.select(thisTextName).style("opacity", "1");
         })
-        .on("mouseout", function(d, i) {
+        .on("mouseout", function (d, i) {
             var data = d;
             var thisTextName = "#" + this.id + "-tool-text";
             toolKitGroupText.selectAll(thisTextName).style("opacity", "0");
         })
-        .on("click", function(d, i) {
+        .on("click", function (d, i) {
             if (menuSwitch) {
                 menuButtons.selectAll("circle").classed("selected", false);
                 var index = i;
@@ -206,7 +250,7 @@ function redrawControl() {
                 var containerSelected = document.getElementById(name);
                 containerSelected.classList.add("open");
                 menuButtons.transition(menuTransition).duration(1000)
-                    .attr("transform", function() {
+                    .attr("transform", function () {
                         let rotationAngle = 360 / menuData.length;
                         if (index == 0) {
                             index = menuData.length / 2;
@@ -225,14 +269,14 @@ function redrawControl() {
 
                 menuButtons.selectAll("circle")
                     .transition(menuTransition)
-                    .attr("transform", function(d, i) {
+                    .attr("transform", function (d, i) {
                         var angle = ((2 * Math.PI) / menuData.length * i);
                         let rotationAngle = newIndex * (360 / menuData.length);
                         return "translate(" + ((rad * 2) * Math.cos(angle)) + ", " + ((rad * 2) * Math.sin(angle)) + ") rotate(" + (180 + rotationAngle) + ")";
                     })
                 toolKitGroupText.selectAll("text")
                     .transition(menuTransition).duration(1000)
-                    .attr("transform", function(d, i) {
+                    .attr("transform", function (d, i) {
                         var imgIndex = i;
                         var inc = 1;
                         let rotationAngle = newIndex * (360 / menuData.length);
@@ -240,7 +284,7 @@ function redrawControl() {
                         var y = (rad * 2) * Math.sin((2 * Math.PI) / menuData.length * imgIndex);
                         return "translate(" + (x) + "," + (y) + ")rotate(" + (180 + rotationAngle) + ")";
                     });
-                iconContainer.transition(menuTransition).duration(1000).attr("transform", function() {
+                iconContainer.transition(menuTransition).duration(1000).attr("transform", function () {
                     if (newIndex == 0) {
                         return "translate(30,30)";
                     } else if (newIndex == 1) {
@@ -308,7 +352,7 @@ function myTransit() {
     menu.select("circle")
         .data(menuData)
         .enter().selectAll("circle").transition(menuOptionsTransition)
-        .attr("transform", function(d, i) {
+        .attr("transform", function (d, i) {
             var angle = ((2 * Math.PI) / menuData.length * i);
             if (menuSwitch) {
                 return "translate(" + ((newRad) * Math.cos(angle)) + ", " + ((newRad) * Math.sin(angle)) + ")"
@@ -316,10 +360,10 @@ function myTransit() {
                 return "translate(" + ((rad) * Math.cos(angle)) + ", " + ((rad) * Math.sin(angle)) + ")"
             }
         })
-        .attr("r", function() {
+        .attr("r", function () {
             return circlesRad;
         })
-        .attr("class", function() {
+        .attr("class", function () {
             if (menuSwitch) {
                 return "button-circle clickable";
             } else {
@@ -332,7 +376,7 @@ function myTransit() {
         .data(menuData)
         .enter().selectAll("text")
         .transition(menuOptionsTransition)
-        .attr("transform", function(d, i) {
+        .attr("transform", function (d, i) {
             var r = rad;
             var angle = ((2 * Math.PI) / menuData.length * i);
             if (menuSwitch) {
@@ -345,7 +389,7 @@ function myTransit() {
         });
     Can.selectAll("#Gradient").transition()
         .duration(1000)
-        .attr("gradientTransform", function() {
+        .attr("gradientTransform", function () {
             if (menuSwitch) {
                 return "rotate(45)";
             } else {
@@ -359,7 +403,7 @@ function myTransit() {
     }
 }
 redrawControl();
-window.addEventListener("resize", function() {
+window.addEventListener("resize", function () {
     redrawControl();
 });
 /*---------------------------------------------------------------------------------------------------------------
@@ -368,7 +412,7 @@ window.addEventListener("resize", function() {
 -----------------------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------------*/
 var blumLights = document.getElementsByClassName("line-indicator");
-var values = [95, 80, 85, 95, 95, 98, 70, 75, 60, 80, 80, 60, 80, 70, 80, 60];
+var values = [85,95, 95, 90, 95, 95, 98, 70, 75, 60, 80, 80, 60, 80, 70, 80, 60];
 for (var i = 0; i < blumLights.length; i++) {
     blumLights[i].style.width = values[i] + "%";
     blumLights[i].innerText = "\n" + "%" + values[i];

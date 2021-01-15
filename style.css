@@ -107,6 +107,7 @@ body {
 
 .button-circle.selected {
     fill: #E4E5E7;
+    filter: url(#drop-shadow-White);
 }
 
 .menu-lables {
@@ -342,6 +343,7 @@ h3 {
 .UX-Images {
     width: 75%;
     margin: 55px;
+    margin-top: 0px;
 }
 
 .content-grid .line-indicator-Resume {
