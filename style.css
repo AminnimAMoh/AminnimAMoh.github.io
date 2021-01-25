@@ -1,3 +1,15 @@
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    /* background-color: #061621; */
+}
+
+@font-face {
+    font-family: "imported-Azo-Light";
+    src: url("Fonts/Azo/AzoSansThin.otf");
+}
+
 @font-face {
     font-family: "imported-Azo";
     src: url("Fonts/Azo/AzoSansLight.otf");
@@ -36,13 +48,38 @@ a {
     text-decoration: none;
 }
 
-body {
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    /* background-color: #061621; */
+#Large-Headings{
+position:fixed;
+width: 100%;
+margin-left: 25px;
+margin-top: 5px;
+z-index: 1;
 }
-
+#Large-Headings.HeadingsTop{
+    transform: translateX(0);
+}
+#Large-Headings.HeadingsBottom{
+    transform: translateX(0);
+    transform: translateY(50vh);
+}
+.text-hide{
+    font-size: 2.5em;
+    font-family: "imported-Azo-Light";
+    color: #7A9193;
+    line-height: 1.8rem;
+}
+.span-text{
+    display: inline-block;
+}
+#Large-Headings>.smallText{
+    font-size: .8rem;
+    line-height: .4rem;
+    margin-top: -20px;
+    color: #7A9193;
+}
+.smallText>p{
+    color: #7A9193;
+}
 .d3-container {
     position: absolute;
     width: 100vw;

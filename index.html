@@ -13,6 +13,10 @@
     <script src="https://d3js.org/topojson.v1.min.js"></script>
     <script src="https://unpkg.com/d3-composite-projections@1.2.0/d3-composite-projections.min.js"></script>
     <script src="https://d3js.org/d3-ease.v1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.0/gsap.min.js"
+        integrity="sha512-1dalHDkG9EtcOmCnoCjiwQ/HEB5SDNqw8d4G2MKoNwjiwMNeBAkudsBCmSlMnXdsH8Bm0mOd3tl/6nL5y0bMaQ=="
+        crossorigin="anonymous">
+        </script>
     <script src="RadarChart.js" charset="utf-8"></script>
     <script src="libraries/p5.js"></script>
     <script src="libraries/p5.dom.js"></script>
@@ -22,17 +26,37 @@
 
 <body>
 
+    <div id="Large-Headings" class="HeadingsTop">
+        <h1 class="text-hide">
+            <span class="span-text">
+                Amin Mohammadi
+            </span>
+            <br>
+            <span class="span-text" style="font-size:1.5rem;">
+                Front-End Developer
+            </span>
+        </h1>
+        <div class="smallText">
+            <p>React.js Developer</p>
+            <p>Data visualisation specialist</p>
+            <p>Web Designer</p>
+            <p>UX/UI Designer</p>
+        </div>
+    </div>
     <div class="content-page" id="D3">
         <div class="topic-grid">
             <div class="topick-heading">
                 <h1>Visualising Rainfall Data to Enhance Bangladesh’s Capacity for Risk Reduction in City Planning</h1>
                 <h3>Collaboration Team:</h3>
-                <p style="font-size: 12px; color:#5C3B42;">Developer & UI design: Mohammad Amin Mohammadi
+                <p style="font-size: 12px; color:#426164;">Developer & UI design: Mohammad Amin Mohammadi
                 </p>
-                <p style="font-size: 12px; color:#5C3B42;">Academia Research: Heath McGregor
+                <p style="font-size: 12px; color:#426164;">Academia Research: Heath McGregor
                 </p>
-                <p style="font-size: 12px; color:#5C3B42;">documentation: Maya Okada-Zalewski
+                <p style="font-size: 12px; color:#426164;">documentation: Maya Okada-Zalewski
                 </p>
+                <a href="Assets/Bangeladesh/v.03.pdf" class="onlineLink" style="bottom: -20px;">
+                    <h3 class="link-ToExternals">Link to full report</h3>
+                </a>
             </div>
 
             <div class="topic-pragraph">
@@ -125,10 +149,10 @@
             </div>
 
             <div class="topic-pragraph">
-                <p>My portfolio page is a collection of the projects I have been working on during my university 
-                    years that is a good link to demonstrate the skills I have developed. I developed my portfolio 
-                    page using D3.js. Also, one of the major projects that I developed in D3.js using Bangladesh 
-                    monthly rain database is awarded of Amazon Web Service for Disaster Prevention in 2020. 
+                <p>My portfolio page is a collection of the projects I have been working on during my university
+                    years that is a good link to demonstrate the skills I have developed. I developed my portfolio
+                    page using D3.js. Also, one of the major projects that I developed in D3.js using Bangladesh
+                    monthly rain database is awarded of Amazon Web Service for Disaster Prevention in 2020.
                 </p>
             </div>
         </div>
@@ -190,8 +214,11 @@
 
             <div class="topic-pragraph">
                 <p>
-                    I am graduated from the University of Sydney Bachelor of Design Computing. A Creative User Interaction designer following User Experience design methods reinforced with strong Front-End Development skills in different JavaScript platforms manly React.js.
-                    My portfolio page is a collection of the projects I have been working on during my university years that is a good link to demonstrate the skills I have in UI design and developing prototypes.
+                    I am graduated from the University of Sydney Bachelor of Design Computing. A Creative User
+                    Interaction designer following User Experience design methods reinforced with strong Front-End
+                    Development skills in different JavaScript platforms manly React.js.
+                    My portfolio page is a collection of the projects I have been working on during my university years
+                    that is a good link to demonstrate the skills I have in UI design and developing prototypes.
                 </p>
 
             </div>
@@ -601,43 +628,58 @@
             <div class="topic-pragraph" style="width: 90%">
                 <h1>React Hooks</h1>
                 <ul style="margin-top: 25px;">
-                    <li><h3>useState</h3>
+                    <li>
+                        <h3>useState</h3>
                         <p>
-                            "useState" is a React hook function that allows us to change the state of the function components if required.
-                            React hook functions are well design to secure the function component from possible errors in the code as well as stabilizing the connection between components between classes.
+                            "useState" is a React hook function that allows us to change the state of the function
+                            components if required.
+                            React hook functions are well design to secure the function component from possible errors
+                            in the code as well as stabilizing the connection between components between classes.
                         </p>
                     </li>
-                    <li><h3>useEffect</h3>
+                    <li>
+                        <h3>useEffect</h3>
                         <p>
-                            "useEffect" function is another React hook that allows us to read from our API data base only on specified circumstances. 
-                            "useEffect" helps us to minimize the tokens on our API and reduces the load on the API server.
-                            In this application, we mainly use the "useEffect" hook to read and write on our API database with a minimum number of tokens for each request to maintain the API service.
+                            "useEffect" function is another React hook that allows us to read from our API data base
+                            only on specified circumstances.
+                            "useEffect" helps us to minimize the tokens on our API and reduces the load on the API
+                            server.
+                            In this application, we mainly use the "useEffect" hook to read and write on our API
+                            database with a minimum number of tokens for each request to maintain the API service.
                         </p>
                     </li>
-                    <li><h3>REACT ROUTER</h3>
+                    <li>
+                        <h3>REACT ROUTER</h3>
                         <ul style="margin-top: 25px;">
                             <li>useHistory
                                 <p>
-                                    "useHistory" is a hook function from React Router Core npm to trigger the Link function in a class function rather than the render function.
-                                    "useHistory" in this application allows us to route between pages using different states of function components in conditions.  
-                                    In this application, this condition listens to the direction of the user's swipe. 
+                                    "useHistory" is a hook function from React Router Core npm to trigger the Link
+                                    function in a class function rather than the render function.
+                                    "useHistory" in this application allows us to route between pages using different
+                                    states of function components in conditions.
+                                    In this application, this condition listens to the direction of the user's swipe.
                                 </p>
                             </li>
                             <li>Switch
                                 <p>
-                                    "Switch" is unique in that it renders a route exclusively. In contrast, every "Route" that matches the location renders inclusively. 
+                                    "Switch" is unique in that it renders a route exclusively. In contrast, every
+                                    "Route" that matches the location renders inclusively.
                                 </p>
                             </li>
                             <li>Route
                                 <p>
-                                    "Route" most basic responsibility is to render some UI when its path matches the current URL passed as the path.
-                                    "Route" also sets the props required for the routing component and on each request to the path it makes the hook between the sender and receiver component. 
+                                    "Route" most basic responsibility is to render some UI when its path matches the
+                                    current URL passed as the path.
+                                    "Route" also sets the props required for the routing component and on each request
+                                    to the path it makes the hook between the sender and receiver component.
                                 </p>
                             </li>
                             <li>Link
                                 <p>
-                                    "Link" allows us to navigate to specified path component/page in HTML format (render function) and transferring object properties as props.
-                                    In this application, we have used "Link" on our buttons triggering routes to other pages and transferring the props to the function component. 
+                                    "Link" allows us to navigate to specified path component/page in HTML format (render
+                                    function) and transferring object properties as props.
+                                    In this application, we have used "Link" on our buttons triggering routes to other
+                                    pages and transferring the props to the function component.
                                 </p>
                             </li>
                         </ul>
@@ -706,6 +748,7 @@
 
     </div>
 
+    <!-- <script src="GSAP-Animations.js"></script> -->
     <script src="D3-Control.js"></script>
     <script src="Map.js"></script>
 </body>

@@ -50,7 +50,6 @@ var imgDefs = Can.append("defs")
 /*--------------------------------------------------------------*/
 var img_id = function (d) { return ("img_" + d.name) }
 var img_url = function (d) { return ("url(#img_" + d.name + ")") }
-console.log(circlesRad);
 var imgPattern = imgDefs.selectAll("pattern")
     .data(menuData)
     .enter().append("pattern")
@@ -169,15 +168,35 @@ function redrawControl() {
     var h = sketchContainer.clientHeight;
     Can.attr("width", w)
         .attr("height", h);
+
+    var toolKitPath = toolKitGroupText.selectAll("path")
+        .data(menuData)
+        .enter().append("path")
+        .attr("id", function (d, i) {
+            return "wavy" + d.name;
+        }) //Unique id of the path
+        .attr("d", "M " + (-circlesRad - 5) + ",-10 A 42.5,42.5 0 0,1 " + (circlesRad + 5) + ",-10")
+        .attr("transform", function (d, i) {
+            var angle = ((2 * Math.PI) / menuData.length * i);
+            return "translate(" + ((rad) * Math.cos(angle)) + ", " + ((rad) * Math.sin(angle) - 5) + ")"
+        })
+        .style("fill", "none")
+        .style("stroke", "none");
+
     var toolKitTexy = toolKitGroupText.selectAll("text")
         .data(menuData)
         .enter().append("text")
-        .attr("transform", function (d, i) {
-            var r = rad;
-            var angle = ((2 * Math.PI) / menuData.length * i);
-            return "translate(" + (r / 2) * Math.cos(angle) + "," +
-                (r / 2) * Math.sin(angle) + ")";
+        .append("textPath")
+        .attr("xlink:href", function (d, i) {
+            return "#wavy" + d.name;
         })
+        .attr("startOffset", "50%")
+        // .attr("transform", function (d, i) {
+        //     var r = rad;
+        //     var angle = ((2 * Math.PI) / menuData.length * i);
+        //     return "translate(" + (rad / 2) * Math.cos(angle) + "," +
+        //         (rad / 2) * Math.sin(angle) + ")";
+        // })
         .text(function (d) {
             return d.toolKit;
         })
@@ -219,7 +238,6 @@ function redrawControl() {
         })
         .attr("r", circlesRad)
         .style("fill", function (d) {
-            console.log(img_url)
         })
         .attr("class", "button-circle")
         .attr("id", function (d) {
@@ -274,16 +292,26 @@ function redrawControl() {
                         let rotationAngle = newIndex * (360 / menuData.length);
                         return "translate(" + ((rad * 2) * Math.cos(angle)) + ", " + ((rad * 2) * Math.sin(angle)) + ") rotate(" + (180 + rotationAngle) + ")";
                     })
-                toolKitGroupText.selectAll("text")
-                    .transition(menuTransition).duration(1000)
+
+                    toolKitGroupText.selectAll("path")
+                    .transition(menuTransition)
                     .attr("transform", function (d, i) {
-                        var imgIndex = i;
-                        var inc = 1;
+                        var angle = ((2 * Math.PI) / menuData.length * i);
                         let rotationAngle = newIndex * (360 / menuData.length);
-                        var x = (rad * 2) * Math.cos((2 * Math.PI) / menuData.length * imgIndex);
-                        var y = (rad * 2) * Math.sin((2 * Math.PI) / menuData.length * imgIndex);
-                        return "translate(" + (x) + "," + (y) + ")rotate(" + (180 + rotationAngle) + ")";
+                        return "translate(" + ((rad * 2) * Math.cos(angle)) + ", " + ((rad * 2) * Math.sin(angle)) + ") rotate(" + (180 + rotationAngle) + ")";
+                    })
+
+                var toolKitText = toolKitGroupText.selectAll("text").selectAll("textPath")
+                    .data(menuData)
+                toolKitText.exit().remove();
+                toolKitGroupText.select("text")
+                    .data(menuData)
+                    .enter().selectAll("text").selectAll("textPath")
+                    .transition(menuOptionsTransition)
+                    .attr("xlink:href", function (d, i) {
+                        return "#wavy" + d.name;
                     });
+
                 iconContainer.transition(menuTransition).duration(1000).attr("transform", function () {
                     if (newIndex == 0) {
                         return "translate(30,30)";
@@ -317,7 +345,6 @@ function myTransit() {
     var envelops = document.getElementsByClassName("inner-content");
     for (var i = 0; i < envelops.length; i++) {
         if (envelops[i].id != "inner-color" && envelops[i].id != "inner-d3") {
-            console.log(envelops[i].id);
             envelops[i].classList.remove("open");
         }
     }
@@ -331,6 +358,24 @@ function myTransit() {
         circlesRad = 40;
     }
     var newRad = rad * 2;
+
+    let toolKitPath = toolKitGroupText.selectAll("path")
+        .data(menuData)
+        .exit().remove();
+
+    toolKitPath.select("path")
+        .data(menuData)
+        .enter().selectAll("path")
+        .transition(menuOptionsTransition)
+        .attr("transform", function (d, i) {
+            var angle = ((2 * Math.PI) / menuData.length * i);
+            if (menuSwitch) {
+                return "translate(" + ((newRad) * Math.cos(angle)) + ", " + ((newRad) * Math.sin(angle) - 5) + ")"
+            } else {
+                return "translate(" + ((rad) * Math.cos(angle)) + ", " + ((rad) * Math.sin(angle) - 5) + ")"
+            }
+        })
+        .attr("d", "M " + (-circlesRad - 5) + ",-10 A 65.5,65.5 0 0,1 " + (circlesRad + 5) + ",-10");
 
     let iconDefs = imgDefs.selectAll("image")
         .data(menuData)
@@ -346,9 +391,7 @@ function myTransit() {
     var menu = menuButtons.selectAll("circle")
         .data(menuData)
     menu.exit().remove();
-    var toolKitText = toolKitGroupText.selectAll("text")
-        .data(menuData)
-    toolKitText.exit().remove();
+
     menu.select("circle")
         .data(menuData)
         .enter().selectAll("circle").transition(menuOptionsTransition)
@@ -372,21 +415,29 @@ function myTransit() {
         })
         .style("fill", img_url);
 
-    toolKitText.select("text")
+
+    var toolKitText = toolKitGroupText.selectAll("text").selectAll("textPath")
         .data(menuData)
-        .enter().selectAll("text")
+    toolKitText.exit().remove();
+
+    toolKitGroupText.selectAll("text")
+        .data(menuData)
+        .enter().append("text").append("textPath")
         .transition(menuOptionsTransition)
-        .attr("transform", function (d, i) {
-            var r = rad;
-            var angle = ((2 * Math.PI) / menuData.length * i);
-            if (menuSwitch) {
-                r = newRad * 2;
-            } else {
-                r = rad * 2;
-            }
-            return "translate(" + (r / 2) * Math.cos(angle) + "," +
-                (r / 2) * Math.sin(angle) + ")";
+        .attr("xlink:href", function (d, i) {
+            return "#wavy" + d.name;
         });
+    // .attr("transform", function (d, i) {
+    //     var r = rad;
+    //     var angle = ((2 * Math.PI) / menuData.length * i);
+    //     if (menuSwitch) {
+    //         r = newRad * 2;
+    //     } else {
+    //         r = rad * 2;
+    //     }
+    //     return "translate(" + (r / 2) * Math.cos(angle) + "," +
+    //         (r / 2) * Math.sin(angle) + ")";
+    // });
     Can.selectAll("#Gradient").transition()
         .duration(1000)
         .attr("gradientTransform", function () {
@@ -412,10 +463,10 @@ window.addEventListener("resize", function () {
 -----------------------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------------*/
 var blumLights = document.getElementsByClassName("line-indicator");
-var values = [85,95, 95, 90, 95, 95, 98, 70, 75, 60, 80, 80, 60, 80, 70, 80, 60];
+var values = [85, 95, 95, 90, 95, 95, 98, 70, 75, 60, 80, 80, 60, 80, 70, 80, 60];
 for (var i = 0; i < blumLights.length; i++) {
     blumLights[i].style.width = values[i] + "%";
-    blumLights[i].innerText = "\n" + "%" + values[i];
+    blumLights[i].innerText = "\n" + values[i] + "%";
 }
 
 function CVControl(element) {

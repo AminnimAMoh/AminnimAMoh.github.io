@@ -38,6 +38,8 @@ let textIsNotPrinted = true;
 //-Add a way to convert RGB to Hex
 //-Add a slider for brightness
 //-Add a way to limit numbers of answers
+
+
 function gotFile(file) {
   dragedFile = file;
   img = loadImage(file.data);
@@ -311,7 +313,7 @@ function Answers(c_, tag_, count_) {
       ImageCont.text("(" + this.c[0] + "," + this.c[1] + "," + this.c[2] + ")", answerCount * (ImageCont.width / a.length), ImageCont.height - 10);
       ImageCont.text("Count=" + this.co, answerCount * (ImageCont.width / a.length) + ((ImageCont.width / a.length) / 2) / 2, ImageCont.height - 45);
     } else {
-      ImageCont.text("#" + hex(this.c[0], this.c[1], this.c[2]), answerCount * (ImageCont.width / a.length) + ((ImageCont.width / a.length) / 2) / 2, ImageCont.height - 10);
+      // ImageCont.text("#" + hex(this.c[0], this.c[1], this.c[2]), answerCount * (ImageCont.width / a.length) + ((ImageCont.width / a.length) / 2) / 2, ImageCont.height - 10);
     }
     answerCount++;
   }
