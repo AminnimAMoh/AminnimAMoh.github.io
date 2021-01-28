@@ -1,5 +1,49 @@
-const tl = gsap.timeline({ defaults: { ease: "power1.out" } });
+const typeWriterElements = document.getElementsByClassName("span-text");
+let w;
+for (let i = 0; i < typeWriterElements.length; i++) {
+    var tl = new TimelineMax({
+        paused: true
+    });
+    const elementID = typeWriterElements[i].id;
+    const e=document.getElementById(elementID);
 
-tl.to(".span-text", { y: '0%', duration: 1, stagger: .35, delay: .8 });
-tl.to(".HeadingsTop", {x: '-100%', duration: 1, delay: 1})
-tl.to(".HeadingsBottom", {x: '100%', duration: 1, delay: 0}, "-=1")
+    // letter animation
+    tl.fromTo("#" + elementID, 0.5, {
+        "display": "none"
+    }, {
+        "display": "block",
+        delay: i * 3,
+        onComplete: calWidth,
+        onCompleteParams: [e]
+    })
+    tl.fromTo("#" + elementID, 3, {
+        width: "0",
+    }, {
+        width: "100%", /* same as CSS .line-1 width */
+        ease: SteppedEase.config(24),
+        delay: i * 3,
+        onComplete: myFunc,
+        onCompleteParams: [elementID, i, tl]
+    }, 0);
+    // text cursor animation
+    tl.fromTo("#" + elementID, 0.5, {
+        "border-right-color": "rgba(255,255,255,0.75)"
+    }, {
+        "border-right-color": "rgba(255,255,255,0)",
+        repeat: -1,
+        ease: SteppedEase.config(15)
+    }, 0);
+
+    tl.play();
+}
+
+function calWidth(element){
+    w="62px";
+}
+
+function myFunc(EID, index, timeLine) {
+    let e = document.getElementById(EID);
+    e.style.border = "none";
+    timeLine.kill("#" + EID)
+}
+
