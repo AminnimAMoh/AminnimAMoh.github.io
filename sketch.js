@@ -34,6 +34,7 @@ let dragedFile;
 let finished = false;
 let firstLoad = true;
 let textIsNotPrinted = true;
+let mouseCan;
 //What left to do?
 //-Add a way to convert RGB to Hex
 //-Add a slider for brightness
@@ -61,6 +62,12 @@ function setup() {
   if (firstLoad) {
     var ColorCanElement = document.getElementById("canvas-drop");
     var colorElement = document.getElementById("colors-info");
+
+    mouseCan=createGraphics(windowWidth,windowHeight);
+    // mouseCan.parent("body")
+    mouseCan.id("mouseCanvas")
+    mouseCan.style("display: block")
+    mouseCan.style("z-index: 10")
     ColorCan = createCanvas(ColorCanElement.offsetWidth, ColorCanElement.offsetHeight);
     ColorCan.parent(ColorCanElement);
     ColorCan.position(0, 0);
@@ -164,6 +171,8 @@ function draw() {
       setup();
     }
   }
+  mouseEvents();
+  image(mouseCan,mouseCan.width,mouseCan.height)
 }
 
 function keyPressed() {
@@ -318,3 +327,8 @@ function Answers(c_, tag_, count_) {
     answerCount++;
   }
 }
+
+// function mouseEvents(){
+//   mouseCan.fill(255);
+//   mouseCan.ellipse(mouseX,mouseY,100,100)
+// }

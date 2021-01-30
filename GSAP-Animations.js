@@ -1,5 +1,4 @@
 const typeWriterElements = document.getElementsByClassName("span-text");
-let w;
 for (let i = 0; i < typeWriterElements.length; i++) {
     var tl = new TimelineMax({
         paused: true
@@ -13,8 +12,6 @@ for (let i = 0; i < typeWriterElements.length; i++) {
     }, {
         "display": "block",
         delay: i * 3,
-        onComplete: calWidth,
-        onCompleteParams: [e]
     })
     tl.fromTo("#" + elementID, 3, {
         width: "0",
@@ -36,11 +33,6 @@ for (let i = 0; i < typeWriterElements.length; i++) {
 
     tl.play();
 }
-
-function calWidth(element){
-    w="62px";
-}
-
 function myFunc(EID, index, timeLine) {
     let e = document.getElementById(EID);
     e.style.border = "none";
