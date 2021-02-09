@@ -109,6 +109,7 @@ font-size: 18px;
     margin: 0;
     background-color: #061621;
     transition: margin-left .5s;
+    z-index: -1;
 }
 
 .main-button {
@@ -178,7 +179,6 @@ font-size: 18px;
 .buttonEmmision {
     fill: black;
 }
-
 
 /* //////////////////////////////////////////////////////////////////////////////////////////////////
 

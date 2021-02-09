@@ -21,6 +21,7 @@
     <script src="libraries/p5.js"></script>
     <script src="libraries/p5.dom.js"></script>
     <script src="sketch.js"></script>
+    <!-- <script src="Mouse.js"></script> -->
 
 </head>
 
@@ -130,7 +131,7 @@
                     </p> -->
                     <div class="canvas-drop" id="canvas-drop"></div>
                     <div class="colors-info" id="colors-info"></div>
-                    <div class="close-button" onclick="reset()" style="margin-top:25px;">Reset</div>
+                    <div class="close-button" onclick="reset()" style="margin-top:25px;">Reset to drag a new image to the top canvas</div>
                 </div>
             </div>
         </div>
@@ -744,9 +745,8 @@
 
     <div class="d3-container" id="d3-container">
         <div class="main-button" id="main-button" onclick="myTransit()">
-            <img src="Assets/Power_Button-Stoke.png" alt="Image-Content">
+            <img src="Assets/Power_Button-Stoke.png" alt="Image-Content" style="z-index: 1;">
         </div>
-
     </div>
 
     <script src="GSAP-Animations.js"></script>

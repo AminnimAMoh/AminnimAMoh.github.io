@@ -34,7 +34,7 @@ var menuData = [{
     toolKit: "P5.js Image to Color palette",
     width: 150
 }];
-var Can = d3.select("#d3-container").append("svg").attr("id", "control-canvas");
+var Can = d3.select("#d3-container").append("svg").attr("id", "control-canvas").style("z-index", "-1").style("position", "absolute");
 var menuButtonsGroupContainer = Can.append("g").attr("id", "menuButtons-Group");
 var menuButtons = menuButtonsGroupContainer.append("g").attr("id", "menuButtons");
 var menuButtonsBack = Can.append("g");
@@ -45,7 +45,7 @@ var imgDefs = Can.append("defs")
 
 /*--------------------------------------------------------------*/
 /*--------------------------------------------------------------*/
-///////////////////////////Image Background///////////////////////////
+///////////////////////////Image Background///////////////////////
 /*--------------------------------------------------------------*/
 /*--------------------------------------------------------------*/
 var img_id = function (d) { return ("img_" + d.name) }
@@ -68,7 +68,7 @@ var imgPattern = imgDefs.selectAll("pattern")
 
 /*--------------------------------------------------------------*/
 /*--------------------------------------------------------------*/
-///////////////////////////Image Background///////////////////////////
+///////////////////////////Image Background///////////////////////
 /*--------------------------------------------------------------*/
 /*--------------------------------------------------------------*/
 
